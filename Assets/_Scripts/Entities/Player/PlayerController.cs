@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
 
     // Player's movement speed
     [Header("Player Movement Speed")]
-    [SerializeField] [Range(1, 20)] private float speed = 10;
+    [SerializeField] [Range(1, 20)] private float speed = 2.5f;
 
     // Cursor mouse sensitivity
     [Header("Mouse sensitivity")]
@@ -31,15 +31,17 @@ public class PlayerController : MonoBehaviour
     // Reference to character controller
     private CharacterController character_controller;
 
+    // Reference to player's previous position
+    private Vector3 player_previous_position;
+
+    #region Player Input
     // Reference to player's input system
     private PlayerInput player_input;
 
     // Reference to player's input system actions
     private InputAction move_action;
     private InputAction look_action;
-
-    // Reference to player's previous position
-    private Vector3 player_previous_position;
+    #endregion
 
     // AUXILIAR VARIABLES
 
