@@ -141,13 +141,8 @@ public class PlayerController : MonoBehaviour
         // Walking animation controller
 
         // If player's current position is not different from previous position establish that the player is not walking
-        if (Vector3.Distance(player_previous_position, gameObject.transform.position) <= 0.05f) {
-            Debug.Log("PARADO");
-            GetComponent<Animator>().SetBool("is_walking", false);
-        } else {
-            Debug.Log("ANDANDO");
-            GetComponent<Animator>().SetBool("is_walking", true); // If it is different establish that the player is walking
-        }
+        if (Vector3.Distance(player_previous_position, gameObject.transform.position) <= 0.05f) GetComponent<Animator>().SetBool("is_walking", false);
+        else GetComponent<Animator>().SetBool("is_walking", true); // If it is different establish that the player is walking
         //---------------------------------------------------------------------------------//
 
         // Set the current position as the previous one for the next iteration
@@ -199,15 +194,20 @@ public class PlayerController : MonoBehaviour
         inventory_action.performed +=
             context =>
                 {
-                    if (GameManager.Instance.State == GameState.Inventory) {
-                        // Inventory open
-                        Debug.Log("CLOSING INVENTORY");
-                        GameManager.Instance.ChangeState(GameState.Game);
-                    } else {
+
+                    Debug.Log("inventario leñe");
+
+                    if (GameManager.Instance.State == GameState.Game) {
                         // Inventory closed
                         Debug.Log("OPENING INVENTORY");
                         GameManager.Instance.ChangeState(GameState.Inventory);
-                    }
+                    } else if (GameManager.Instance.State == GameState.Inventory) {
+                        // Inventory open
+                        Debug.Log("CLOSING INVENTORY");
+                        GameManager.Instance.ChangeState(GameState.Game);
+                    } 
+                    
+                    
                 };
     }
 
