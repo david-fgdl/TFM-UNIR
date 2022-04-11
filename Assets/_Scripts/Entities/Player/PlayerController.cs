@@ -31,6 +31,9 @@ public class PlayerController : MonoBehaviour
     // Reference to character controller
     private CharacterController character_controller;
 
+    // Reference to player's animator
+    private Animator animator;
+
     // Reference to player's previous position
     private Vector3 player_previous_position;
 
@@ -63,6 +66,9 @@ public class PlayerController : MonoBehaviour
         grab_action = player_input.actions["Grab"];
         inventory_action = player_input.actions["Inventory"];
         character_controller = GetComponent<CharacterController>();
+
+        if (character_controller==null)
+         Debug.Log("CHARACTER CONTROLLER ES NULL");
     }
 
     // START ACTION
@@ -81,6 +87,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("ACTUAL GAME STATE: "+GameManager.Instance.State);
         CheckIfMenu(); // Check if we're on a menu
 
         Move();  // Control player's movement
@@ -134,8 +141,13 @@ public class PlayerController : MonoBehaviour
         // Walking animation controller
 
         // If player's current position is not different from previous position establish that the player is not walking
-        if (Vector3.Distance(player_previous_position, gameObject.transform.position) <= 0.05f) GetComponent<Animator>().SetBool("is_walking", false);
-        else GetComponent<Animator>().SetBool("is_walking", true); // If it is different establish that the player is walking
+        if (Vector3.Distance(player_previous_position, gameObject.transform.position) <= 0.05f) {
+            Debug.Log("PARADO");
+            GetComponent<Animator>().SetBool("is_walking", false);
+        } else {
+            Debug.Log("ANDANDO");
+            GetComponent<Animator>().SetBool("is_walking", true); // If it is different establish that the player is walking
+        }
         //---------------------------------------------------------------------------------//
 
         // Set the current position as the previous one for the next iteration
