@@ -67,12 +67,19 @@ public class PlayerController : MonoBehaviour
         grab_action = player_input.actions["Grab"];
         inventory_action = player_input.actions["Inventory"];
         character_controller = GetComponent<CharacterController>();
+
+        // CHANGE GAME STATE TO GAME TO SHOW UI
+        GameManager.Instance.ChangeState(GameState.Game);
+
+        
     }
 
     // START ACTION
     // Start is called before the first frame update
     void Start()
     {
+
+        
 
         // SET REFERENCES' VALUES
         player_previous_position = transform.position;  // Set previous position as the current position in the start
@@ -163,6 +170,24 @@ public class PlayerController : MonoBehaviour
                         
                     // OBJECT GOES TO INVENTORY (OTHER SCRIPT?)
                     // OBJECT GRABBED GETS DESTROYED ON SCENE BUT STORED ON INVENTORY ARRAY
+                };
+    }
+
+    // ACTION OPEN/CLOSE INVENTORY
+    public void Inventory(InputAction.CallbackContext context)
+    {
+        inventory_action.performed +=
+            context =>
+                {
+                    if (GameManager.Instance.State == GameState.Inventory) {
+                        // Inventory open
+                        Debug.Log("CLOSING INVENTORY");
+                        GameManager.Instance.ChangeState(GameState.Game);
+                    } else {
+                        // Inventory closed
+                        Debug.Log("OPENING INVENTORY");
+                        GameManager.Instance.ChangeState(GameState.Inventory);
+                    }
                 };
     }
 

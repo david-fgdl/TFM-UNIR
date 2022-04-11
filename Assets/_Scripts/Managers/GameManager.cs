@@ -13,7 +13,8 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        Instance = this;
+        if (Instance != null && Instance != this) Destroy(this);
+        else Instance = this;
     }
 
     void Start()
@@ -38,11 +39,17 @@ public class GameManager : MonoBehaviour
             case GameState.Game:
                 HandleGame();
                 break;
+            case GameState.Inventory:
+                HandleInventory();
+                break;
             case GameState.GameOver:
                 HandleGameOver();
                 break;
             case GameState.EndGame:
                 HandleEndGame();
+                break;
+            case GameState.Settings:
+                HandleSettings();
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
@@ -59,6 +66,10 @@ public class GameManager : MonoBehaviour
         
     }
 
+    private void HandleInventory() {
+        // OPEN INVENTORY MENU
+    }
+
     private void HandleGameOver() {
         
     }
@@ -67,12 +78,17 @@ public class GameManager : MonoBehaviour
         
     }
 
+    private void HandleSettings() {
+
+    }
+
 
 }
 
 public enum GameState { // Podemos añadir estados dependiendo de los hitos conseguidos en la historia
     Menu,
     Game,
+    Inventory,
     GameOver,
     EndGame,
     Settings
