@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour
 
     /* VARIABLES */
 
+    // GAME MANAGER INSTANCE
+    private GameManager GM;
+
     // EDITABLE PLAYER VALUES
 
     // Player's movement speed
@@ -60,25 +63,29 @@ public class PlayerController : MonoBehaviour
         // LOCKING CURSOR ON WINDOW
         Cursor.lockState = CursorLockMode.Locked;
 
+
         // SETTING PLAYER INPUT BEFORE ANYTHING ELSE
-        player_input = GetComponent<PlayerInput>();
-        move_action = player_input.actions["Walk"];
-        look_action = player_input.actions["Look"];
-        grab_action = player_input.actions["Grab"];
-        inventory_action = player_input.actions["Inventory"];
-        character_controller = GetComponent<CharacterController>();
+        if (GameManager.Instance.State == GameState.Game)
+        {
+            player_input = GetComponent<PlayerInput>();
+            move_action = player_input.actions["Walk"];
+            look_action = player_input.actions["Look"];
+            grab_action = player_input.actions["Grab"];
+            inventory_action = player_input.actions["Inventory"];
+            character_controller = GetComponent<CharacterController>();
+        }
 
-        // CHANGE GAME STATE TO GAME TO SHOW UI
-        GameManager.Instance.ChangeState(GameState.Game);
 
-        
+
+
     }
 
     // START ACTION
     // Start is called before the first frame update
     void Start()
     {
-
+        // // CHANGE GAME STATE TO GAME TO SHOW UI
+        // GameManager.Instance.ChangeState(GameState.Game); // CREO QUE NO HACE FALTA
         
 
         // SET REFERENCES' VALUES
