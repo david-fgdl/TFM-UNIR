@@ -41,6 +41,8 @@ public class PlayerController : MonoBehaviour
     // Reference to player's input system actions
     private InputAction move_action;
     private InputAction look_action;
+    private InputAction grab_action;
+    private InputAction inventory_action;
     #endregion
 
     // AUXILIAR VARIABLES
@@ -52,16 +54,27 @@ public class PlayerController : MonoBehaviour
 
     /* BASIC METHODS */
 
+    // AWAKE EVENT
+    void Awake()
+    {
+        // LOCKING CURSOR ON WINDOW
+        Cursor.lockState = CursorLockMode.Locked;
+
+        // SETTING PLAYER INPUT BEFORE ANYTHING ELSE
+        player_input = GetComponent<PlayerInput>();
+        move_action = player_input.actions["Walk"];
+        look_action = player_input.actions["Look"];
+        grab_action = player_input.actions["Grab"];
+        inventory_action = player_input.actions["Inventory"];
+        character_controller = GetComponent<CharacterController>();
+    }
+
     // START ACTION
     // Start is called before the first frame update
     void Start()
     {
 
         // SET REFERENCES' VALUES
-        player_input = GetComponent<PlayerInput>();
-        move_action = player_input.actions["Walk"];
-        look_action = player_input.actions["Look"];
-        character_controller = GetComponent<CharacterController>();
         player_previous_position = transform.position;  // Set previous position as the current position in the start
 
     }
@@ -72,6 +85,20 @@ public class PlayerController : MonoBehaviour
     {
         Move();  // Control player's movement
         Look();  // Control camera's movement
+    }
+
+    // ONENABLE EVENT
+    // Calls when this script gets enabled
+    void OnEnable()
+    {
+        player_input.enabled = true;
+    }
+
+    // ONDISABLE EVENT
+    // Calls when this script gets disabled
+    void OnDisable()
+    {
+        player_input.enabled = false;
     }
 
 /*-----------------------------------------------------------------------------------------------------------------------------*/
@@ -120,6 +147,19 @@ public class PlayerController : MonoBehaviour
         // Rotate whole player in the x axis
         this.transform.Rotate(Vector3.up * mouse_x);
 
+    }
+
+    // ACTION TO TAKE/GRAB OBJECTS
+    public void Grab(InputAction.CallbackContext context)
+    {
+        grab_action.performed +=
+            context =>
+                {
+                    Debug.Log("GRABBING");
+                    // ANIMATION PLAYS
+                    // OBJECT GOES TO INVENTORY (OTHER SCRIPT?)
+                    // OBJECT GRABBED GETS DESTROYED ON SCENE BUT STORED ON INVENTORY ARRAY
+                };
     }
 
 /*-----------------------------------------------------------------------------------------------------------------------------*/
