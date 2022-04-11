@@ -57,32 +57,19 @@ public class PlayerController : MonoBehaviour
     // AWAKE EVENT
     void Awake()
     {
-        // LOCKING CURSOR ON WINDOW
-        Cursor.lockState = CursorLockMode.Locked;
-
-
-        // SETTING PLAYER INPUT BEFORE ANYTHING ELSE
-        if (GameManager.Instance.State == GameState.Game)
-        {
-            player_input = GetComponent<PlayerInput>();
-            move_action = player_input.actions["Walk"];
-            look_action = player_input.actions["Look"];
-            grab_action = player_input.actions["Grab"];
-            inventory_action = player_input.actions["Inventory"];
-            character_controller = GetComponent<CharacterController>();
-        }
-
-
-
-
+        player_input = GetComponent<PlayerInput>();
+        move_action = player_input.actions["Move"];
+        look_action = player_input.actions["Look"];
+        grab_action = player_input.actions["Grab"];
+        inventory_action = player_input.actions["Inventory"];
+        character_controller = GetComponent<CharacterController>();
     }
 
     // START ACTION
     // Start is called before the first frame update
     void Start()
     {
-        // // CHANGE GAME STATE TO GAME TO SHOW UI
-        // GameManager.Instance.ChangeState(GameState.Game); // CREO QUE NO HACE FALTA
+        CheckIfMenu();
         
 
         // SET REFERENCES' VALUES
@@ -94,6 +81,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CheckIfMenu(); // Check if we're on a menu
+
         Move();  // Control player's movement
         Look();  // Control camera's movement
     }
@@ -110,6 +99,21 @@ public class PlayerController : MonoBehaviour
     void OnDisable()
     {
         player_input.enabled = false;
+    }
+
+    void CheckIfMenu() {
+
+        if (GameManager.Instance.State != GameState.Game) { // We're on a menu
+            Time.timeScale = 0f;
+            player_input.actions.FindActionMap("UI").Enable();
+            player_input.actions.FindActionMap("Player").Disable();
+            Cursor.lockState = CursorLockMode.None;
+        } else { // We're in game
+            Time.timeScale = 1f;
+            player_input.actions.FindActionMap("Player").Enable();
+            player_input.actions.FindActionMap("UI").Disable();
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 
 /*-----------------------------------------------------------------------------------------------------------------------------*/
