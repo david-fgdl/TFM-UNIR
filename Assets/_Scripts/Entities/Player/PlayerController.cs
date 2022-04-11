@@ -120,7 +120,7 @@ public class PlayerController : MonoBehaviour
 
         // If player's current position is not different from previous position establish that the player is not walking
         if (Vector3.Distance(player_previous_position, gameObject.transform.position) <= 0.05f) GetComponent<Animator>().SetBool("is_walking", false);
-        else GetComponent<Animator>().SetBool("is_walking", true);  // If it is differente establish that the player is walking
+        else GetComponent<Animator>().SetBool("is_walking", true); // If it is different establish that the player is walking
         //---------------------------------------------------------------------------------//
 
         // Set the current position as the previous one for the next iteration
@@ -156,7 +156,11 @@ public class PlayerController : MonoBehaviour
             context =>
                 {
                     Debug.Log("GRABBING");
+                    // CHECK IF AN OBJECT IS GRABABLE(?)
                     // ANIMATION PLAYS
+                    if (!GetComponent<Animator>().GetBool("can_grab")) GetComponent<Animator>().SetBool("can_grab", true);
+                    else GetComponent<Animator>().SetBool("can_grab", false);
+                        
                     // OBJECT GOES TO INVENTORY (OTHER SCRIPT?)
                     // OBJECT GRABBED GETS DESTROYED ON SCENE BUT STORED ON INVENTORY ARRAY
                 };
