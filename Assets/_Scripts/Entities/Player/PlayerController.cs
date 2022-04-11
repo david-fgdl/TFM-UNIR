@@ -13,9 +13,6 @@ public class PlayerController : MonoBehaviour
 
     /* VARIABLES */
 
-    // GAME MANAGER INSTANCE
-    private GameManager GM;
-
     // EDITABLE PLAYER VALUES
 
     // Player's movement speed
