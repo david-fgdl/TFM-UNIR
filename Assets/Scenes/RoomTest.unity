@@ -2092,7 +2092,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3210736ca618e0d4a982d141b265871b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2360,8 +2360,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.25
-  m_Range: 200
+  m_Intensity: 1.5
+  m_Range: 150
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -2418,7 +2418,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1808515623}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.36755657, y: 9.741503, z: -0.135468}
+  m_LocalPosition: {x: 0, y: 9.24, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 757588201}
@@ -2640,6 +2640,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 61036840}
     m_Modifications:
+    - target: {fileID: 969868392407393190, guid: 10669cfc4c4a88043af4e8b377a21ad3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1663468785882358300, guid: 10669cfc4c4a88043af4e8b377a21ad3, type: 3}
       propertyPath: m_Name
       value: FPS_Player
@@ -2692,6 +2696,10 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1952199692}
+    - target: {fileID: 1663468786599511830, guid: 10669cfc4c4a88043af4e8b377a21ad3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.125
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10669cfc4c4a88043af4e8b377a21ad3, type: 3}
 --- !u!1 &1900657744653710916 stripped
@@ -2711,10 +2719,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5228845831470027429, guid: a509c72ed091fc44c9c5ca8273275970, type: 3}
+      propertyPath: m_Size.y
+      value: 8.904213
+      objectReference: {fileID: 0}
+    - target: {fileID: 5228845831470027429, guid: a509c72ed091fc44c9c5ca8273275970, type: 3}
+      propertyPath: m_Center.y
+      value: -0.10910034
+      objectReference: {fileID: 0}
     - target: {fileID: 5228845831470027431, guid: a509c72ed091fc44c9c5ca8273275970, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1900657744653710916}
+    - target: {fileID: 5228845831470027450, guid: a509c72ed091fc44c9c5ca8273275970, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 5228845831470027450, guid: a509c72ed091fc44c9c5ca8273275970, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 5228845831470027450, guid: a509c72ed091fc44c9c5ca8273275970, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.315
+      objectReference: {fileID: 0}
     - target: {fileID: 5228845831785226880, guid: a509c72ed091fc44c9c5ca8273275970, type: 3}
       propertyPath: m_Name
       value: NPCs
