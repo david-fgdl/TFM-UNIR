@@ -186,12 +186,17 @@ public class PlayerController : MonoBehaviour
     // ACTION TO TAKE/GRAB OBJECTS
     public void Grab(InputAction.CallbackContext context)
     {
+
         grab_action.performed +=
             context =>
                 {
                     // CHECK IF AN OBJECT IS GRABABLE(?)
                     // ANIMATION PLAYS
-                    if (!GetComponent<Animator>().GetBool("can_grab")) GetComponent<Animator>().SetBool("can_grab", true);
+                    if (!GetComponent<Animator>().GetBool("can_grab")) {
+                        GetComponent<Animator>().SetBool("can_grab", true);
+
+
+                    }
                     else GetComponent<Animator>().SetBool("can_grab", false);
                         
                     // OBJECT GOES TO INVENTORY (OTHER SCRIPT?)
