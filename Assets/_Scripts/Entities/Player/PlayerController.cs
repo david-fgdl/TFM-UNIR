@@ -48,13 +48,6 @@ public class PlayerController : MonoBehaviour
     private InputAction inventory_action;
     #endregion
 
-    #region Audio
-    [Header("Audio Clips")]
-    [SerializeField] private AudioClip breathingSound;
-    [SerializeField] private AudioClip walkingSound;
-    [SerializeField] private AudioClip standartMusic;
-    #endregion
-
     // AUXILIAR VARIABLES
 
     // Variable to keep track of player's camera rotation in the x axis
@@ -148,13 +141,8 @@ public class PlayerController : MonoBehaviour
         // Walking animation controller
 
         // If player's current position is not different from previous position establish that the player is not walking
-        if (Vector3.Distance(player_previous_position, gameObject.transform.position) <= 0.05f) {
-            GetComponent<Animator>().SetBool("is_walking", false);
-        } else {
-            // If it is different establish that the player is walking 
-            GetComponent<Animator>().SetBool("is_walking", true);
-        }
-            
+        if (Vector3.Distance(player_previous_position, gameObject.transform.position) <= 0.05f) GetComponent<Animator>().SetBool("is_walking", false);
+        else GetComponent<Animator>().SetBool("is_walking", true); // If it is different establish that the player is walking
         //---------------------------------------------------------------------------------//
 
         // Set the current position as the previous one for the next iteration
