@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
         move_action = player_input.actions["Move"];
         look_action = player_input.actions["Look"];
         grab_action = player_input.actions["Grab"];
-        inventory_action = player_input.actions["Inventory"];
+        inventory_action = player_input.actions["P_Inventory"];
         character_controller = GetComponent<CharacterController>();
 
         if (character_controller==null)
@@ -177,7 +177,6 @@ public class PlayerController : MonoBehaviour
         grab_action.performed +=
             context =>
                 {
-                    Debug.Log("GRABBING");
                     // CHECK IF AN OBJECT IS GRABABLE(?)
                     // ANIMATION PLAYS
                     if (!GetComponent<Animator>().GetBool("can_grab")) GetComponent<Animator>().SetBool("can_grab", true);
@@ -194,9 +193,6 @@ public class PlayerController : MonoBehaviour
         inventory_action.performed +=
             context =>
                 {
-
-                    Debug.Log("inventario leñe");
-
                     if (GameManager.Instance.State == GameState.Game) {
                         // Inventory closed
                         Debug.Log("OPENING INVENTORY");
@@ -206,8 +202,6 @@ public class PlayerController : MonoBehaviour
                         Debug.Log("CLOSING INVENTORY");
                         GameManager.Instance.ChangeState(GameState.Game);
                     } 
-                    
-                    
                 };
     }
 

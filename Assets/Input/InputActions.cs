@@ -66,7 +66,7 @@ namespace UnityEngine.InputSystem
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Inventory"",
+                    ""name"": ""P_Inventory"",
                     ""type"": ""Button"",
                     ""id"": ""39102e9f-29b6-4119-8b60-de6dd3ab9456"",
                     ""expectedControlType"": ""Button"",
@@ -314,7 +314,7 @@ namespace UnityEngine.InputSystem
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Inventory"",
+                    ""action"": ""P_Inventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -415,7 +415,7 @@ namespace UnityEngine.InputSystem
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Inventory"",
+                    ""name"": ""UI_Inventory"",
                     ""type"": ""Button"",
                     ""id"": ""b9f79c48-a9ce-4286-a881-f63a79ded639"",
                     ""expectedControlType"": ""Button"",
@@ -850,7 +850,7 @@ namespace UnityEngine.InputSystem
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Inventory"",
+                    ""action"": ""UI_Inventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -926,7 +926,7 @@ namespace UnityEngine.InputSystem
             m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
             m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
             m_Player_Grab = m_Player.FindAction("Grab", throwIfNotFound: true);
-            m_Player_Inventory = m_Player.FindAction("Inventory", throwIfNotFound: true);
+            m_Player_P_Inventory = m_Player.FindAction("P_Inventory", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -939,7 +939,7 @@ namespace UnityEngine.InputSystem
             m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
             m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
             m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
-            m_UI_Inventory = m_UI.FindAction("Inventory", throwIfNotFound: true);
+            m_UI_UI_Inventory = m_UI.FindAction("UI_Inventory", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -1003,7 +1003,7 @@ namespace UnityEngine.InputSystem
         private readonly InputAction m_Player_Look;
         private readonly InputAction m_Player_Fire;
         private readonly InputAction m_Player_Grab;
-        private readonly InputAction m_Player_Inventory;
+        private readonly InputAction m_Player_P_Inventory;
         public struct PlayerActions
         {
             private @InputActions m_Wrapper;
@@ -1012,7 +1012,7 @@ namespace UnityEngine.InputSystem
             public InputAction @Look => m_Wrapper.m_Player_Look;
             public InputAction @Fire => m_Wrapper.m_Player_Fire;
             public InputAction @Grab => m_Wrapper.m_Player_Grab;
-            public InputAction @Inventory => m_Wrapper.m_Player_Inventory;
+            public InputAction @P_Inventory => m_Wrapper.m_Player_P_Inventory;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1034,9 +1034,9 @@ namespace UnityEngine.InputSystem
                     @Grab.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrab;
                     @Grab.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrab;
                     @Grab.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrab;
-                    @Inventory.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInventory;
-                    @Inventory.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInventory;
-                    @Inventory.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInventory;
+                    @P_Inventory.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnP_Inventory;
+                    @P_Inventory.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnP_Inventory;
+                    @P_Inventory.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnP_Inventory;
                 }
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
@@ -1053,9 +1053,9 @@ namespace UnityEngine.InputSystem
                     @Grab.started += instance.OnGrab;
                     @Grab.performed += instance.OnGrab;
                     @Grab.canceled += instance.OnGrab;
-                    @Inventory.started += instance.OnInventory;
-                    @Inventory.performed += instance.OnInventory;
-                    @Inventory.canceled += instance.OnInventory;
+                    @P_Inventory.started += instance.OnP_Inventory;
+                    @P_Inventory.performed += instance.OnP_Inventory;
+                    @P_Inventory.canceled += instance.OnP_Inventory;
                 }
             }
         }
@@ -1074,7 +1074,7 @@ namespace UnityEngine.InputSystem
         private readonly InputAction m_UI_RightClick;
         private readonly InputAction m_UI_TrackedDevicePosition;
         private readonly InputAction m_UI_TrackedDeviceOrientation;
-        private readonly InputAction m_UI_Inventory;
+        private readonly InputAction m_UI_UI_Inventory;
         public struct UIActions
         {
             private @InputActions m_Wrapper;
@@ -1089,7 +1089,7 @@ namespace UnityEngine.InputSystem
             public InputAction @RightClick => m_Wrapper.m_UI_RightClick;
             public InputAction @TrackedDevicePosition => m_Wrapper.m_UI_TrackedDevicePosition;
             public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
-            public InputAction @Inventory => m_Wrapper.m_UI_Inventory;
+            public InputAction @UI_Inventory => m_Wrapper.m_UI_UI_Inventory;
             public InputActionMap Get() { return m_Wrapper.m_UI; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1129,9 +1129,9 @@ namespace UnityEngine.InputSystem
                     @TrackedDeviceOrientation.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceOrientation;
                     @TrackedDeviceOrientation.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceOrientation;
                     @TrackedDeviceOrientation.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceOrientation;
-                    @Inventory.started -= m_Wrapper.m_UIActionsCallbackInterface.OnInventory;
-                    @Inventory.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnInventory;
-                    @Inventory.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnInventory;
+                    @UI_Inventory.started -= m_Wrapper.m_UIActionsCallbackInterface.OnUI_Inventory;
+                    @UI_Inventory.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnUI_Inventory;
+                    @UI_Inventory.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnUI_Inventory;
                 }
                 m_Wrapper.m_UIActionsCallbackInterface = instance;
                 if (instance != null)
@@ -1166,9 +1166,9 @@ namespace UnityEngine.InputSystem
                     @TrackedDeviceOrientation.started += instance.OnTrackedDeviceOrientation;
                     @TrackedDeviceOrientation.performed += instance.OnTrackedDeviceOrientation;
                     @TrackedDeviceOrientation.canceled += instance.OnTrackedDeviceOrientation;
-                    @Inventory.started += instance.OnInventory;
-                    @Inventory.performed += instance.OnInventory;
-                    @Inventory.canceled += instance.OnInventory;
+                    @UI_Inventory.started += instance.OnUI_Inventory;
+                    @UI_Inventory.performed += instance.OnUI_Inventory;
+                    @UI_Inventory.canceled += instance.OnUI_Inventory;
                 }
             }
         }
@@ -1224,7 +1224,7 @@ namespace UnityEngine.InputSystem
             void OnLook(InputAction.CallbackContext context);
             void OnFire(InputAction.CallbackContext context);
             void OnGrab(InputAction.CallbackContext context);
-            void OnInventory(InputAction.CallbackContext context);
+            void OnP_Inventory(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {
@@ -1238,7 +1238,7 @@ namespace UnityEngine.InputSystem
             void OnRightClick(InputAction.CallbackContext context);
             void OnTrackedDevicePosition(InputAction.CallbackContext context);
             void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
-            void OnInventory(InputAction.CallbackContext context);
+            void OnUI_Inventory(InputAction.CallbackContext context);
         }
     }
 }

@@ -42,7 +42,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Inventory",
+                    "name": "P_Inventory",
                     "type": "Button",
                     "id": "39102e9f-29b6-4119-8b60-de6dd3ab9456",
                     "expectedControlType": "Button",
@@ -290,7 +290,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Inventory",
+                    "action": "P_Inventory",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -391,7 +391,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Inventory",
+                    "name": "UI_Inventory",
                     "type": "Button",
                     "id": "b9f79c48-a9ce-4286-a881-f63a79ded639",
                     "expectedControlType": "Button",
@@ -826,7 +826,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Inventory",
+                    "action": "UI_Inventory",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
