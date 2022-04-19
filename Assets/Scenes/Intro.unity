@@ -264,10 +264,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   utils: {fileID: 904098613}
   text_output: {fileID: 446946830}
-  intro_clips:
+  intro_clips_english:
+  - {fileID: 8300000, guid: 8e1c0257220160c4186a1ca0dd4eddb6, type: 3}
+  - {fileID: 8300000, guid: 24dd9457338229246a98aa16e161eaa2, type: 3}
+  - {fileID: 8300000, guid: d49f5c9fcea92fa4aacf56cf50a51582, type: 3}
+  intro_clips_spanish:
   - {fileID: 8300000, guid: 34193544a15154c449e6e0771f69ffc5, type: 3}
   - {fileID: 8300000, guid: c73ecc090b0ab064b9dd36641e091a2a, type: 3}
   - {fileID: 8300000, guid: 4c378df840c92a5479951161d9530e8c, type: 3}
+  english: 1
   with_voice: 1
 --- !u!82 &292280304
 AudioSource:

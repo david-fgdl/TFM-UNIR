@@ -10,8 +10,10 @@ public class IntroScene : MonoBehaviour
     [SerializeField] private Utils utils;
     [SerializeField] private GameObject text_output;
 
-    [SerializeField] private AudioClip [] intro_clips;
+    [SerializeField] private AudioClip[] intro_clips_english;
+    [SerializeField] private AudioClip [] intro_clips_spanish;
 
+    [SerializeField] private bool english = true;
     [SerializeField] private bool with_voice = true;
 
     // Start is called before the first frame update
@@ -26,9 +28,22 @@ public class IntroScene : MonoBehaviour
 
         yield return new WaitForSeconds(1.0f);
 
-        if(with_voice) StartCoroutine(utils.PlayAudioWhenShowFileContent(GetComponent<AudioSource>(), intro_clips, "Assets/Dialogs/intro.txt", 2, 1, 2));
-        yield return StartCoroutine(utils.ShowFileContent(text_output.GetComponent<TextMeshProUGUI>(), "Assets/Dialogs/intro.txt", 2, 1, 2));
-        
+        if (with_voice)
+        {
+            if (english)
+            {
+                GetComponent<AudioSource>().volume = 0.75f;
+                StartCoroutine(utils.PlayAudioWhenShowFileContent(GetComponent<AudioSource>(), intro_clips_english, "Assets/Dialogs/intro_english.txt", 2, 1, 2));
+            }
+            else
+            {
+                GetComponent<AudioSource>().volume = 1;
+                StartCoroutine(utils.PlayAudioWhenShowFileContent(GetComponent<AudioSource>(), intro_clips_spanish, "Assets/Dialogs/intro_spanish.txt", 2, 1, 2));
+            }
+        }
+        if (english) yield return StartCoroutine(utils.ShowFileContent(text_output.GetComponent<TextMeshProUGUI>(), "Assets/Dialogs/intro_english.txt", 2, 1, 2));
+        else yield return StartCoroutine(utils.ShowFileContent(text_output.GetComponent<TextMeshProUGUI>(), "Assets/Dialogs/intro_spanish.txt", 2, 1, 2));
+
 
         yield return new WaitForSeconds(1.0f);
 
