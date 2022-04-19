@@ -60,6 +60,11 @@ public class PlayerController : MonoBehaviour
     // Variable to keep track of player's camera rotation in the x axis
     private float x_rotation;
 
+    [SerializeField] private string selectableTag = "Selectable";
+    private Transform _selection;
+
+    
+
 /*-----------------------------------------------------------------------------------------------------------------------------*/
 
     /* BASIC METHODS */
@@ -99,6 +104,12 @@ public class PlayerController : MonoBehaviour
 
         Move();  // Control player's movement
         Look();  // Control camera's movement
+
+        
+
+        
+
+       
     }
 
     // ONENABLE EVENT
@@ -113,6 +124,39 @@ public class PlayerController : MonoBehaviour
     void OnDisable()
     {
         player_input.enabled = false;
+    }
+
+    void CheckObject() {
+        if (_selection != null) {
+            _selection = null;
+        }
+
+        var ray = player_camera.ScreenPointToRay(Mouse.current.position.ReadValue());
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit)) {
+
+            
+            var selection = hit.transform;
+            if (selection.CompareTag(selectableTag))
+            {
+                // Esto es para cambiar el material y resaltar objetos
+                // var selectionRenderer = selection.GetComponent<Renderer>();
+                // if (selectionRenderer != null) {
+                //     selectionRenderer.material = highlightMaterial;
+                // }
+
+                if (selection.TryGetComponent<ItemObject>(out ItemObject item)) {
+                    item.OnHandlePickupItem();
+                }
+
+                Debug.Log("golpisa de "+selection.name);
+
+                _selection = selection;
+            }
+
+            
+
+        }
     }
 
     void CheckIfMenu() {
@@ -194,7 +238,7 @@ public class PlayerController : MonoBehaviour
                     // ANIMATION PLAYS
                     if (!GetComponent<Animator>().GetBool("can_grab")) {
                         GetComponent<Animator>().SetBool("can_grab", true);
-
+                        CheckObject();
 
                     }
                     else GetComponent<Animator>().SetBool("can_grab", false);

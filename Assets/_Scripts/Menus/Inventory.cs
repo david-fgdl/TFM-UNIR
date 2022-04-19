@@ -8,7 +8,7 @@ public class Inventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InventorySystem.current.onInventoryChangedEvent += OnUpdateInventory;
+        // InventorySystem.Instance.OnInventoryChangedEvent += OnUpdateInventory;
     }
 
     public void BackToGame() {
@@ -25,7 +25,7 @@ public class Inventory : MonoBehaviour
     }
 
     public void DrawInventory() {
-        foreach (InventoryItem item in InventorySystem.current.inventory)
+        foreach (InventoryItem item in InventorySystem.Instance.inventory)
         {
             AddInventorySlot(item);
         }
