@@ -11,6 +11,7 @@ public class Inventory : MonoBehaviour
     }
 
     public void BackToGame() {
+        Utils.BetterLog(this.GetType().Name, "BackToGame", "VUelta al juego");
         GameManager.Instance.ChangeState(GameState.Game);
     }
 
