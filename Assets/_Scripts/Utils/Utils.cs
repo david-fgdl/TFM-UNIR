@@ -84,15 +84,15 @@ public class Utils : MonoBehaviour
     public string ReadFile(string file_path)
     {
 
-        string file_info = null;  // String que almacenar· la informaciÛn del archivo (Por defecto null)
+        string file_info = null;  // String que almacenarÔøΩ la informaciÔøΩn del archivo (Por defecto null)
 
-        StreamReader file_stream_reader = new StreamReader(file_path);  // CreaciÛn del StreamReader correspondiente al archivo cuyo nombre se pasa por par·metro
+        StreamReader file_stream_reader = new StreamReader(file_path);  // CreaciÔøΩn del StreamReader correspondiente al archivo cuyo nombre se pasa por parÔøΩmetro
 
         while (!file_stream_reader.EndOfStream) file_info = file_stream_reader.ReadLine();  // Lectura del archivo de inicio a fin
 
         file_stream_reader.Close();  // Cierre del archivo
 
-        return file_info;  // DevoluciÛn del contenido del archivo en forma de string
+        return file_info;  // DevoluciÔøΩn del contenido del archivo en forma de string
 
     }
 
@@ -100,11 +100,11 @@ public class Utils : MonoBehaviour
     public string [] ReadFileLineByLine(string file_path)
     {
 
-        string[] file_lines = null;  // String que almacenar· la informaciÛn del archivo (Por defecto " | ")
+        string[] file_lines = null;  // String que almacenarÔøΩ la informaciÔøΩn del archivo (Por defecto " | ")
 
         file_lines = File.ReadAllLines(file_path);  // Lectura del arcihvo de inicio a fin
 
-        return file_lines;  // DevoluciÛn del contenido del archivo en forma de string
+        return file_lines;  // DevoluciÔøΩn del contenido del archivo en forma de string
 
     }
 
@@ -186,6 +186,16 @@ public class Utils : MonoBehaviour
             return null;
         }
 
+    }
+
+/*--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+    /* METODOS DE DEBUG */
+
+    // METODO PARA OBTENER UN DEBUG CON M√ÅS INFORMACI√ìN (CLASE, M√âTODO, ETC...)
+    public static void BetterLog(string className, string methodName, string msg)
+    {
+        Debug.Log($"Class [{className}], on method {methodName}: {msg}");
     }
 
 /*--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/

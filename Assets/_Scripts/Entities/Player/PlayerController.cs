@@ -99,7 +99,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("ACTUAL GAME STATE: "+GameManager.Instance.State);
         CheckIfMenu(); // Check if we're on a menu
 
         Move();  // Control player's movement

@@ -1,24 +1,27 @@
-using System.Collections;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class InventorySystem : MonoBehaviour
 {
     public static InventorySystem Instance;
 
     private Dictionary<InventoryItemData, InventoryItem> m_itemDictionary;
-    public List<InventoryItem> inventory { get; private set; }
+    public ObservableCollection<InventoryItem> inventory { get; private set; }
 
     void Awake()
     {
         if (Instance != null && Instance != this) Destroy(this);
         else Instance = this;
 
-        inventory = new List<InventoryItem>();
+        inventory = new ObservableCollection<InventoryItem>();
         m_itemDictionary = new Dictionary<InventoryItemData, InventoryItem>();
     }
     
     public void Add(InventoryItemData referenceData) {
+        
         if (m_itemDictionary.TryGetValue(referenceData, out InventoryItem value)) {
             value.AddToStack();
         }
@@ -27,6 +30,8 @@ public class InventorySystem : MonoBehaviour
             inventory.Add(newItem);
             m_itemDictionary.Add(referenceData, newItem);
         }
+
+        
     }
 
     public void Remove(InventoryItemData referenceData) {
@@ -39,4 +44,5 @@ public class InventorySystem : MonoBehaviour
             }
         }
     }
+
 }

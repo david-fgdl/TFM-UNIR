@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.Collections.Specialized;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
@@ -8,14 +7,14 @@ public class Inventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // InventorySystem.Instance.OnInventoryChangedEvent += OnUpdateInventory;
+        InventorySystem.Instance.inventory.CollectionChanged += OnUpdateInventory;
     }
 
     public void BackToGame() {
         GameManager.Instance.ChangeState(GameState.Game);
     }
 
-    private void OnUpdateInventory() {
+    private void OnUpdateInventory(object sender, NotifyCollectionChangedEventArgs e) {
         foreach (Transform t in transform)
         {
             Destroy(t.gameObject);
