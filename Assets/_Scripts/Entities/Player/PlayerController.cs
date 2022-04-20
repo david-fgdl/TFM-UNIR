@@ -231,7 +231,7 @@ public class PlayerController : MonoBehaviour
     {
 
         grab_action.performed +=
-            context =>
+            _ =>
                 {
                     // CHECK IF AN OBJECT IS GRABABLE(?)
                     // ANIMATION PLAYS
@@ -251,7 +251,7 @@ public class PlayerController : MonoBehaviour
     public void Inventory(InputAction.CallbackContext context)
     {
         inventory_action.performed +=
-            context =>
+            _ =>
                 {
                     if (GameManager.Instance.State == GameState.Game) {
                         // Inventory closed
