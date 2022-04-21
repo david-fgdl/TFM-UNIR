@@ -4922,7 +4922,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1663468785882358368, guid: 10669cfc4c4a88043af4e8b377a21ad3, type: 3}
       propertyPath: mouse_sensitivity
-      value: 25
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1663468785882358370, guid: 10669cfc4c4a88043af4e8b377a21ad3, type: 3}
       propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -4995,6 +4995,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 4967155464884474564, guid: d2f5aaa5a4b13e547ba9dbcd8abafacc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4967155464921457394, guid: d2f5aaa5a4b13e547ba9dbcd8abafacc, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -5039,6 +5043,10 @@ PrefabInstance:
     - target: {fileID: 5228845831785226880, guid: a509c72ed091fc44c9c5ca8273275970, type: 3}
       propertyPath: m_Name
       value: NPCs
+      objectReference: {fileID: 0}
+    - target: {fileID: 5228845831785226880, guid: a509c72ed091fc44c9c5ca8273275970, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5228845831785226883, guid: a509c72ed091fc44c9c5ca8273275970, type: 3}
       propertyPath: m_RootOrder

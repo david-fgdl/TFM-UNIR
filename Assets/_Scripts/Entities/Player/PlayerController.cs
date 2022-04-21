@@ -72,15 +72,18 @@ public class PlayerController : MonoBehaviour
     // AWAKE EVENT
     void Awake()
     {
+
+        // INPUT REFERENCES CREATION
         player_input = GetComponent<PlayerInput>();
         move_action = player_input.actions["Move"];
         look_action = player_input.actions["Look"];
         grab_action = player_input.actions["Grab"];
         inventory_action = player_input.actions["P_Inventory"];
-        character_controller = GetComponent<CharacterController>();
 
-        if (character_controller==null)
-         Debug.Log("CHARACTER CONTROLLER ES NULL");
+        // Character controller reference creation
+        character_controller = GetComponent<CharacterController>();
+        if (character_controller==null) Debug.Log("CHARACTER CONTROLLER ES NULL");
+
     }
 
     // START ACTION
@@ -96,16 +99,15 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+ 
         Move();  // Control player's movement
         Look();  // Control camera's movement
-
-        
-
-        
-
        
     }
+
+/*-----------------------------------------------------------------------------------------------------------------------------*/
+
+    /* ENABLE AND DISABLE SCRIPTS METHODS */
 
     // ONENABLE EVENT
     // Calls when this script gets enabled
@@ -120,6 +122,8 @@ public class PlayerController : MonoBehaviour
     {
         player_input.enabled = false;
     }
+
+/*-----------------------------------------------------------------------------------------------------------------------------*/
 
     void CheckObject() {
         if (_selection != null) {

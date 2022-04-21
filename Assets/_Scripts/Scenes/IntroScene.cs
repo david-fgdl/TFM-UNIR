@@ -16,6 +16,11 @@ public class IntroScene : MonoBehaviour
     [SerializeField] private bool english = true;
     [SerializeField] private bool with_voice = true;
 
+    private void Awake()
+    {
+        Application.targetFrameRate = 60;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
