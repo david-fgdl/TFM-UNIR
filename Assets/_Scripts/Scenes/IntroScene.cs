@@ -33,16 +33,16 @@ public class IntroScene : MonoBehaviour
             if (english)
             {
                 GetComponent<AudioSource>().volume = 0.75f;
-                StartCoroutine(utils.PlayAudioWhenShowFileContent(GetComponent<AudioSource>(), intro_clips_english, "Assets/Dialogs/intro_english.txt", 2, 1, 2));
+                StartCoroutine(utils.PlayAudioWhenShowFileContent(GetComponent<AudioSource>(), intro_clips_english, Application.dataPath + "/StreamingAssets/Dialogs/intro_english.txt", 2, 1, 2));
             }
             else
             {
                 GetComponent<AudioSource>().volume = 1;
-                StartCoroutine(utils.PlayAudioWhenShowFileContent(GetComponent<AudioSource>(), intro_clips_spanish, "Assets/Dialogs/intro_spanish.txt", 2, 1, 2));
+                StartCoroutine(utils.PlayAudioWhenShowFileContent(GetComponent<AudioSource>(), intro_clips_spanish, Application.dataPath + "/StreamingAssets/Dialogs/intro_spanish.txt", 2, 1, 2));
             }
         }
-        if (english) yield return StartCoroutine(utils.ShowFileContent(text_output.GetComponent<TextMeshProUGUI>(), "Assets/Dialogs/intro_english.txt", 2, 1, 2));
-        else yield return StartCoroutine(utils.ShowFileContent(text_output.GetComponent<TextMeshProUGUI>(), "Assets/Dialogs/intro_spanish.txt", 2, 1, 2));
+        if (english) yield return StartCoroutine(utils.ShowFileContent(text_output.GetComponent<TextMeshProUGUI>(), Application.dataPath + "/StreamingAssets/Dialogs/intro_english.txt", 2, 1, 2));
+        else yield return StartCoroutine(utils.ShowFileContent(text_output.GetComponent<TextMeshProUGUI>(), Application.dataPath + "/StreamingAssets/Dialogs/intro_spanish.txt", 2, 1, 2));
 
 
         yield return new WaitForSeconds(1.0f);
