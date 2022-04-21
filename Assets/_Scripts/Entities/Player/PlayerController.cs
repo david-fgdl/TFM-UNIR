@@ -87,9 +87,6 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CheckIfMenu();
-        
-
         // SET REFERENCES' VALUES
         player_previous_position = transform.position;  // Set previous position as the current position in the start
 
@@ -99,7 +96,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckIfMenu(); // Check if we're on a menu
 
         Move();  // Control player's movement
         Look();  // Control camera's movement
@@ -155,21 +151,6 @@ public class PlayerController : MonoBehaviour
 
             
 
-        }
-    }
-
-    void CheckIfMenu() {
-
-        if (GameManager.Instance.State != GameState.Game) { // We're on a menu
-            Time.timeScale = 0f;
-            player_input.actions.FindActionMap("UI").Enable();
-            player_input.actions.FindActionMap("Player").Disable();
-            Cursor.lockState = CursorLockMode.None;
-        } else { // We're in game
-            Time.timeScale = 1f;
-            player_input.actions.FindActionMap("Player").Enable();
-            player_input.actions.FindActionMap("UI").Disable();
-            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 

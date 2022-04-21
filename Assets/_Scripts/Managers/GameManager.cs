@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -56,7 +57,29 @@ public class GameManager : MonoBehaviour
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
         }
 
+        PauseOrResume();
+
         OnGameStateChanged?.Invoke(newState); //El ? chequea si es null
+    }
+
+    private void PauseOrResume()
+    {
+
+        if (State != GameState.Game)
+        { // We're on a menu
+            Time.timeScale = 0f;
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>().actions.FindActionMap("UI").Enable();
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>().actions.FindActionMap("Player").Disable();
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        { // We're in game
+            Time.timeScale = 1f;
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>().actions.FindActionMap("Player").Enable();
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>().actions.FindActionMap("UI").Disable();
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
     }
 
     private void HandleMenu() {
