@@ -40,11 +40,13 @@ public class IconGenerator : MonoBehaviour
 
             obj.gameObject.SetActive(false);
 
+            #if UNITY_EDITOR
             Sprite s = AssetDatabase.LoadAssetAtPath<Sprite>($"Assets/Sprites/{pathFolder}/{data.id}_Icon.png");
             if (s != null) {
                 data.icon = s;
                 EditorUtility.SetDirty(data);
             }
+            #endif
 
             yield return null;
 
