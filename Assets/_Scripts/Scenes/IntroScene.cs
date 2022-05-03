@@ -37,7 +37,7 @@ public class IntroScene : MonoBehaviour
         {
             if (english)
             {
-                GetComponent<AudioSource>().volume = 0.75f;
+                GetComponent<AudioSource>().volume = 0.25f;
                 StartCoroutine(utils.PlayAudioWhenShowFileContent(GetComponent<AudioSource>(), intro_clips_english, Application.dataPath + "/StreamingAssets/Dialogs/intro_english.txt", 2, 1, 2));
             }
             else
