@@ -43,3 +43,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Sliders
+    uniqueID: 2394192831
+    locked: 0
+  - name: UI
+    uniqueID: 3145494291
+    locked: 0
