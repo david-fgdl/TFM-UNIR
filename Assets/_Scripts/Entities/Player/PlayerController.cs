@@ -170,16 +170,16 @@ public class PlayerController : MonoBehaviour
     {
 
         // Movement vector creation
-        Vector3 move_vector = transform.right * move_action.ReadValue<Vector2>().x + transform.forward * move_action.ReadValue<Vector2>().y;
+        Vector3 moveVector = transform.right * moveAction.ReadValue<Vector2>().x + transform.forward * moveAction.ReadValue<Vector2>().y;
 
         // Character controller movement controlled by the speed value
-        character_controller.Move(move_vector * Time.deltaTime * speed);
+        characterController.Move(moveVector * Time.deltaTime * speed);
 
         //---------------------------------------------------------------------------------//
         // Walking animation controller
 
         // If player's current position is not different from previous position establish that the player is not walking
-        if (Vector3.Distance(player_previous_position, gameObject.transform.position) <= 0.05f) {
+        if (Vector3.Distance(playerPreviousPosition, gameObject.transform.position) <= 0.05f) {
             GetComponent<Animator>().SetBool("is_walking", false);
         } else {
             // If it is different establish that the player is walking 
@@ -189,7 +189,7 @@ public class PlayerController : MonoBehaviour
         //---------------------------------------------------------------------------------//
 
         // Set the current position as the previous one for the next iteration
-        player_previous_position = gameObject.transform.position;
+        playerPreviousPosition = gameObject.transform.position;
 
 
     }
@@ -199,18 +199,18 @@ public class PlayerController : MonoBehaviour
     {
 
         // Get mouse delta values
-        float mouse_x = look_action.ReadValue<Vector2>().x * mouseSensivity * Time.deltaTime;
-        float mouse_y = look_action.ReadValue<Vector2>().y * mouseSensivity * Time.deltaTime;
+        float mouseX = lookAction.ReadValue<Vector2>().x * mouseSensivity * Time.deltaTime;
+        float mouseY = lookAction.ReadValue<Vector2>().y * mouseSensivity * Time.deltaTime;
 
         // Establish x rotation between -90 and 90 degrees
-        x_rotation -= mouse_y;
-        x_rotation = Mathf.Clamp(x_rotation, -90, 90);
+        xRotation -= mouseY;
+        xRotation = Mathf.Clamp(x_rotation, -90, 90);
 
         // Rotate camera in the y axis
-        playerCamera.transform.localRotation = Quaternion.Euler(x_rotation, 0, 0);
+        playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
 
         // Rotate whole player in the x axis
-        this.transform.Rotate(Vector3.up * mouse_x);
+        this.transform.Rotate(Vector3.up * mouseX);
 
     }
 
