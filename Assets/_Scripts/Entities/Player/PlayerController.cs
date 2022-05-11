@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour
     {
         // SET REFERENCES' VALUES
         playerPreviousPosition = transform.position;  // Set previous position as the current position in the start
-
+        currentSaltAmount = maxSaltAmount;
     }
 
     // UPDATE ACTION
