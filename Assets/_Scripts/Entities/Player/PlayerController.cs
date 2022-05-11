@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour
     /* VARIABLES */
 
     // EDITABLE PLAYER VALUES
+    [Header("Player Stats")]
+    private int maxSaltAmount = 100;
+    private int currentSaltAmount;
 
     // Player's movement speed
     [Header("Player Movement Speed")]
@@ -21,31 +24,31 @@ public class PlayerController : MonoBehaviour
 
     // Cursor mouse sensitivity
     [Header("Mouse sensitivity")]
-    [SerializeField] [Range(1, 100)] private float mouse_sensitivity = 50;
+    [SerializeField] [Range(1, 100)] private float mouseSensivity = 50;
 
     // REFERENCES
 
     // Reference to player's camera
-    [SerializeField] Camera player_camera;
+    [SerializeField] private Camera playerCamera;
 
     // Reference to character controller
-    private CharacterController character_controller;
+    private CharacterController characterController;
 
     // Reference to player's animator
     private Animator animator;
 
     // Reference to player's previous position
-    private Vector3 player_previous_position;
+    private Vector3 playerPreviousPosition;
 
     #region Player Input
     // Reference to player's input system
-    private PlayerInput player_input;
+    private PlayerInput playerInput;
 
     // Reference to player's input system actions
-    private InputAction move_action;
-    private InputAction look_action;
-    private InputAction grab_action;
-    private InputAction inventory_action;
+    private InputAction moveAction;
+    private InputAction lookAction;
+    private InputAction grabAction;
+    private InputAction inventoryAction;
     #endregion
 
     #region Audio
@@ -58,7 +61,7 @@ public class PlayerController : MonoBehaviour
     // AUXILIAR VARIABLES
 
     // Variable to keep track of player's camera rotation in the x axis
-    private float x_rotation;
+    private float xRotation;
 
     [SerializeField] private string selectableTag = "Selectable";
     private Transform _selection;
@@ -74,15 +77,15 @@ public class PlayerController : MonoBehaviour
     {
 
         // INPUT REFERENCES CREATION
-        player_input = GetComponent<PlayerInput>();
-        move_action = player_input.actions["Move"];
-        look_action = player_input.actions["Look"];
-        grab_action = player_input.actions["Grab"];
-        inventory_action = player_input.actions["P_Inventory"];
+        playerInput = GetComponent<PlayerInput>();
+        moveAction = player_input.actions["Move"];
+        lookAction = player_input.actions["Look"];
+        grabAction = player_input.actions["Grab"];
+        inventoryAction = player_input.actions["P_Inventory"];
 
         // Character controller reference creation
-        character_controller = GetComponent<CharacterController>();
-        if (character_controller==null) Debug.Log("CHARACTER CONTROLLER ES NULL");
+        characterController = GetComponent<CharacterController>();
+        if (characterController==null) Debug.Log("CHARACTER CONTROLLER ES NULL");
 
     }
 
@@ -91,7 +94,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         // SET REFERENCES' VALUES
-        player_previous_position = transform.position;  // Set previous position as the current position in the start
+        playerPreviousPosition = transform.position;  // Set previous position as the current position in the start
 
     }
 
@@ -113,14 +116,14 @@ public class PlayerController : MonoBehaviour
     // Calls when this script gets enabled
     void OnEnable()
     {
-        player_input.enabled = true;
+        playerInput.enabled = true;
     }
 
     // ONDISABLE EVENT
     // Calls when this script gets disabled
     void OnDisable()
     {
-        player_input.enabled = false;
+        playerInput.enabled = false;
     }
 
 /*-----------------------------------------------------------------------------------------------------------------------------*/
@@ -130,7 +133,7 @@ public class PlayerController : MonoBehaviour
             _selection = null;
         }
 
-        var ray = player_camera.ScreenPointToRay(Mouse.current.position.ReadValue());
+        var ray = playerCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit)) {
 
@@ -196,15 +199,15 @@ public class PlayerController : MonoBehaviour
     {
 
         // Get mouse delta values
-        float mouse_x = look_action.ReadValue<Vector2>().x * mouse_sensitivity * Time.deltaTime;
-        float mouse_y = look_action.ReadValue<Vector2>().y * mouse_sensitivity * Time.deltaTime;
+        float mouse_x = look_action.ReadValue<Vector2>().x * mouseSensivity * Time.deltaTime;
+        float mouse_y = look_action.ReadValue<Vector2>().y * mouseSensivity * Time.deltaTime;
 
         // Establish x rotation between -90 and 90 degrees
         x_rotation -= mouse_y;
         x_rotation = Mathf.Clamp(x_rotation, -90, 90);
 
         // Rotate camera in the y axis
-        player_camera.transform.localRotation = Quaternion.Euler(x_rotation, 0, 0);
+        playerCamera.transform.localRotation = Quaternion.Euler(x_rotation, 0, 0);
 
         // Rotate whole player in the x axis
         this.transform.Rotate(Vector3.up * mouse_x);
