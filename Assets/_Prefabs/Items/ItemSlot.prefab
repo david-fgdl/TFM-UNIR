@@ -430,6 +430,7 @@ GameObject:
   - component: {fileID: 6116802840254801903}
   - component: {fileID: 6061481580579023558}
   - component: {fileID: 7226724279007590149}
+  - component: {fileID: 8556851183618847309}
   m_Layer: 0
   m_Name: ItemSlot
   m_TagString: Untagged
@@ -505,3 +506,24 @@ MonoBehaviour:
   mLabel: {fileID: 3909771529514293641}
   mStackObject: {fileID: 5253525854061064515}
   mStackLabel: {fileID: 7878099320099244696}
+--- !u!50 &8556851183618847309
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8761608556577501130}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
