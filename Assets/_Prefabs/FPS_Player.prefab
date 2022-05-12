@@ -363,9 +363,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8663e609d631ef54697ad2ae57630411, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  mouse_sensitivity: 50
-  player_camera: {fileID: 1663468786599511828}
+  speed: 7
+  mouseSensivity: 50
+  playerCamera: {fileID: 1663468786599511828}
   breathingSound: {fileID: 8300000, guid: 22d6b08af342c41449874accb783706f, type: 3}
   walkingSound: {fileID: 8300000, guid: 3efc233aeeeeef84e9fcb779014ed176, type: 3}
   standartMusic: {fileID: 8300000, guid: 0c5cb68d05180804a9912427b41feed7, type: 3}

@@ -78,10 +78,10 @@ public class PlayerController : MonoBehaviour
 
         // INPUT REFERENCES CREATION
         playerInput = GetComponent<PlayerInput>();
-        moveAction = player_input.actions["Move"];
-        lookAction = player_input.actions["Look"];
-        grabAction = player_input.actions["Grab"];
-        inventoryAction = player_input.actions["P_Inventory"];
+        moveAction = playerInput.actions["Move"];
+        lookAction = playerInput.actions["Look"];
+        grabAction = playerInput.actions["Grab"];
+        inventoryAction = playerInput.actions["P_Inventory"];
 
         // Character controller reference creation
         characterController = GetComponent<CharacterController>();
@@ -204,7 +204,7 @@ public class PlayerController : MonoBehaviour
 
         // Establish x rotation between -90 and 90 degrees
         xRotation -= mouseY;
-        xRotation = Mathf.Clamp(x_rotation, -90, 90);
+        xRotation = Mathf.Clamp(xRotation, -90, 90);
 
         // Rotate camera in the y axis
         playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
@@ -218,7 +218,7 @@ public class PlayerController : MonoBehaviour
     public void Grab(InputAction.CallbackContext context)
     {
 
-        grab_action.performed +=
+        grabAction.performed +=
             _ =>
                 {
                     // CHECK IF AN OBJECT IS GRABABLE(?)
@@ -238,7 +238,7 @@ public class PlayerController : MonoBehaviour
     // ACTION OPEN/CLOSE INVENTORY
     public void Inventory(InputAction.CallbackContext context)
     {
-        inventory_action.performed +=
+        inventoryAction.performed +=
             _ =>
                 {
                     if (GameManager.Instance.State == GameState.Game) {
