@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     private int maxSaltAmount = 100;
     private int currentSaltAmount;
 
+    public SaltPouch saltPouch;
+
     // Player's movement speed
     [Header("Player Movement Speed")]
     [SerializeField] [Range(1, 20)] private float speed = 2.5f;
@@ -49,6 +51,7 @@ public class PlayerController : MonoBehaviour
     private InputAction lookAction;
     private InputAction grabAction;
     private InputAction inventoryAction;
+    private InputAction throwAction;
     #endregion
 
     #region Audio
@@ -82,6 +85,10 @@ public class PlayerController : MonoBehaviour
         lookAction = playerInput.actions["Look"];
         grabAction = playerInput.actions["Grab"];
         inventoryAction = playerInput.actions["P_Inventory"];
+        throwAction = playerInput.actions["Fire"];
+
+        // Get Animator
+        animator = GetComponent<Animator>();
 
         // Character controller reference creation
         characterController = GetComponent<CharacterController>();
@@ -96,6 +103,7 @@ public class PlayerController : MonoBehaviour
         // SET REFERENCES' VALUES
         playerPreviousPosition = transform.position;  // Set previous position as the current position in the start
         currentSaltAmount = maxSaltAmount;
+        saltPouch.SetMaxSaltAmount(maxSaltAmount);
     }
 
     // UPDATE ACTION
@@ -117,6 +125,9 @@ public class PlayerController : MonoBehaviour
     void OnEnable()
     {
         playerInput.enabled = true;
+        grabAction.performed += Grab;
+        inventoryAction.performed += Inventory;
+        throwAction.performed += ThrowSalt;
     }
 
     // ONDISABLE EVENT
@@ -124,6 +135,9 @@ public class PlayerController : MonoBehaviour
     void OnDisable()
     {
         playerInput.enabled = false;
+        grabAction.performed -= Grab;
+        inventoryAction.performed -= Inventory;
+        throwAction.performed -= ThrowSalt;
     }
 
 /*-----------------------------------------------------------------------------------------------------------------------------*/
@@ -180,10 +194,10 @@ public class PlayerController : MonoBehaviour
 
         // If player's current position is not different from previous position establish that the player is not walking
         if (Vector3.Distance(playerPreviousPosition, gameObject.transform.position) <= 0.05f) {
-            GetComponent<Animator>().SetBool("is_walking", false);
+            animator.SetBool("is_walking", false);
         } else {
             // If it is different establish that the player is walking 
-            GetComponent<Animator>().SetBool("is_walking", true);
+            animator.SetBool("is_walking", true);
         }
             
         //---------------------------------------------------------------------------------//
@@ -218,39 +232,49 @@ public class PlayerController : MonoBehaviour
     public void Grab(InputAction.CallbackContext context)
     {
 
-        grabAction.performed +=
-            _ =>
-                {
-                    // CHECK IF AN OBJECT IS GRABABLE(?)
-                    // ANIMATION PLAYS
-                    if (!GetComponent<Animator>().GetBool("can_grab")) {
-                        GetComponent<Animator>().SetBool("can_grab", true);
-                        CheckObject();
 
-                    }
-                    else GetComponent<Animator>().SetBool("can_grab", false);
-                        
-                    // OBJECT GOES TO INVENTORY (OTHER SCRIPT?)
-                    // OBJECT GRABBED GETS DESTROYED ON SCENE BUT STORED ON INVENTORY ARRAY
-                };
+        // CHECK IF AN OBJECT IS GRABABLE(?)
+        // ANIMATION PLAYS
+        if (!animator.GetBool("can_grab"))
+        {
+            animator.SetBool("can_grab", true);
+            CheckObject();
+
+        }
+        else animator.SetBool("can_grab", false);
+
+        // OBJECT GOES TO INVENTORY (OTHER SCRIPT?)
+        // OBJECT GRABBED GETS DESTROYED ON SCENE BUT STORED ON INVENTORY ARRAY
+
     }
 
     // ACTION OPEN/CLOSE INVENTORY
     public void Inventory(InputAction.CallbackContext context)
     {
-        inventoryAction.performed +=
-            _ =>
-                {
-                    if (GameManager.Instance.State == GameState.Game) {
-                        // Inventory closed
-                        Debug.Log("OPENING INVENTORY");
-                        GameManager.Instance.ChangeState(GameState.Inventory);
-                    } else if (GameManager.Instance.State == GameState.Inventory) {
-                        // Inventory open
-                        Debug.Log("CLOSING INVENTORY");
-                        GameManager.Instance.ChangeState(GameState.Game);
-                    } 
-                };
+
+        if (GameManager.Instance.State == GameState.Game)
+        {
+            // Inventory closed
+            GameManager.Instance.ChangeState(GameState.Inventory);
+        }
+        else if (GameManager.Instance.State == GameState.Inventory)
+        {
+            // Inventory open
+            GameManager.Instance.ChangeState(GameState.Game);
+        }
+
+    }
+
+    // ACTION THROW SALT
+    public void ThrowSalt(InputAction.CallbackContext context)
+    {
+        Debug.Log("Salt throw!");
+        var saltAmount = 10;
+
+        if (currentSaltAmount > 0) {
+            currentSaltAmount -= saltAmount;
+            saltPouch.SetSaltAmount(currentSaltAmount);
+        }
     }
 
 /*-----------------------------------------------------------------------------------------------------------------------------*/

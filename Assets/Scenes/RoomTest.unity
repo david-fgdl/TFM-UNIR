@@ -1994,7 +1994,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &232816469
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2635,7 +2635,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &508986587
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4227,6 +4227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da82e58256744e14a89246cf3392ee83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slider: {fileID: 1615887305}
 --- !u!1 &1465769989
 GameObject:
   m_ObjectHideFlags: 0
@@ -5950,7 +5951,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6047,6 +6048,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1663468785882358368, guid: 10669cfc4c4a88043af4e8b377a21ad3, type: 3}
+      propertyPath: saltPouch
+      value: 
+      objectReference: {fileID: 1411772695}
     - target: {fileID: 1663468785882358370, guid: 10669cfc4c4a88043af4e8b377a21ad3, type: 3}
       propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
