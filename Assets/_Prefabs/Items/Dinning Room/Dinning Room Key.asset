@@ -16,4 +16,4 @@ MonoBehaviour:
   displayName: Dinning Room Key
   icon: {fileID: 21300000, guid: f5e27b6e85d3b7d4f90131d6528d2d47, type: 3}
   prefab: {fileID: 6593768902798371631, guid: db85f329f2af53744b4c24a83059dab6, type: 3}
-  isCombinable: 0
+  isCombinable: 1

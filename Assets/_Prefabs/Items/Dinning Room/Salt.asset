@@ -16,4 +16,4 @@ MonoBehaviour:
   displayName: Salt
   icon: {fileID: 21300000, guid: 6cf74e47bac8b8a47843e837bb82c6ec, type: 3}
   prefab: {fileID: 4258518933824458867, guid: 1d6b018e42128ca43918ebb6e3cb8a2c, type: 3}
-  isCombinable: 0
+  isCombinable: 1

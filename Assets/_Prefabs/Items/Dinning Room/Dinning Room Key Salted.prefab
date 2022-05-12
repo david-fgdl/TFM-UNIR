@@ -53,7 +53,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6593768902798371631, guid: db85f329f2af53744b4c24a83059dab6, type: 3}
       propertyPath: m_Name
-      value: Dinning Room Key (1)
+      value: Dinning Room Key Salted
       objectReference: {fileID: 0}
+    - target: {fileID: 6802387053043294836, guid: db85f329f2af53744b4c24a83059dab6, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 478e7bd864f19ae4c9d62b7cda2cb680, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db85f329f2af53744b4c24a83059dab6, type: 3}
