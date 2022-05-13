@@ -16,10 +16,10 @@ public class ItemSlot : MonoBehaviour
 
     public void Set(InventoryItem item) {
 
-        mIcon.sprite = item.data.icon;
-        mLabel.text = item.data.displayName;
+        mIcon.sprite = item.data.Icon;
+        mLabel.text = item.data.DisplayName;
 
-        if (item.data.isCombinable) {
+        if (item.data.IsCombinable) {
             mCombinableIcon.SetActive(true);
         }
 

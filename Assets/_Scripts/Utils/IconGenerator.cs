@@ -9,8 +9,8 @@ public class IconGenerator : MonoBehaviour
     [SerializeField] private string prefix;
     private Camera cam;
 
-    public List<GameObject> sceneObjects;
-    public List<InventoryItemData> dataObjects;
+    public List<GameObject> SceneObjects;
+    public List<InventoryItemData> DataObjects;
 
     void Awake()
     {
@@ -25,25 +25,25 @@ public class IconGenerator : MonoBehaviour
     }
 
     private IEnumerator Screenshot() {
-        for (int i = 0; i < sceneObjects.Count; i++)
+        for (int i = 0; i < SceneObjects.Count; i++)
         {
-            GameObject obj = sceneObjects[i];
-            InventoryItemData data = dataObjects[i];
+            GameObject obj = SceneObjects[i];
+            InventoryItemData data = DataObjects[i];
 
             obj.gameObject.SetActive(true);
 
             yield return null;
 
-            TakeScreenshot($"{Application.dataPath}/Sprites/{pathFolder}/{data.id}_Icon.png");
+            TakeScreenshot($"{Application.dataPath}/Sprites/{pathFolder}/{data.Id}_Icon.png");
 
             yield return null;
 
             obj.gameObject.SetActive(false);
 
             #if UNITY_EDITOR
-            Sprite s = AssetDatabase.LoadAssetAtPath<Sprite>($"Assets/Sprites/{pathFolder}/{data.id}_Icon.png");
+            Sprite s = AssetDatabase.LoadAssetAtPath<Sprite>($"Assets/Sprites/{pathFolder}/{data.Id}_Icon.png");
             if (s != null) {
-                data.icon = s;
+                data.Icon = s;
                 EditorUtility.SetDirty(data);
             }
             #endif
