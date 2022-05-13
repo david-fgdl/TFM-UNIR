@@ -144,4 +144,7 @@ MonoBehaviour:
   UnlockObject: {fileID: 11400000, guid: 618f7954c9aaa9549b3608b21ae19aa4, type: 2}
   Type: 1
   IsOpen: 0
+  IsInverted: 1
+  closedRotation: 180
+  openedRotation: 273
   pivot: {fileID: 733390481558183661}

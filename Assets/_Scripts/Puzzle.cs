@@ -9,6 +9,7 @@ public class Puzzle : ScriptableObject
     public enum Type {
         None,
         Object,
-        Number
+        Number,
+        OneWay
     }
 }

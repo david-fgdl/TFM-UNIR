@@ -13,16 +13,19 @@ public class Door : MonoBehaviour {
 
     #region Open Variables
     public bool IsOpen = false;
+    public bool IsInverted = false;
+    public float closedRotation = 0f;
+    public float openedRotation = -87f;
     [SerializeField] private Transform pivot;
-    private float closedRotation = 0f;
+    
     private float currentRotation;
-    private float openedRotation = -87f;
+    
 
     #endregion
 
     void Awake()
     {
-        this.gameObject.name = Id;
+        
     }
 
     void Start()
@@ -32,18 +35,25 @@ public class Door : MonoBehaviour {
 
     void Update()
     {
-        OpenClose(IsOpen);
+        OpenClose(IsOpen, IsInverted);
     }
 
-    void OpenClose(bool isOpen) {
+    void OpenClose(bool isOpen, bool isInverted) {
 
-        
-        if (isOpen == true && currentRotation >= openedRotation) {
-            currentRotation-=1f;
-        } else if (isOpen == false && currentRotation < closedRotation) {
-            currentRotation+=1f;
+        if (isInverted) {
+            if (isOpen == true && currentRotation <= openedRotation) {
+                currentRotation+=1f;
+            } else if (isOpen == false && currentRotation > closedRotation) {
+                currentRotation-=1f;
+            }
+        } else {
+            if (isOpen == true && currentRotation >= openedRotation) {
+                currentRotation-=1f;
+            } else if (isOpen == false && currentRotation < closedRotation) {
+                currentRotation+=1f;
+            }
         }
-
+        
         pivot.eulerAngles = new Vector3(0, currentRotation, 0);
     }
     
