@@ -7,6 +7,7 @@ using UnityEngine;
 public class Puzzle : ScriptableObject
 {
     public enum Type {
+        None,
         Object,
         Number
     }
