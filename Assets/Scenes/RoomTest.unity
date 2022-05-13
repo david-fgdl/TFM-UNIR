@@ -3525,10 +3525,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: door_02
       objectReference: {fileID: 0}
-    - target: {fileID: 124963360017386279, guid: 5c5097c3d9da89e4d93c3bdb5528458b, type: 3}
-      propertyPath: IsInverted
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c5097c3d9da89e4d93c3bdb5528458b, type: 3}
 --- !u!1 &777563903
@@ -6909,10 +6905,6 @@ PrefabInstance:
     - target: {fileID: 733390481558183661, guid: da882401bf3929c4f883a4d92681fe7c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 733390481558183662, guid: da882401bf3929c4f883a4d92681fe7c, type: 3}
-      propertyPath: IsInverted
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da882401bf3929c4f883a4d92681fe7c, type: 3}
