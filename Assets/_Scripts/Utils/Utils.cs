@@ -4,6 +4,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -195,7 +196,8 @@ public class Utils : MonoBehaviour
     // METODO PARA OBTENER UN DEBUG CON MÁS INFORMACIÓN (CLASE, MÉTODO, ETC...)
     public static void BetterLog(string className, string methodName, string msg)
     {
-        Debug.Log($"Class [{className}], on method {methodName}: {msg}");
+        string time = DateTime.Now.ToString("h:mm:ss tt");
+        Debug.Log($"{time} - Class [{className}], on method {methodName}: {msg}");
     }
 
 /*--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/

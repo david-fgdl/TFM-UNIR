@@ -21,4 +21,5 @@ public class SaltPouch : MonoBehaviour
         slider.value = amount;
         Fill.color = Gradient.Evaluate(slider.normalizedValue);
     }
+
 }

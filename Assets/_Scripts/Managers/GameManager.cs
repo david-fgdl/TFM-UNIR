@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         ChangeState(GameState.Menu);
-        // ChangeState(GameState.Game);
     }
 
     // Update is called once per frame
@@ -80,12 +79,13 @@ public class GameManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
         }
 
-        Debug.Log(GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>().currentActionMap);
+        Utils.BetterLog("GameManager","ResumeOrPause",GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>().currentActionMap.ToString());
 
     }
 
     private void HandleMenu() {
-
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>().actions.FindActionMap("UI").Enable();
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>().actions.FindActionMap("Player").Disable();
     }
 
     private void HandleGame() {
