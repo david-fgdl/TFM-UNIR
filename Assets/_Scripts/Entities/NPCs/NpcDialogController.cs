@@ -7,20 +7,19 @@ using UnityEngine.UI;
 public class NpcDialogController : MonoBehaviour
 {
 
-    [SerializeField] private GameObject dialog_text_gameobject;
+    [SerializeField] private GameObject dialog_box_gameobject;
 
     void Start()
     {
-        GetComponent<Image>().enabled = false;
-        dialog_text_gameobject.GetComponent<TextMeshProUGUI>().enabled = false;
+        dialog_box_gameobject.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            GetComponent<Image>().enabled = true;
-            dialog_text_gameobject.GetComponent<TextMeshProUGUI>().enabled = true;
+            dialog_box_gameobject.GetComponentInChildren<TextMeshProUGUI>().text = "Test Text";
+            dialog_box_gameobject.SetActive(true);
             GetComponents<AudioSource>()[0].Play();
         }
 
@@ -30,8 +29,7 @@ public class NpcDialogController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GetComponent<Image>().enabled = false;
-            dialog_text_gameobject.GetComponent<TextMeshProUGUI>().enabled = false;
+            dialog_box_gameobject.SetActive(false);
             GetComponents<AudioSource>()[1].Play();
         }
     }
