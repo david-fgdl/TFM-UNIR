@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+// CLASE Door
+// Clase para definir los aspectos de las puertas, 
+// que son necesarias para pasar de zona a zona.
 public class Door : MonoBehaviour {
 
     public string Id;
@@ -35,12 +37,15 @@ public class Door : MonoBehaviour {
 
     void Update()
     {
-        OpenClose(IsOpen, IsInverted);
+        if (Type == Puzzle.Type.None) {
+            OpenClose(IsOpen);
+        }
+            
     }
 
-    void OpenClose(bool isOpen, bool isInverted) {
+    public void OpenClose(bool isOpen) {
 
-        if (isInverted) {
+        if (IsInverted) {
             if (isOpen == true && currentRotation <= openedRotation) {
                 currentRotation+=1f;
             } else if (isOpen == false && currentRotation > closedRotation) {
@@ -56,6 +61,43 @@ public class Door : MonoBehaviour {
         
         pivot.eulerAngles = new Vector3(0, currentRotation, 0);
     }
+
+    public void ChangeDoorState() {
+        if (!IsOpen)
+            IsOpen = true;
+        else 
+            IsOpen = false;
+    }
+
+    // public void OpenClose(bool isOpen) {
+
+    //     for (float i = currentRotation; currentRotation <= openedRotation; currentRotation++) {
+            
+    //     }
+
+    //     while (currentRotation <= openedRotation) {
+    //         currentRotation+=1f;
+    //         pivot.eulerAngles = new Vector3(0, currentRotation, 0);
+    //     }
+        
+
+
+    //     if (IsInverted) {
+    //         if (isOpen == true && currentRotation <= openedRotation) {
+    //             currentRotation+=1f;
+    //         } else if (isOpen == false && currentRotation > closedRotation) {
+    //             currentRotation-=1f;
+    //         }
+    //     } else {
+    //         if (isOpen == true && currentRotation >= openedRotation) {
+    //             currentRotation-=1f;
+    //         } else if (isOpen == false && currentRotation < closedRotation) {
+    //             currentRotation+=1f;
+    //         }
+    //     }
+        
+    //     pivot.eulerAngles = new Vector3(0, currentRotation, 0);
+    // }
     
 }
 

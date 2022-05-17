@@ -47,7 +47,7 @@ MonoBehaviour:
   Id: door_02
   DoorName: RightCorridorToHall
   UnlockObject: {fileID: 0}
-  Type: 3
+  Type: 2
   IsOpen: 0
   IsInverted: 1
   closedRotation: 90

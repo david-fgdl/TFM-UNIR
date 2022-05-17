@@ -150,9 +150,16 @@ public class PlayerController : MonoBehaviour
         var ray = playerCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit)) {
+            var selection = hit.transform;
 
             
-            var selection = hit.transform;
+            if (selection.name.Contains("Door")) {
+                Door door = selection.GetComponentInParent<Door>();
+                door.ChangeDoorState();
+                _selection = selection;
+            }
+
+
             if (selection.CompareTag(selectableTag))
             {
                 // Esto es para cambiar el material y resaltar objetos
@@ -169,9 +176,6 @@ public class PlayerController : MonoBehaviour
 
                 _selection = selection;
             }
-
-            
-
         }
     }
 
@@ -231,6 +235,7 @@ public class PlayerController : MonoBehaviour
     // ACTION TO TAKE/GRAB OBJECTS
     public void Grab(InputAction.CallbackContext context)
     {
+
 
 
         // CHECK IF AN OBJECT IS GRABABLE(?)

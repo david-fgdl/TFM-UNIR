@@ -49,6 +49,7 @@ MonoBehaviour:
   UnlockObject: {fileID: 0}
   Type: 0
   IsOpen: 0
+  IsInverted: 0
   closedRotation: 0
   openedRotation: -87
   pivot: {fileID: 3759375190199113161}

@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(menuName = "TFM-UNIR/New Puzzle")]
-public class Puzzle : ScriptableObject
+// CLASE ABSTRACTA PUZZLE
+// Implementable en cualquier script de puzzle que podamos tener.
+public abstract class Puzzle : MonoBehaviour
 {
-    public enum Type {
-        None,
-        Object,
-        Number,
-        OneWay
+    protected bool isCompleted = false; // Marcamos si está completado.
+    public enum Type { // Definimos el tipo de puzle.
+        None, // None: No existe puzle.
+        Object, // Requiere de un objeto o varios.
+        OneWay // Solo se puede abrir desde un lado.
     }
 }
