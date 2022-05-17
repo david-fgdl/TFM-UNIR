@@ -235,10 +235,8 @@ public class PlayerController : MonoBehaviour
     // ACTION TO TAKE/GRAB OBJECTS
     public void Grab(InputAction.CallbackContext context)
     {
-
-
-
-        // CHECK IF AN OBJECT IS GRABABLE(?)
+        if (context.started) {
+            // CHECK IF AN OBJECT IS GRABABLE(?)
         // ANIMATION PLAYS
         if (!animator.GetBool("can_grab"))
         {
@@ -251,22 +249,23 @@ public class PlayerController : MonoBehaviour
         // OBJECT GOES TO INVENTORY (OTHER SCRIPT?)
         // OBJECT GRABBED GETS DESTROYED ON SCENE BUT STORED ON INVENTORY ARRAY
 
+
+        }
+
+
+        
     }
 
     // ACTION OPEN/CLOSE INVENTORY
     public void Inventory(InputAction.CallbackContext context)
     {
-
-        if (GameManager.Instance.State == GameState.Game)
-        {
-            // Inventory closed
-            GameManager.Instance.ChangeState(GameState.Inventory);
+        if (context.started) {
+            if (GameManager.Instance.State == GameState.Game)
+                GameManager.Instance.ChangeState(GameState.Inventory); // Inventory closed
+            // else if (GameManager.Instance.State == GameState.Inventory)
+            //     GameManager.Instance.ChangeState(GameState.Game); // Inventory open
         }
-        else if (GameManager.Instance.State == GameState.Inventory)
-        {
-            // Inventory open
-            GameManager.Instance.ChangeState(GameState.Game);
-        }
+        
 
     }
 
