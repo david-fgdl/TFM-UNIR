@@ -431,6 +431,7 @@ GameObject:
   - component: {fileID: 6061481580579023558}
   - component: {fileID: 7226724279007590149}
   - component: {fileID: 8556851183618847309}
+  - component: {fileID: 682984037938242855}
   m_Layer: 0
   m_Name: ItemSlot
   m_TagString: Untagged
@@ -527,3 +528,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &682984037938242855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8761608556577501130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cf204ce6bc16ea4693f6e84fcec9933, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
