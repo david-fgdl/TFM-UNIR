@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public static event Action<GameState> OnGameStateChanged;
 
     [SerializeField] private PlayerInput playerInput;
+    [SerializeField] private GameObject loadingScreen;
 
     void Awake()
     {
@@ -22,8 +23,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        ChangeState(GameState.Menu);
-        
+        ChangeState(GameState.Menu);  
     }
 
     // Update is called once per frame
@@ -56,6 +56,9 @@ public class GameManager : MonoBehaviour
             case GameState.Settings:
                 HandleSettings();
                 break;
+            case GameState.Loading:
+                HandleLoading();
+                break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
         }
@@ -82,10 +85,12 @@ public class GameManager : MonoBehaviour
     }
 
     private void HandleMenu() {
+        // Menu principal
+
+        // inicializamos rapido el inventario
     }
 
     private void HandleGame() {
-        
     }
 
     private void HandleInventory() {
@@ -104,6 +109,10 @@ public class GameManager : MonoBehaviour
 
     }
 
+    private void HandleLoading() {
+
+    }
+
 
 }
 
@@ -113,5 +122,6 @@ public enum GameState { // Podemos añadir estados dependiendo de los hitos cons
     Inventory,
     GameOver,
     EndGame,
-    Settings
+    Settings,
+    Loading
 }

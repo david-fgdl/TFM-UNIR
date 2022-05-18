@@ -3,12 +3,15 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+    public static Inventory Instance;
     [SerializeField] private GameObject mSlotPrefab;
     // Start is called before the first frame update
-    void OnLevelWasLoaded() // El constructor se va a llamar incluso con el objeto disabled.
-    {
-        InventorySystem.Instance.inventory.CollectionChanged += OnUpdateInventory;
 
+    void Awake() // deberia llamarse incluso con el objeto disabled.
+    {
+        Debug.Log("AWAKE");
+        InventorySystem.Instance.inventory.CollectionChanged += OnUpdateInventory;
+        // Da problema porque inventory está desabilitado cuando no se muestra
         // Se podría arreglar cambiando esta inicializacion en un gameobject externo
     }
 

@@ -9,7 +9,8 @@ public class MenuManager : MonoBehaviour
                                         gameOverPanel, 
                                         endGamePanel, 
                                         inventoryPanel, 
-                                        gameUIPanel;
+                                        gameUIPanel,
+                                        loadingPanel;
     void Awake()
     {
         GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
@@ -24,6 +25,7 @@ public class MenuManager : MonoBehaviour
         // GAME GENERAL STATE PANELS
         gameOverPanel.SetActive(state == GameState.GameOver);
         endGamePanel.SetActive(state == GameState.EndGame);
+        loadingPanel.SetActive(state == GameState.Loading);
 
         // IN-GAME PANELS
         inventoryPanel.SetActive(state == GameState.Inventory);
