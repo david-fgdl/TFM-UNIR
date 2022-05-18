@@ -5,17 +5,19 @@ public class Inventory : MonoBehaviour
 {
     [SerializeField] private GameObject mSlotPrefab;
     // Start is called before the first frame update
-    void Start()
+    void OnLevelWasLoaded() // El constructor se va a llamar incluso con el objeto disabled.
     {
         InventorySystem.Instance.inventory.CollectionChanged += OnUpdateInventory;
+
+        // Se podría arreglar cambiando esta inicializacion en un gameobject externo
     }
 
     public void BackToGame() {
-        Utils.BetterLog(this.GetType().Name, "BackToGame", "VUelta al juego");
+        //Utils.BetterLog(this.GetType().Name, "BackToGame", "VUelta al juego");
         GameManager.Instance.ChangeState(GameState.Game);
     }
 
-    private void OnUpdateInventory(object sender, NotifyCollectionChangedEventArgs e) {
+    public void OnUpdateInventory(object sender, NotifyCollectionChangedEventArgs e) {
         foreach (Transform t in transform)
         {
             Debug.Log("Destryo?");

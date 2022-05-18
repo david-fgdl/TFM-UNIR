@@ -30,10 +30,6 @@ public class InventorySystem : MonoBehaviour
             inventory.Add(newItem);
             m_itemDictionary.Add(referenceData, newItem);
         }
-
-        
-
-        
     }
 
     public void Remove(InventoryItemData referenceData) {
