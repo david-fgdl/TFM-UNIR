@@ -260,8 +260,8 @@ public class PlayerController : MonoBehaviour
         if (context.started) {
             if (GameManager.Instance.State == GameState.Game)
                 GameManager.Instance.ChangeState(GameState.Inventory); // Inventory closed
-            // else if (GameManager.Instance.State == GameState.Inventory)
-            //     GameManager.Instance.ChangeState(GameState.Game); // Inventory open
+            else if (GameManager.Instance.State == GameState.Inventory)
+                GameManager.Instance.ChangeState(GameState.Game); // Inventory open
         }
         
 

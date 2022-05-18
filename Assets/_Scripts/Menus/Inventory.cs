@@ -5,14 +5,13 @@ public class Inventory : MonoBehaviour
 {
     public static Inventory Instance;
     [SerializeField] private GameObject mSlotPrefab;
-    // Start is called before the first frame update
+    [SerializeField] private GameObject parentPanel; // El padre de la UI de Inventario
+    
 
-    void Awake() // deberia llamarse incluso con el objeto disabled.
+    void Start()
     {
-        Debug.Log("AWAKE");
-        InventorySystem.Instance.inventory.CollectionChanged += OnUpdateInventory;
-        // Da problema porque inventory está desabilitado cuando no se muestra
-        // Se podría arreglar cambiando esta inicializacion en un gameobject externo
+        
+        InventorySystem.Instance.inventory.CollectionChanged += OnUpdateInventory; // esta linea tiene que llamarse despues de que cargue InventorySystem
     }
 
     public void BackToGame() {
@@ -21,9 +20,8 @@ public class Inventory : MonoBehaviour
     }
 
     public void OnUpdateInventory(object sender, NotifyCollectionChangedEventArgs e) {
-        foreach (Transform t in transform)
+        foreach (Transform t in parentPanel.transform)
         {
-            Debug.Log("Destryo?");
             Destroy(t.gameObject);
         }
 
@@ -33,14 +31,13 @@ public class Inventory : MonoBehaviour
     public void DrawInventory() {
         foreach (InventoryItem item in InventorySystem.Instance.inventory)
         {
-            Debug.Log("Add to UI Inventory: "+item.data.DisplayName);
             AddInventorySlot(item);
         }
     }
 
     public void AddInventorySlot(InventoryItem item) {
         GameObject obj = Instantiate(mSlotPrefab);
-        obj.transform.SetParent(transform, false);
+        obj.transform.SetParent(parentPanel.transform, false);
 
         ItemSlot slot = obj.GetComponent<ItemSlot>();
         slot.Set(item);
