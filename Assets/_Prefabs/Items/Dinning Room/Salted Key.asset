@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fa1e94988f40f144ad8d098827fa548, type: 3}
   m_Name: Salted Key
   m_EditorClassIdentifier: 
-  id: 
-  displayName: 
-  icon: {fileID: 21300000, guid: 41df9de4ccdcb224c8d8e847ed49c109, type: 3}
-  prefab: {fileID: 0}
-  isCombinable: 0
+  Id: dinning_room_salted_key
+  DisplayName: Dinning Room Salted Key
+  Icon: {fileID: 21300000, guid: 41df9de4ccdcb224c8d8e847ed49c109, type: 3}
+  Prefab: {fileID: 2765315716368924850, guid: ca1c5fc3e835cd8479dc07f193872d98, type: 3}
+  IsCombinable: 0

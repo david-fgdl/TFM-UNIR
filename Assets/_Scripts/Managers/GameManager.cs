@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     public static event Action<GameState> OnGameStateChanged;
 
+    [SerializeField] private PlayerInput playerInput;
+
     void Awake()
     {
         if (Instance != null && Instance != this) Destroy(this);
@@ -69,15 +71,13 @@ public class GameManager : MonoBehaviour
         if (State != GameState.Game)
         { // We're on a menu
             Time.timeScale = 0f;
-            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>().actions.FindActionMap("UI").Enable();
-            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>().actions.FindActionMap("Player").Disable();
+            playerInput.SwitchCurrentActionMap("UI");
             Cursor.lockState = CursorLockMode.None;
         }
         else
         { // We're in game
             Time.timeScale = 1f;
-            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>().actions.FindActionMap("Player").Enable();
-            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>().actions.FindActionMap("UI").Disable();
+            playerInput.SwitchCurrentActionMap("Player");
             Cursor.lockState = CursorLockMode.Locked;
         }
 
