@@ -1,26 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
-public class DragObject : MonoBehaviour
+public class DragObject : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IInitializePotentialDragHandler, IDropHandler
 {
     public static bool MouseButtonReleased;
     private Vector2 mousePosition;
     private float offsetX, offsetY;
 
-    void OnMouseDown()
+    public void OnPointerDown(PointerEventData eventData)
     {
+        Debug.Log("CLICKANDO OBJETO");
         MouseButtonReleased  = false;
-        offsetX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x - transform.position.x;
-        offsetY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y - transform.position.y;
+        offsetX = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()).x - transform.position.x;
+        offsetY = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()).y - transform.position.y;
     }
 
-    void OnMouseDrag()
+    public void OnInitializePotentialDrag(PointerEventData eventData)
     {
-        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         transform.position = new Vector2(mousePosition.x - offsetX, mousePosition.y - offsetY);
     }
-    void OnMouseUp()
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
     {
         MouseButtonReleased = true;
     }
@@ -39,11 +46,11 @@ public class DragObject : MonoBehaviour
                 MouseButtonReleased = false;
                 Destroy(other.gameObject);
                 Destroy(gameObject);
-            } else if (thisName == "Ingrediendte 1" && collisionName == "Ingrediente 2") { // Plantilla receta
-
-            }
+            } 
         }
         
         
     }
+
+    
 }

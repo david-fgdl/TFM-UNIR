@@ -3,20 +3,24 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+    public static Inventory Instance;
     [SerializeField] private GameObject mSlotPrefab;
-    // Start is called before the first frame update
+    [SerializeField] private GameObject parentPanel; // El padre de la UI de Inventario
+    
+
     void Start()
     {
-        InventorySystem.Instance.inventory.CollectionChanged += OnUpdateInventory;
+        
+        InventorySystem.Instance.inventory.CollectionChanged += OnUpdateInventory; // esta linea tiene que llamarse despues de que cargue InventorySystem
     }
 
     public void BackToGame() {
-        Utils.BetterLog(this.GetType().Name, "BackToGame", "VUelta al juego");
+        //Utils.BetterLog(this.GetType().Name, "BackToGame", "VUelta al juego");
         GameManager.Instance.ChangeState(GameState.Game);
     }
 
-    private void OnUpdateInventory(object sender, NotifyCollectionChangedEventArgs e) {
-        foreach (Transform t in transform)
+    public void OnUpdateInventory(object sender, NotifyCollectionChangedEventArgs e) {
+        foreach (Transform t in parentPanel.transform)
         {
             Destroy(t.gameObject);
         }
@@ -33,7 +37,7 @@ public class Inventory : MonoBehaviour
 
     public void AddInventorySlot(InventoryItem item) {
         GameObject obj = Instantiate(mSlotPrefab);
-        obj.transform.SetParent(transform, false);
+        obj.transform.SetParent(parentPanel.transform, false);
 
         ItemSlot slot = obj.GetComponent<ItemSlot>();
         slot.Set(item);

@@ -18,6 +18,8 @@ public class InventorySystem : MonoBehaviour
 
         inventory = new ObservableCollection<InventoryItem>();
         m_itemDictionary = new Dictionary<InventoryItemData, InventoryItem>();
+
+        // inventory.CollectionChanged += Inventory.OnUpdateInventory;
     }
     
     public void Add(InventoryItemData referenceData) {
@@ -30,10 +32,6 @@ public class InventorySystem : MonoBehaviour
             inventory.Add(newItem);
             m_itemDictionary.Add(referenceData, newItem);
         }
-
-        
-
-        
     }
 
     public void Remove(InventoryItemData referenceData) {

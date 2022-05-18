@@ -172,8 +172,6 @@ public class PlayerController : MonoBehaviour
                     item.OnHandlePickupItem();
                 }
 
-                Debug.Log("golpisa de "+selection.name);
-
                 _selection = selection;
             }
         }
@@ -259,12 +257,19 @@ public class PlayerController : MonoBehaviour
     // ACTION OPEN/CLOSE INVENTORY
     public void Inventory(InputAction.CallbackContext context)
     {
-        if (context.started) {
+        bool performed = false;
+        if (context.started && !performed) {
+            Debug.Log("CURRENT STATE: "+ GameManager.Instance.State);
+
             if (GameManager.Instance.State == GameState.Game)
-                GameManager.Instance.ChangeState(GameState.Inventory); // Inventory closed
-            // else if (GameManager.Instance.State == GameState.Inventory)
-            //     GameManager.Instance.ChangeState(GameState.Game); // Inventory open
+                GameManager.Instance.ChangeState(GameState.Inventory);
+            else if (GameManager.Instance.State == GameState.Inventory)
+                GameManager.Instance.ChangeState(GameState.Game);
+
+            performed = true;
         }
+
+        performed = false;
         
 
     }
