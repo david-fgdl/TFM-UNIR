@@ -18,6 +18,7 @@ public class Inventory : MonoBehaviour
     private void OnUpdateInventory(object sender, NotifyCollectionChangedEventArgs e) {
         foreach (Transform t in transform)
         {
+            Debug.Log("Destryo?");
             Destroy(t.gameObject);
         }
 
@@ -27,6 +28,7 @@ public class Inventory : MonoBehaviour
     public void DrawInventory() {
         foreach (InventoryItem item in InventorySystem.Instance.inventory)
         {
+            Debug.Log("Add to UI Inventory: "+item.data.DisplayName);
             AddInventorySlot(item);
         }
     }

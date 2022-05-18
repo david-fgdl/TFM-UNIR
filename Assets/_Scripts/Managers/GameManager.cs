@@ -67,7 +67,6 @@ public class GameManager : MonoBehaviour
 
     private void PauseOrResume()
     {
-
         if (State != GameState.Game)
         { // We're on a menu
             Time.timeScale = 0f;
@@ -80,9 +79,6 @@ public class GameManager : MonoBehaviour
             playerInput.SwitchCurrentActionMap("Player");
             Cursor.lockState = CursorLockMode.Locked;
         }
-
-        
-
     }
 
     private void HandleMenu() {

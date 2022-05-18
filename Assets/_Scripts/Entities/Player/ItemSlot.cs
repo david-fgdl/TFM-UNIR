@@ -30,6 +30,5 @@ public class ItemSlot : MonoBehaviour
         }
 
         mStackLabel.text = item.stackSize.ToString();
-
     }
 }

@@ -172,8 +172,6 @@ public class PlayerController : MonoBehaviour
                     item.OnHandlePickupItem();
                 }
 
-                Debug.Log("golpisa de "+selection.name);
-
                 _selection = selection;
             }
         }
