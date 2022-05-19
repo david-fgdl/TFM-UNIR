@@ -37,29 +37,34 @@ public class Door : MonoBehaviour {
 
     void Update()
     {
-        if (Type == Puzzle.Type.None) {
-            OpenClose(IsOpen);
-        }
-            
+         
     }
 
     public void OpenClose(bool isOpen) {
 
         if (IsInverted) {
-            if (isOpen == true && currentRotation <= openedRotation) {
-                currentRotation+=1f;
-            } else if (isOpen == false && currentRotation > closedRotation) {
-                currentRotation-=1f;
+            if (isOpen == true) {
+                for (float i = currentRotation; currentRotation <= openedRotation; i++) {
+                    pivot.eulerAngles = new Vector3(0, currentRotation, 0);
+                }
+            } else if (isOpen == false) {
+                for (float i = currentRotation; currentRotation > closedRotation; i--) {
+                    pivot.eulerAngles = new Vector3(0, currentRotation, 0);
+                }
             }
         } else {
-            if (isOpen == true && currentRotation >= openedRotation) {
-                currentRotation-=1f;
-            } else if (isOpen == false && currentRotation < closedRotation) {
-                currentRotation+=1f;
+            if (isOpen == true) {
+                for (float i = currentRotation; currentRotation >= openedRotation; i--) {
+                    pivot.eulerAngles = new Vector3(0, currentRotation, 0);
+                }
+            } else if (isOpen == false) {
+                for (float i = currentRotation; currentRotation < closedRotation; i++) {
+                    pivot.eulerAngles = new Vector3(0, currentRotation, 0);
+                }
             }
         }
-        
-        pivot.eulerAngles = new Vector3(0, currentRotation, 0);
+
+        ChangeDoorState();
     }
 
     public void ChangeDoorState() {
@@ -69,18 +74,46 @@ public class Door : MonoBehaviour {
             IsOpen = false;
     }
 
+    public void TryOpen() {
+        if (Type == Puzzle.Type.None) {
+            // Se puede abrir y cerrar la puerta sin mas
+            OpenClose(IsOpen);
+        } else if (Type == Puzzle.Type.Object) {
+            // Se necesita un objeto en el inventario para abrir
+            InventoryItem item;
+            if (CheckIfPlayerHasObject(out item)) {
+                // abrir???? igual no hace falta
+                // eliminar objeto
+                InventorySystem.Instance.Remove(item.data);
+            }
+
+        }
+    }
+
+    private bool CheckIfPlayerHasObject(out InventoryItem item) {
+        bool hasKey = false;
+        item = null;
+
+        foreach (InventoryItem invItem in InventorySystem.Instance.inventory)
+        {
+            if (this.Id == "door_01" && invItem.data.Id == UnlockObject.Id)
+            {
+                hasKey = true; 
+                item = invItem;
+                ChangeDoorType(Puzzle.Type.None);
+                break;
+            }
+        }
+
+        return hasKey;
+    }
+
+    private void ChangeDoorType(Puzzle.Type newType) {
+        this.Type = newType;
+    }
+
+    // ANTIGUO OPEN CLOSE - NO BORRAR POR SI ACASO
     // public void OpenClose(bool isOpen) {
-
-    //     for (float i = currentRotation; currentRotation <= openedRotation; currentRotation++) {
-            
-    //     }
-
-    //     while (currentRotation <= openedRotation) {
-    //         currentRotation+=1f;
-    //         pivot.eulerAngles = new Vector3(0, currentRotation, 0);
-    //     }
-        
-
 
     //     if (IsInverted) {
     //         if (isOpen == true && currentRotation <= openedRotation) {

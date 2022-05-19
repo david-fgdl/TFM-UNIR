@@ -66,7 +66,8 @@ public class PlayerController : MonoBehaviour
     // Variable to keep track of player's camera rotation in the x axis
     private float xRotation;
 
-    [SerializeField] private string selectableTag = "Selectable";
+    private string selectableTag = "Selectable";
+    // [SerializeField] private Material highlightMaterial;
     private Transform _selection;
 
     
@@ -113,7 +114,7 @@ public class PlayerController : MonoBehaviour
  
         Move();  // Control player's movement
         Look();  // Control camera's movement
-       
+
     }
 
 /*-----------------------------------------------------------------------------------------------------------------------------*/
@@ -152,17 +153,19 @@ public class PlayerController : MonoBehaviour
         if (Physics.Raycast(ray, out hit)) {
             var selection = hit.transform;
 
+            Debug.DrawLine(ray.origin, hit.point);
+
             
             if (selection.name.Contains("Door")) {
                 Door door = selection.GetComponentInParent<Door>();
-                door.ChangeDoorState();
+                door.TryOpen();
                 _selection = selection;
             }
 
 
             if (selection.CompareTag(selectableTag))
             {
-                // Esto es para cambiar el material y resaltar objetos
+                // // Esto es para cambiar el material y resaltar objetos
                 // var selectionRenderer = selection.GetComponent<Renderer>();
                 // if (selectionRenderer != null) {
                 //     selectionRenderer.material = highlightMaterial;

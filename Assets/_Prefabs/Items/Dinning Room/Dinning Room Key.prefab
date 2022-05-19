@@ -45,8 +45,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.3, y: 0.11269629, z: 0.3770244}
-  m_Center: {x: 0, y: 0.031777322, z: 0.029105067}
+  m_Size: {x: 0.3, y: 0.17388284, z: 0.45020604}
+  m_Center: {x: 0, y: 0.06267315, z: 0.011114955}
 --- !u!114 &3801663231644632266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc2f224d78a92f4abbbbee49cba5b69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  referenceItem: {fileID: 11400000, guid: c2952f8b2ba11e542a9fc26a8b36e18a, type: 2}
+  referenceItem: {fileID: 11400000, guid: 618f7954c9aaa9549b3608b21ae19aa4, type: 2}
 --- !u!54 &535896651
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -130,7 +130,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 9873e9a9bb91faa43aa38f1872122d82, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: add3af55ab747434583cf86420c51df0, type: 2}
+      objectReference: {fileID: 2100000, guid: 478e7bd864f19ae4c9d62b7cda2cb680, type: 2}
     - target: {fileID: 919132149155446097, guid: 9873e9a9bb91faa43aa38f1872122d82, type: 3}
       propertyPath: m_Name
       value: uploads_files_179010_Worn_Key
