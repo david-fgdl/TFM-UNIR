@@ -1185,6 +1185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 074012179069b0d43919956507dc0450, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NPC_message: '"Welcome..."'
   dialog_box_gameobject: {fileID: 1465769989}
 --- !u!82 &201151718
 AudioSource:
@@ -1404,7 +1405,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 205950147}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.46, y: 1.591, z: 11.35}
+  m_LocalPosition: {x: 2.74, y: 1.591, z: 11.35}
   m_LocalScale: {x: 0.35, y: 0.35, z: 1}
   m_Children:
   - {fileID: 32649636}
@@ -2502,7 +2503,7 @@ GameObject:
   - component: {fileID: 385522838}
   - component: {fileID: 385522837}
   m_Layer: 0
-  m_Name: Area Light
+  m_Name: ComedorLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2578,7 +2579,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 385522836}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.13, y: 5.46, z: 20.583}
+  m_LocalPosition: {x: 22.71, y: 3.84, z: 26.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1012119817}
@@ -4354,6 +4355,7 @@ Transform:
   - {fileID: 385522838}
   - {fileID: 1808515625}
   - {fileID: 263217609}
+  - {fileID: 1421142395}
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5504,6 +5506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 074012179069b0d43919956507dc0450, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NPC_message: Where are you daughter?!
   dialog_box_gameobject: {fileID: 1465769989}
 --- !u!65 &1192466402
 BoxCollider:
@@ -5671,7 +5674,7 @@ RectTransform:
   m_GameObject: {fileID: 1411772693}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 2069814268}
   - {fileID: 1615887304}
@@ -5681,7 +5684,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100, y: -150}
+  m_AnchoredPosition: {x: 50, y: -50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1411772695
@@ -5825,6 +5828,99 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 318470d2be3f26e4a897f8780b7e2ade, type: 3}
   m_PrefabInstance: {fileID: 1414858193}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1421142394
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1421142395}
+  - component: {fileID: 1421142396}
+  m_Layer: 0
+  m_Name: ComedorLight (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1421142395
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421142394}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 27.19, y: 3.84, z: 2.79}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1012119817}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!108 &1421142396
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421142394}
+  m_Enabled: 1
+  serializedVersion: 10
+  m_Type: 2
+  m_Shape: 0
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
+  m_Range: 75
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 2
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 2
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!1 &1426625331
 GameObject:
   m_ObjectHideFlags: 0
@@ -5989,7 +6085,7 @@ RectTransform:
   m_GameObject: {fileID: 1465769989}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 10.309862}
-  m_LocalScale: {x: 0.75, y: 0.5, z: 0.15}
+  m_LocalScale: {x: 1.3416, y: 0.60985, z: 0.15}
   m_Children:
   - {fileID: 1910176561}
   m_Father: {fileID: 508986587}
@@ -5997,7 +6093,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -159}
+  m_AnchoredPosition: {x: 0, y: -267}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!82 &1465769991
@@ -6672,6 +6768,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 074012179069b0d43919956507dc0450, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NPC_message: Please... Help us...
   dialog_box_gameobject: {fileID: 1465769989}
 --- !u!65 &1569948352
 BoxCollider:
@@ -7686,15 +7783,15 @@ RectTransform:
   m_GameObject: {fileID: 1910176560}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.3333334, y: 2, z: 1}
+  m_LocalScale: {x: 0.7453787, y: 1.6397474, z: 1}
   m_Children: []
   m_Father: {fileID: 1465769990}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.034976207, y: 0.06298828}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 0.019560516, y: 13.11795}
+  m_SizeDelta: {x: 600, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1910176562
 MonoBehaviour:
@@ -7716,7 +7813,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Help us...
+  m_text: 'Test Text
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
