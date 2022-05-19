@@ -8,7 +8,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] private GameObject mSlotPrefab;
     [SerializeField] private GameObject parentPanel; // El padre de la UI de Inventario
     [SerializeField] private GameObject combinationToDo; // El padre de la UI de Inventario
-    private float timeLeft = 10;
+    private float timeLeft = 3;
     
 
     void Start()
@@ -23,7 +23,7 @@ public class Inventory : MonoBehaviour
         if ( timeLeft < 0 )
         {
             CheckCombinations();
-            timeLeft = 10;
+            timeLeft = 3;
         }
         
     }
@@ -70,15 +70,17 @@ public class Inventory : MonoBehaviour
             InventorySystem.Instance.RemoveById("salt_pinch");
             
             // añadir el nuevo
-            ItemObject newItem = Resources.Load<ItemObject>("Items/Dinning Room Salted Key");
-            if (newItem!=null) {
-                Debug.Log("recurso encontrado");
-                // InventorySystem.Instance.Add(newItem.referenceItem);
-                return;
-            } 
-            // InventorySystem.Instance.Add(newItem.referenceItem);
+            GameObject newItem = Resources.Load<GameObject>("Items/Dinning Room Salted Key");
 
-            
+            if (newItem!=null) {
+                Vector3 playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
+                Instantiate(newItem, new Vector3(playerPosition.x, playerPosition.y, playerPosition.z + 2), newItem.transform.rotation);
+                return;
+            } else {
+                Debug.Log("item null");
+            }
+
+            return;
             
             
         }

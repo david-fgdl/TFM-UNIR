@@ -150,10 +150,10 @@ public class PlayerController : MonoBehaviour
 
         var ray = playerCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit)) {
+        if (Physics.Raycast(ray, out hit, 10f)) {
             var selection = hit.transform;
 
-            Debug.DrawLine(ray.origin, hit.point);
+            // Debug.DrawLine(ray.origin, hit.point, Color.cyan, 10f);
 
             
             if (selection.name.Contains("Door")) {
