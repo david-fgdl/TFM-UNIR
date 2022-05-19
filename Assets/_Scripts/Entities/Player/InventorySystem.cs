@@ -69,16 +69,4 @@ public class InventorySystem : MonoBehaviour
         }
     }
 
-    public void AddById(string itemId) {
-
-        foreach (var item in m_itemDictionary)
-        {
-            if (m_itemDictionary.TryGetValue(item.Key, out InventoryItem value) && item.Key.Id == itemId)
-            {
-                Add(item.Key);
-                break;
-            }
-        }
-    }
-
 }
