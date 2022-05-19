@@ -100,7 +100,7 @@ public class Door : MonoBehaviour {
         bool hasKey = false;
         item = null;
 
-        foreach (InventoryItem invItem in InventorySystem.Instance.inventory)
+        foreach (InventoryItem invItem in InventorySystem.Instance.inventory) // Comprobamos los objetos en  nuestro inventario
         {
             if (this.Id == "door_01" && invItem.data.Id == UnlockObject.Id)
             {
