@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 // CLASE Door
@@ -7,64 +6,73 @@ using UnityEngine;
 // que son necesarias para pasar de zona a zona.
 public class Door : MonoBehaviour {
 
-    public string Id;
-    public string DoorName;
-    public InventoryItemData UnlockObject;
-    public Puzzle.Type Type;
+    public string Id; // Id de la puerta
+    public string DoorName; // Nombre de la puerta
+    public InventoryItemData UnlockObject; // Objeto que desbloquea la puerta
+    public Puzzle.Type Type; // Tipo de puzzle
     
 
     #region Open Variables
-    public bool IsOpen = false;
-    public bool IsInverted = false;
-    public float closedRotation = 0f;
-    public float openedRotation = -87f;
-    [SerializeField] private Transform pivot;
+    public bool IsOpen = false; // Estado de la puerta
+    public bool IsInverted = false; // Marca dónde están ubicadas las bisagras
+    public float closedRotation; // Rotacion de la puerta cerrada
+    public float openedRotation; // Rotacion de la puerta abierta
+    [SerializeField] private Transform pivot; // Posición de la bisagra
     
-    private float currentRotation;
+    private float currentRotation; // Rotación actual de la puerta
     
 
     #endregion
 
-    void Awake()
-    {
-        
-    }
 
     void Start()
     {
         currentRotation = closedRotation;
     }
 
-    void Update()
-    {
-         
-    }
+    IEnumerator OpenClose(bool isOpen) {
 
-    public void OpenClose(bool isOpen) {
-
-        if (IsInverted) {
-            if (isOpen == true) {
-                for (float i = currentRotation; currentRotation <= openedRotation; i++) {
+        if (!IsInverted) { // Comprobamos si está invertida
+            if (!IsOpen) // Comprobamos si esta cerrada
+            {
+                for (float i = currentRotation; i >= openedRotation; i--)
+                { // open not inverted ex.: door_00
+                    currentRotation = i;
                     pivot.eulerAngles = new Vector3(0, currentRotation, 0);
+                    yield return new WaitForSeconds(0.01f);
                 }
-            } else if (isOpen == false) {
-                for (float i = currentRotation; currentRotation > closedRotation; i--) {
+            }
+            else
+            {
+                for (float i = currentRotation; i < closedRotation; i++)
+                { // close not inverted ex.: door_00
+                    currentRotation = i;
                     pivot.eulerAngles = new Vector3(0, currentRotation, 0);
+                    yield return new WaitForSeconds(0.01f);
                 }
             }
         } else {
-            if (isOpen == true) {
-                for (float i = currentRotation; currentRotation >= openedRotation; i--) {
+            if (!IsOpen)
+            {
+                for (float i = currentRotation; i <= openedRotation; i++)
+                { // open not inverted ex.: door_01
+                    currentRotation = i;
                     pivot.eulerAngles = new Vector3(0, currentRotation, 0);
+                    yield return new WaitForSeconds(0.01f);
                 }
-            } else if (isOpen == false) {
-                for (float i = currentRotation; currentRotation < closedRotation; i++) {
+            }
+            else
+            {
+                for (float i = currentRotation; i > closedRotation; i--)
+                { // close not inverted ex.: door_01
+                    currentRotation = i;
                     pivot.eulerAngles = new Vector3(0, currentRotation, 0);
+                    yield return new WaitForSeconds(0.01f);
                 }
             }
         }
 
-        ChangeDoorState();
+        ChangeDoorState(); // Cambiamos el estado de la puerta
     }
 
     public void ChangeDoorState() {
@@ -75,18 +83,16 @@ public class Door : MonoBehaviour {
     }
 
     public void TryOpen() {
-        if (Type == Puzzle.Type.None) {
-            // Se puede abrir y cerrar la puerta sin mas
-            OpenClose(IsOpen);
+        if (Type == Puzzle.Type.None) { // Se puede abrir y cerrar la puerta sin mas
+            
+            
+            StartCoroutine(OpenClose(IsOpen));
         } else if (Type == Puzzle.Type.Object) {
             // Se necesita un objeto en el inventario para abrir
             InventoryItem item;
             if (CheckIfPlayerHasObject(out item)) {
-                // abrir???? igual no hace falta
-                // eliminar objeto
                 InventorySystem.Instance.Remove(item.data);
             }
-
         }
     }
 
