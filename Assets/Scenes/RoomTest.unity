@@ -186,7 +186,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 32649635}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -3.22, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1569948348}
@@ -252,7 +252,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a2ee88b495d54f94d97e796ffaf382b9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bdb9dc0b24d2cc047af44d3603094bad, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -8834,6 +8834,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 61036840}
     m_Modifications:
+    - target: {fileID: 969868392407393190, guid: 10669cfc4c4a88043af4e8b377a21ad3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1663468785882358300, guid: 10669cfc4c4a88043af4e8b377a21ad3, type: 3}
       propertyPath: m_Name
       value: FPS_Player
@@ -9160,6 +9164,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4967155466567585291, guid: d2f5aaa5a4b13e547ba9dbcd8abafacc, type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4967155466567585291, guid: d2f5aaa5a4b13e547ba9dbcd8abafacc, type: 3}
       propertyPath: ShapeModule.alignToDirection
       value: 1
       objectReference: {fileID: 0}
@@ -9276,6 +9284,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1900657744653710916}
+    - target: {fileID: 5228845831470027448, guid: a509c72ed091fc44c9c5ca8273275970, type: 3}
+      propertyPath: m_Name
+      value: Son
+      objectReference: {fileID: 0}
     - target: {fileID: 5228845831470027450, guid: a509c72ed091fc44c9c5ca8273275970, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.35
@@ -9291,6 +9303,14 @@ PrefabInstance:
     - target: {fileID: 5228845831470027450, guid: a509c72ed091fc44c9c5ca8273275970, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.591
+      objectReference: {fileID: 0}
+    - target: {fileID: 5228845831730163711, guid: a509c72ed091fc44c9c5ca8273275970, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8a374dfc7d5c1e5488014aac045fd597, type: 3}
+    - target: {fileID: 5228845831730163711, guid: a509c72ed091fc44c9c5ca8273275970, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5228845831785226880, guid: a509c72ed091fc44c9c5ca8273275970, type: 3}
       propertyPath: m_Name
