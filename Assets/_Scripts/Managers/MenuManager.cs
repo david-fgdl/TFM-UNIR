@@ -4,32 +4,32 @@ using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {
-    [SerializeField] private GameObject menuPanel, 
-                                        settingsPanel, 
-                                        gameOverPanel, 
-                                        endGamePanel, 
-                                        inventoryPanel, 
-                                        gameUIPanel,
-                                        loadingPanel;
-    void Awake()
+    [SerializeField] private GameObject _menuPanel, 
+                                        _settingsPanel, 
+                                        _gameOverPanel, 
+                                        _endGamePanel, 
+                                        _inventoryPanel, 
+                                        _gameUIPanel,
+                                        _loadingPanel;
+    private void Awake()
     {
         GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
     }
 
-    private void GameManagerOnGameStateChanged(GameState state) {
-        
+    private void GameManagerOnGameStateChanged(GameState state) 
+    {
         // MENU PANELS
-        menuPanel.SetActive(state == GameState.Menu);
-        settingsPanel.SetActive(state == GameState.Settings);
+        _menuPanel.SetActive(state == GameState.Menu);
+        _settingsPanel.SetActive(state == GameState.Settings);
 
         // GAME GENERAL STATE PANELS
-        gameOverPanel.SetActive(state == GameState.GameOver);
-        endGamePanel.SetActive(state == GameState.EndGame);
-        loadingPanel.SetActive(state == GameState.Loading);
+        _gameOverPanel.SetActive(state == GameState.GameOver);
+        _endGamePanel.SetActive(state == GameState.EndGame);
+        _loadingPanel.SetActive(state == GameState.Loading);
 
         // IN-GAME PANELS
-        inventoryPanel.SetActive(state == GameState.Inventory);
-        gameUIPanel.SetActive(state == GameState.Game);
+        _inventoryPanel.SetActive(state == GameState.Inventory);
+        _gameUIPanel.SetActive(state == GameState.Game);
     }
 
     void OnDestroy()

@@ -50,9 +50,9 @@ MonoBehaviour:
   Type: 2
   IsOpen: 0
   IsInverted: 1
-  closedRotation: 90
-  openedRotation: 177
-  pivot: {fileID: 124963360017386276}
+  ClosedRotation: 90
+  OpenedRotation: 1
+  _pivot: {fileID: 124963360017386276}
 --- !u!1 &124963360206723629
 GameObject:
   m_ObjectHideFlags: 0

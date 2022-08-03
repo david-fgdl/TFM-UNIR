@@ -1,34 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
 public class ItemSlot : MonoBehaviour
 {
-    [SerializeField] private Image mIcon;
-    [SerializeField] private GameObject mCombinableIcon;
-    [SerializeField] private TMP_Text mLabel;
+    [SerializeField] private Image _icon;
+    [SerializeField] private GameObject _combinableIcon;
+    [SerializeField] private TMP_Text _label;
+    [SerializeField] private GameObject _stackObject;
+    [SerializeField] private TMP_Text _stackLabel;
 
-    [SerializeField] private GameObject mStackObject;
-    [SerializeField] private TMP_Text mStackLabel;
 
+    public void Set(InventoryItem item) 
+    {
 
-    public void Set(InventoryItem item) {
+        _icon.sprite = item.Data.Icon;
+        _label.text = item.Data.DisplayName;
 
-        mIcon.sprite = item.data.Icon;
-        mLabel.text = item.data.DisplayName;
-
-        if (item.data.IsCombinable) {
-            mCombinableIcon.SetActive(true);
+        if (item.Data.IsCombinable) {
+            _combinableIcon.SetActive(true);
         }
 
 
-        if (item.stackSize <= 1) {
-            mStackObject.SetActive(false);
+        if (item.StackSize <= 1) {
+            _stackObject.SetActive(false);
             return;
         }
 
-        mStackLabel.text = item.stackSize.ToString();
+        _stackLabel.text = item.StackSize.ToString();
     }
 }

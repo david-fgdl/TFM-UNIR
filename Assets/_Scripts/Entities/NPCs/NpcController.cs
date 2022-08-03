@@ -12,7 +12,7 @@ public class NpcController : MonoBehaviour
 
     // REFERENCES
 
-    [SerializeField] private GameObject player;  // Player's gameobject reference
+    [SerializeField] private GameObject _player;  // Player's gameobject reference
 
 /*-----------------------------------------------------------------------------------------------------------------------------*/
 
@@ -24,7 +24,7 @@ public class NpcController : MonoBehaviour
     {
 
         // NPC is constantly looking at the player (in the y axis only) - REFERENCE: https://www.youtube.com/watch?v=dp3lZUDij6Y
-        transform.LookAt(new Vector3 (player.transform.position.x, transform.position.y, player.transform.position.z));
+        transform.LookAt(new Vector3 (_player.transform.position.x, transform.position.y, _player.transform.position.z));
 
     }
 

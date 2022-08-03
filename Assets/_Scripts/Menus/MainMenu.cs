@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
 public class MainMenu : MonoBehaviour
 {
-    public void Play() {
+    public void Play() 
+    {
         Debug.Log("LET'S GAME");
         GameManager.Instance.ChangeState(GameState.Game);
     }

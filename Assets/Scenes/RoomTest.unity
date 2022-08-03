@@ -826,7 +826,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1e5714fca02b3b4b953f2115a2a2d37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds: []
+  Sounds: []
 --- !u!114 &134567169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1203,8 +1203,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 074012179069b0d43919956507dc0450, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NPC_message: '"Welcome..."'
-  dialog_box_gameobject: {fileID: 1465769989}
+  _npcMessage: Welcome...
+  _dialogBoxGameobject: {fileID: 1465769989}
 --- !u!82 &201151718
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1442,7 +1442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be323a250575ebe4b9532a1941e49148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1900657744653710916}
+  _player: {fileID: 1900657744653710916}
 --- !u!65 &205950150
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2695,7 +2695,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef0ffd5494c7cbb4192972a6c77ba1ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Chasing: 0
+  _isChasing: 0
 --- !u!195 &390789397
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3428,13 +3428,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5618e6ad52393e145ab6f4c93873df5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuPanel: {fileID: 232816468}
-  settingsPanel: {fileID: 521256788}
-  gameOverPanel: {fileID: 228368498}
-  endGamePanel: {fileID: 1932126098}
-  inventoryPanel: {fileID: 1952199688}
-  gameUIPanel: {fileID: 508986586}
-  loadingPanel: {fileID: 855217045}
+  _menuPanel: {fileID: 232816468}
+  _settingsPanel: {fileID: 521256788}
+  _gameOverPanel: {fileID: 228368498}
+  _endGamePanel: {fileID: 1932126098}
+  _inventoryPanel: {fileID: 1952199688}
+  _gameUIPanel: {fileID: 508986586}
+  _loadingPanel: {fileID: 855217045}
 --- !u!1 &707239274
 GameObject:
   m_ObjectHideFlags: 0
@@ -3755,7 +3755,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 124963360017386276, guid: 5c5097c3d9da89e4d93c3bdb5528458b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 124963360017386276, guid: 5c5097c3d9da89e4d93c3bdb5528458b, type: 3}
       propertyPath: m_LocalRotation.y
@@ -3763,7 +3763,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 124963360017386276, guid: 5c5097c3d9da89e4d93c3bdb5528458b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 124963360017386276, guid: 5c5097c3d9da89e4d93c3bdb5528458b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4217,7 +4217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be323a250575ebe4b9532a1941e49148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1900657744653710916}
+  _player: {fileID: 1900657744653710916}
 --- !u!65 &978084913
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5173,7 +5173,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1137667509
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5213,7 +5213,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'GAME UI
+  m_text: '
 
 '
   m_isRightToLeft: 0
@@ -5606,8 +5606,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 074012179069b0d43919956507dc0450, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NPC_message: Where are you daughter?!
-  dialog_box_gameobject: {fileID: 1465769989}
+  _npcMessage: Where are you, daughter?
+  _dialogBoxGameobject: {fileID: 1465769989}
 --- !u!65 &1192466402
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5865,7 +5865,7 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   Fill: {fileID: 2074523806}
-  slider: {fileID: 1615887305}
+  _slider: {fileID: 1615887305}
 --- !u!1001 &1414858193
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7000,8 +7000,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 074012179069b0d43919956507dc0450, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NPC_message: Please... Help us...
-  dialog_box_gameobject: {fileID: 1465769989}
+  _npcMessage: Please... Help us...
+  _dialogBoxGameobject: {fileID: 1465769989}
 --- !u!65 &1569948352
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7962,8 +7962,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   State: 0
-  playerInput: {fileID: 1900657744653710921}
-  loadingScreen: {fileID: 855217045}
+  _playerInput: {fileID: 1900657744653710921}
+  _loadingScreen: {fileID: 855217045}
 --- !u!114 &1866341290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8539,9 +8539,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 913447badccf1e04f8b10f8f3d6dffa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mSlotPrefab: {fileID: 8761608556577501130, guid: 71d35c18f2ecf3943a5c2294f7a0db8e, type: 3}
-  parentPanel: {fileID: 1015231002}
-  combinationToDo: {fileID: 1553498356}
+  _slotPrefab: {fileID: 8761608556577501130, guid: 71d35c18f2ecf3943a5c2294f7a0db8e, type: 3}
+  _parentPanel: {fileID: 1015231002}
+  _combinationToDo: {fileID: 1553498356}
 --- !u!4 &2004006190 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5228845831730163709, guid: a509c72ed091fc44c9c5ca8273275970, type: 3}
@@ -9282,6 +9282,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5228845831470027431, guid: a509c72ed091fc44c9c5ca8273275970, type: 3}
       propertyPath: player
+      value: 
+      objectReference: {fileID: 1900657744653710916}
+    - target: {fileID: 5228845831470027431, guid: a509c72ed091fc44c9c5ca8273275970, type: 3}
+      propertyPath: _player
       value: 
       objectReference: {fileID: 1900657744653710916}
     - target: {fileID: 5228845831470027448, guid: a509c72ed091fc44c9c5ca8273275970, type: 3}

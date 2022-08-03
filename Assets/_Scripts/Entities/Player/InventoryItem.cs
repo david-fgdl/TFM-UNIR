@@ -5,19 +5,22 @@ using UnityEngine;
 [System.Serializable]
 public class InventoryItem
 {
-    public InventoryItemData data { get; private set; }
-    public int stackSize { get; private set; }
+    public InventoryItemData Data { get; private set; } // Inventory items data
+    public int StackSize { get; private set; } // Inventory size
 
-    public InventoryItem(InventoryItemData source) {
-        data = source;
+    public InventoryItem(InventoryItemData source) 
+    {
+        Data = source;
         AddToStack();
     }
 
-    public void AddToStack() {
-        stackSize++;
+    public void AddToStack() // Actualize stack size
+    {
+        StackSize++;
     }
 
-    public void RemoveFromStack() {
-        stackSize--;
+    public void RemoveFromStack() 
+    {
+        StackSize--;
     }
 }

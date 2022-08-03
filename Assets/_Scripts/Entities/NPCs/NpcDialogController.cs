@@ -15,10 +15,10 @@ public class NpcDialogController : MonoBehaviour
     /* VARIABLES */
 
     // EDTIABLE VALUES
-    [SerializeField] private string NPC_message;
+    [SerializeField] private string _npcMessage;
     
     // REFERENCES
-    [SerializeField] private GameObject dialog_box_gameobject;  // UI Dialog box GameObject reference
+    [SerializeField] private GameObject _dialogBoxGameobject;  // UI Dialog box GameObject reference
 
 /*-----------------------------------------------------------------------------------------------------------------------------*/
 
@@ -29,7 +29,7 @@ public class NpcDialogController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dialog_box_gameobject.SetActive(false);  // Disable Dialog Box
+        _dialogBoxGameobject.SetActive(false);  // Disable Dialog Box
     }
 
 /*-----------------------------------------------------------------------------------------------------------------------------*/
@@ -42,8 +42,8 @@ public class NpcDialogController : MonoBehaviour
 
         if (other.CompareTag("Player"))  // If the player enters the trigger
         {
-            dialog_box_gameobject.GetComponentInChildren<TextMeshProUGUI>().text = NPC_message;  // Set NPC message in dialog box
-            dialog_box_gameobject.SetActive(true);  // Enable Dialog Box
+            _dialogBoxGameobject.GetComponentInChildren<TextMeshProUGUI>().text = _npcMessage;  // Set NPC message in dialog box
+            _dialogBoxGameobject.SetActive(true);  // Enable Dialog Box
             GetComponents<AudioSource>()[0].Play();  // Play Dialog Sound
         }
 
@@ -54,7 +54,7 @@ public class NpcDialogController : MonoBehaviour
     {
         if (other.CompareTag("Player"))  // If the player exits the trigger
         {
-            dialog_box_gameobject.SetActive(false);  // Disable Dialog Box
+            _dialogBoxGameobject.SetActive(false);  // Disable Dialog Box
             GetComponents<AudioSource>()[1].Play();  // Play Dialog Sound
         }
     }

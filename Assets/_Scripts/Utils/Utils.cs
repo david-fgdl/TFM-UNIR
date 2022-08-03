@@ -2,12 +2,10 @@
 /*--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Utils : MonoBehaviour
 {
@@ -17,9 +15,9 @@ public class Utils : MonoBehaviour
     /* METODOS PARA EL MANEJO DE ARRAYS */
 
     // METODO PARA SABER SI UN ENTERO ESTA CONTENIDO EN UN VECTOR DE ENTEROS
-    public bool ContainsInt(int [] vector, int value, int previous_index)
+    public bool ContainsInt(int [] vector, int value, int previousIndex)
     {
-        for (int i = 0; i <= previous_index; i++) if (vector[i] == value) return true;  // Si el entero estA en el vector se devuelve true
+        for (int i = 0; i <= previousIndex; i++) if (vector[i] == value) return true;  // Si el entero estA en el vector se devuelve true
         return false;  // Si no estA se devuelve false
     }
 
@@ -29,49 +27,49 @@ public class Utils : MonoBehaviour
     /* METODOS PARA EL MANEJO DE TEXTO (TEXT MESH PRO) */
 
     // SUBRUTINA PARA MOSTRAR EL TEXTO POR PANTALLA
-    public IEnumerator ShowTextOnScreen(TextMeshProUGUI text_object, string new_text, float fading_in_time, float text_on_screen_duration, float fading_out_time)
+    public IEnumerator ShowTextOnScreen(TextMeshProUGUI textObject, string newText, float fadeInTime, float onScreenDuration, float fadeOutTime)
     {
 
-        text_object.color = new Color(text_object.color.r, text_object.color.g, text_object.color.b, 0);  // Se pone el alpha del texto a 0
-        text_object.text = new_text;  // Se pasa el nuevo texto
+        textObject.color = new Color(textObject.color.r, textObject.color.g, textObject.color.b, 0);  // Se pone el alpha del texto a 0
+        textObject.text = newText;  // Se pasa el nuevo texto
 
         // FADE IN DEL TEXTO
-        StartCoroutine(TextFadeIn(text_object, fading_in_time));
-        yield return new WaitForSeconds(fading_in_time);
+        StartCoroutine(TextFadeIn(textObject, fadeInTime));
+        yield return new WaitForSeconds(fadeInTime);
 
         // DURACION DEL TEXTO EN PANTALLA
-        yield return new WaitForSeconds(text_on_screen_duration);
+        yield return new WaitForSeconds(onScreenDuration);
 
         // FADE OUT DEL TEXTO
-        StartCoroutine(TextFadeOut(text_object, fading_out_time));
+        StartCoroutine(TextFadeOut(textObject, fadeOutTime));
 
     }
 
     // SUBRUTINA PARA HACER EL FADE IN DEL TEXTO BASADO EN: https://forum.unity.com/threads/fading-in-out-gui-text-with-c-solved.380822/
-    public IEnumerator TextFadeIn(TextMeshProUGUI text_object, float fading_time)
+    public IEnumerator TextFadeIn(TextMeshProUGUI textObject, float fadingTime)
     {
 
-        text_object.color = new Color(text_object.color.r, text_object.color.g, text_object.color.b, 0);  // Se pone el alpha del texto a 0
+        textObject.color = new Color(textObject.color.r, textObject.color.g, textObject.color.b, 0);  // Se pone el alpha del texto a 0
 
         // SE HACE EL FADE IN CON BASE EN EL PARAMETRO RECIBIDO
-        while (text_object.color.a < 1.0f)
+        while (textObject.color.a < 1.0f)
         {
-            text_object.color = new Color(text_object.color.r, text_object.color.g, text_object.color.b, text_object.color.a + (Time.deltaTime / fading_time));
+            textObject.color = new Color(textObject.color.r, textObject.color.g, textObject.color.b, textObject.color.a + (Time.deltaTime / fadingTime));
             yield return null;
         }
 
     }
 
     // SUBRUTINA PARA HACER EL FADE OUT DEL TEXTO BASADO EN: https://forum.unity.com/threads/fading-in-out-gui-text-with-c-solved.380822/
-    public IEnumerator TextFadeOut(TextMeshProUGUI text_object, float fading_time)
+    public IEnumerator TextFadeOut(TextMeshProUGUI textObject, float fadingTime)
     {
 
-        text_object.color = new Color(text_object.color.r, text_object.color.g, text_object.color.b, 1);  // Se pone el alpha del texto a 1
+        textObject.color = new Color(textObject.color.r, textObject.color.g, textObject.color.b, 1);  // Se pone el alpha del texto a 1
 
         // SE HACE EL FADE OUT CON BASE EN EL PARAMETRO RECIBIDO
-        while (text_object.color.a > 0.0f)
+        while (textObject.color.a > 0.0f)
         {
-            text_object.color = new Color(text_object.color.r, text_object.color.g, text_object.color.b, text_object.color.a - (Time.deltaTime / fading_time));
+            textObject.color = new Color(textObject.color.r, textObject.color.g, textObject.color.b, textObject.color.a - (Time.deltaTime / fadingTime));
             yield return null;
         }
 
@@ -82,38 +80,38 @@ public class Utils : MonoBehaviour
     /* METODOS PARA EL MANEJO FICHEROS */
 
     // METODO PARA LEER EL CONTENIDO DE FICHEROS
-    public string ReadFile(string file_path)
+    public string ReadFile(string filePath)
     {
 
-        string file_info = null;  // String que almacenar� la informaci�n del archivo (Por defecto null)
+        string fileInfo = null;  // String que almacenar� la informaci�n del archivo (Por defecto null)
 
-        StreamReader file_stream_reader = new StreamReader(file_path);  // Creaci�n del StreamReader correspondiente al archivo cuyo nombre se pasa por par�metro
+        StreamReader fileStreamReader = new StreamReader(filePath);  // Creaci�n del StreamReader correspondiente al archivo cuyo nombre se pasa por par�metro
 
-        while (!file_stream_reader.EndOfStream) file_info = file_stream_reader.ReadLine();  // Lectura del archivo de inicio a fin
+        while (!fileStreamReader.EndOfStream) fileInfo = fileStreamReader.ReadLine();  // Lectura del archivo de inicio a fin
 
-        file_stream_reader.Close();  // Cierre del archivo
+        fileStreamReader.Close();  // Cierre del archivo
 
-        return file_info;  // Devoluci�n del contenido del archivo en forma de string
+        return fileInfo;  // Devoluci�n del contenido del archivo en forma de string
 
     }
 
     // METODO PARA LEER Y ALMACENAR UN FICHERO LINEA A LINEA
-    public string [] ReadFileLineByLine(string file_path)
+    public string [] ReadFileLineByLine(string filePath)
     {
 
-        string[] file_lines = null;  // String que almacenar� la informaci�n del archivo (Por defecto " | ")
+        string[] fileLines = null;  // String que almacenar� la informaci�n del archivo (Por defecto " | ")
 
-        file_lines = File.ReadAllLines(file_path);  // Lectura del arcihvo de inicio a fin
+        fileLines = File.ReadAllLines(filePath);  // Lectura del arcihvo de inicio a fin
 
-        return file_lines;  // Devoluci�n del contenido del archivo en forma de string
+        return fileLines;  // Devoluci�n del contenido del archivo en forma de string
 
     }
 
     // METODO PARA MOSTRAR POR PANTALLA EL CONTENIDO DE UN FICHERO
-    public IEnumerator ShowFileContent(TextMeshProUGUI text_output, string file_path, float fading_in_time, float text_on_screen_duration, float fading_out_time)
+    public IEnumerator ShowFileContent(TextMeshProUGUI textOutput, string filePath, float fadeInTime, float onScreenDuration, float fadeOutTime)
     {
 
-        string[] text = ReadFileLineByLine(file_path);  // Vector que almacena el texto lInea a lInea
+        string[] text = ReadFileLineByLine(filePath);  // Vector que almacena el texto lInea a lInea
 
         // SE MUESTRA EL TEXTO LINEA A LINEA
         foreach (string line in text)
@@ -121,30 +119,30 @@ public class Utils : MonoBehaviour
 
             GameObject.Find("SceneController").GetComponent<AudioSource>().Play();
 
-            StartCoroutine(ShowTextOnScreen(text_output, line, fading_in_time, text_on_screen_duration, fading_out_time));
+            StartCoroutine(ShowTextOnScreen(textOutput, line, fadeInTime, onScreenDuration, fadeOutTime));
 
-            yield return new WaitForSeconds(fading_in_time + text_on_screen_duration + fading_out_time + 1);  // Tiempo de espera entre lIneas
+            yield return new WaitForSeconds(fadeInTime + onScreenDuration + fadeOutTime + 1);  // Tiempo de espera entre lIneas
 
         }
 
     }
 
     // METODO PARA HACER SONAR EL AUDIO POR CADA LINEA
-    public IEnumerator PlayAudioWhenShowFileContent(AudioSource audio_output, AudioClip [] all_audios, string file_path, float fading_in_time, float text_on_screen_duration, float fading_out_time)
+    public IEnumerator PlayAudioWhenShowFileContent(AudioSource audioOutput, AudioClip [] allAudios, string filePath, float fadeInTime, float onScreenDuration, float fadeOutTime)
     {
 
-        string[] text = ReadFileLineByLine(file_path);  // Vector que almacena el texto lInea a lInea
-        int vector_iterator = 0;
+        string[] text = ReadFileLineByLine(filePath);  // Vector que almacena el texto lInea a lInea
+        int vectorIterator = 0;
 
         // SE HACE SONAR CADA CLIP DE AUDIO
         foreach (string line in text)
         {
 
-            audio_output.clip = all_audios[vector_iterator];
-            audio_output.Play();
-            vector_iterator ++;
+            audioOutput.clip = allAudios[vectorIterator];
+            audioOutput.Play();
+            vectorIterator++;
 
-            yield return new WaitForSeconds(fading_in_time + text_on_screen_duration + fading_out_time + 1);  // Tiempo de espera entre lIneas
+            yield return new WaitForSeconds(fadeInTime + onScreenDuration + fadeOutTime + 1);  // Tiempo de espera entre lIneas
 
         }
 
@@ -155,18 +153,18 @@ public class Utils : MonoBehaviour
         /* METODOS PARA EL MANEJO DEL AUDIO */
 
         // METODO PARA CREAR UN LOOP DE MUSICA ADECUADO
-        public IEnumerator StartMusicLoop (AudioSource music_clip_1, AudioSource music_clip_2, float minus_time_before_loop)
+        public IEnumerator StartMusicLoop (AudioSource musicClip1, AudioSource musicClip2, float minusTimeBeforeLoop)
     {
 
-        music_clip_1.Play();  // Suena el clip original
+        musicClip1.Play();  // Suena el clip original
 
-        yield return new WaitForSeconds(music_clip_1.clip.length - minus_time_before_loop);  // Se espera el tiempo adecuado para el loop (variarA en funciOn de los clips)
+        yield return new WaitForSeconds(musicClip1.clip.length - minusTimeBeforeLoop);  // Se espera el tiempo adecuado para el loop (variarA en funciOn de los clips)
 
-        music_clip_2.Play();  // Suena el clip repetido
+        musicClip2.Play();  // Suena el clip repetido
 
-        yield return new WaitForSeconds(music_clip_2.clip.length - minus_time_before_loop);    // Se espera el tiempo adecuado para el loop (variarA en funciOn de los clips)
+        yield return new WaitForSeconds(musicClip2.clip.length - minusTimeBeforeLoop);    // Se espera el tiempo adecuado para el loop (variarA en funciOn de los clips)
 
-        StartCoroutine(StartMusicLoop(music_clip_1, music_clip_2, minus_time_before_loop));  // Se repite la subrutina
+        StartCoroutine(StartMusicLoop(musicClip1, musicClip2, minusTimeBeforeLoop));  // Se repite la subrutina
 
     }
 
@@ -176,14 +174,14 @@ public class Utils : MonoBehaviour
     /* METODOS PARA DEPURAR DE FORMA CONTROLADA */
 
     // METODO AUXILIAR PARA CONTROLAR UNA PARADA EN LA EJECUCION DEL PROGRAMA SI UN GAMEOBJECT NO EXISTE
-    public GameObject SearchGameObject(string gameobject_name_in_editor)
+    public GameObject SearchGameObject(string gameObjectNameInEditor)
     {
 
         // SI EL GAMEOBJECT EXISTE SE DEVUELVE, SI NO, SE INDICA POR PANTALLA QUE NO EXISTE. DE ESTE MODO SE RECONOCE MAS FACILMENTE EL ERROR QUE PUEDE BLOQUEAR LA EJECUCION DEL RESTO DEL CODIGO
-        if (GameObject.Find(gameobject_name_in_editor) != null) return GameObject.Find(gameobject_name_in_editor);
+        if (GameObject.Find(gameObjectNameInEditor) != null) return GameObject.Find(gameObjectNameInEditor);
         else
         {
-            Debug.Log("ERROR EN LA BUSQUEDA: El gameobject de nombre \"" + gameobject_name_in_editor + "\" no existe...");
+            Debug.Log("ERROR EN LA BUSQUEDA: El gameobject de nombre \"" + gameObjectNameInEditor + "\" no existe...");
             return null;
         }
 

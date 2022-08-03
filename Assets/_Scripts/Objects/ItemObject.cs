@@ -1,13 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemObject : MonoBehaviour
 {
-    public InventoryItemData referenceItem;
+    public InventoryItemData ReferenceItem;
 
-    public void OnHandlePickupItem() {
-        InventorySystem.Instance.Add(referenceItem);
+    public void OnHandlePickupItem() 
+    {
+        InventorySystem.Instance.Add(ReferenceItem);
         Destroy(gameObject);
     }
 }

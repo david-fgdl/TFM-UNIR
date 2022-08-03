@@ -5,26 +5,26 @@ using UnityEditor;
 
 public class IconGenerator : MonoBehaviour
 {
-    [SerializeField] private string pathFolder;
-    [SerializeField] private string prefix;
-    private Camera cam;
+    [SerializeField] private string _pathFolder;
+    [SerializeField] private string _prefix;
+    private Camera _cam;
 
     public List<GameObject> SceneObjects;
     public List<InventoryItemData> DataObjects;
 
-    void Awake()
+    private void Awake()
     {
-        if (cam == null) {
-            cam = GetComponent<Camera>();
-        }
+        if (_cam == null) _cam = GetComponent<Camera>();
     }
 
     [ContextMenu("ScreenShot")]
-    private void ProcessScreenshots() {
+    private void ProcessScreenshots() 
+    {
         StartCoroutine(Screenshot());
     }
 
-    private IEnumerator Screenshot() {
+    private IEnumerator Screenshot() 
+    {
         for (int i = 0; i < SceneObjects.Count; i++)
         {
             GameObject obj = SceneObjects[i];
@@ -34,15 +34,16 @@ public class IconGenerator : MonoBehaviour
 
             yield return null;
 
-            TakeScreenshot($"{Application.dataPath}/Sprites/{pathFolder}/{data.Id}_Icon.png");
+            TakeScreenshot($"{Application.dataPath}/Sprites/{_pathFolder}/{data.Id}_Icon.png");
 
             yield return null;
 
             obj.gameObject.SetActive(false);
 
             #if UNITY_EDITOR
-            Sprite s = AssetDatabase.LoadAssetAtPath<Sprite>($"Assets/Sprites/{pathFolder}/{data.Id}_Icon.png");
-            if (s != null) {
+            Sprite s = AssetDatabase.LoadAssetAtPath<Sprite>($"Assets/Sprites/{_pathFolder}/{data.Id}_Icon.png");
+            if (s != null) 
+            {
                 data.Icon = s;
                 EditorUtility.SetDirty(data);
             }
@@ -53,27 +54,28 @@ public class IconGenerator : MonoBehaviour
         }
     }
 
-    void TakeScreenshot(string fullPath) {
+    void TakeScreenshot(string fullPath) 
+    {
 
-        if (cam == null) {
-            cam = GetComponent<Camera>();
-        }
+        if (_cam == null) _cam = GetComponent<Camera>();
        
 
         RenderTexture rt = new RenderTexture(256, 256, 24);
-        cam.targetTexture = rt;
+        _cam.targetTexture = rt;
 
         Texture2D screenShot = new Texture2D(256, 256, TextureFormat.RGBA32, false);
-        cam.Render();
+        _cam.Render();
 
         RenderTexture.active = rt;
         screenShot.ReadPixels(new Rect(0, 0, 256, 256), 0 ,0);
-        cam.targetTexture = null;
+        _cam.targetTexture = null;
         RenderTexture.active = null;
 
-        if (Application.isEditor) {
+        if (Application.isEditor) 
+        {
             DestroyImmediate(rt);
-        } else {
+        } else 
+        {
             Destroy(rt);
         }
 

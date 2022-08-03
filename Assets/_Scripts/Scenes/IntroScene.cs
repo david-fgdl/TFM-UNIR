@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,14 +6,14 @@ using UnityEngine.SceneManagement;
 public class IntroScene : MonoBehaviour
 {
 
-    [SerializeField] private Utils utils;
-    [SerializeField] private GameObject text_output;
+    [SerializeField] private Utils _utils;
+    [SerializeField] private GameObject _textOutput;
 
-    [SerializeField] private AudioClip[] intro_clips_english;
-    [SerializeField] private AudioClip [] intro_clips_spanish;
+    [SerializeField] private AudioClip[] _introClipEnglish;
+    [SerializeField] private AudioClip [] _introClipSpanish;
 
-    [SerializeField] private bool english = true;
-    [SerializeField] private bool with_voice = true;
+    [SerializeField] private bool _isEnglish = true;
+    [SerializeField] private bool _hasVoice = true;
 
     private void Awake()
     {
@@ -22,7 +21,7 @@ public class IntroScene : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         DontDestroyOnLoad(GameObject.Find("KeepOnLoadGameObject"));
         StartCoroutine(IntroTextController());
@@ -33,21 +32,21 @@ public class IntroScene : MonoBehaviour
 
         yield return new WaitForSeconds(1.0f);
 
-        if (with_voice)
+        if (_hasVoice)
         {
-            if (english)
+            if (_isEnglish)
             {
                 GetComponent<AudioSource>().volume = 0.25f;
-                StartCoroutine(utils.PlayAudioWhenShowFileContent(GetComponent<AudioSource>(), intro_clips_english, Application.dataPath + "/StreamingAssets/Dialogs/intro_english.txt", 2, 1, 2));
+                StartCoroutine(_utils.PlayAudioWhenShowFileContent(GetComponent<AudioSource>(), _introClipEnglish, Application.dataPath + "/StreamingAssets/Dialogs/intro_english.txt", 2, 1, 2));
             }
             else
             {
                 GetComponent<AudioSource>().volume = 1;
-                StartCoroutine(utils.PlayAudioWhenShowFileContent(GetComponent<AudioSource>(), intro_clips_spanish, Application.dataPath + "/StreamingAssets/Dialogs/intro_spanish.txt", 2, 1, 2));
+                StartCoroutine(_utils.PlayAudioWhenShowFileContent(GetComponent<AudioSource>(), _introClipSpanish, Application.dataPath + "/StreamingAssets/Dialogs/intro_spanish.txt", 2, 1, 2));
             }
         }
-        if (english) yield return StartCoroutine(utils.ShowFileContent(text_output.GetComponent<TextMeshProUGUI>(), Application.dataPath + "/StreamingAssets/Dialogs/intro_english.txt", 2, 1, 2));
-        else yield return StartCoroutine(utils.ShowFileContent(text_output.GetComponent<TextMeshProUGUI>(), Application.dataPath + "/StreamingAssets/Dialogs/intro_spanish.txt", 2, 1, 2));
+        if (_isEnglish) yield return StartCoroutine(_utils.ShowFileContent(_textOutput.GetComponent<TextMeshProUGUI>(), Application.dataPath + "/StreamingAssets/Dialogs/intro_english.txt", 2, 1, 2));
+        else yield return StartCoroutine(_utils.ShowFileContent(_textOutput.GetComponent<TextMeshProUGUI>(), Application.dataPath + "/StreamingAssets/Dialogs/intro_spanish.txt", 2, 1, 2));
 
 
         yield return new WaitForSeconds(1.0f);
@@ -55,11 +54,5 @@ public class IntroScene : MonoBehaviour
         SceneManager.LoadScene("RoomTest");
 
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -1,54 +1,58 @@
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class InventorySystem : MonoBehaviour
 {
     public static InventorySystem Instance;
 
-    private Dictionary<InventoryItemData, InventoryItem> m_itemDictionary;
-    public ObservableCollection<InventoryItem> inventory { get; private set; }
+    private Dictionary<InventoryItemData, InventoryItem> _itemDictionary;
+    public ObservableCollection<InventoryItem> Inventory { get; private set; }
 
-    void Awake()
+    private void Awake()
     {
         if (Instance != null && Instance != this) Destroy(this);
         else Instance = this;
 
-        inventory = new ObservableCollection<InventoryItem>();
-        m_itemDictionary = new Dictionary<InventoryItemData, InventoryItem>();
+        Inventory = new ObservableCollection<InventoryItem>();
+        _itemDictionary = new Dictionary<InventoryItemData, InventoryItem>();
 
     }
     
-    public void Add(InventoryItemData referenceData) {
+    public void Add(InventoryItemData referenceData) 
+    {
         
-        if (m_itemDictionary.TryGetValue(referenceData, out InventoryItem value)) {
+        if (_itemDictionary.TryGetValue(referenceData, out InventoryItem value)) 
+        {
             value.AddToStack();
         }
-        else {
+        else 
+        {
             InventoryItem newItem = new InventoryItem(referenceData);
-            inventory.Add(newItem);
-            m_itemDictionary.Add(referenceData, newItem);
+            Inventory.Add(newItem);
+            _itemDictionary.Add(referenceData, newItem);
         }
     }
 
-    public void Remove(InventoryItemData referenceData) {
-        if (m_itemDictionary.TryGetValue(referenceData, out InventoryItem value)) {
+    public void Remove(InventoryItemData referenceData) 
+    {
+        if (_itemDictionary.TryGetValue(referenceData, out InventoryItem value)) 
+        {
             value.RemoveFromStack();
 
-            if (value.stackSize == 0) {
-                inventory.Remove(value);
-                m_itemDictionary.Remove(referenceData);
+            if (value.StackSize == 0) 
+            {
+                Inventory.Remove(value);
+                _itemDictionary.Remove(referenceData);
             }
         }
     }
 
     public InventoryItem FindById(string itemId) {
 
-        foreach (var item in m_itemDictionary)
+        foreach (var item in _itemDictionary)
         {
-            if (m_itemDictionary.TryGetValue(item.Key, out InventoryItem value) && item.Key.Id == itemId)
+            if (_itemDictionary.TryGetValue(item.Key, out InventoryItem value) && item.Key.Id == itemId)
             {
                 return value;
             }
@@ -59,9 +63,9 @@ public class InventorySystem : MonoBehaviour
 
     public void RemoveById(string itemId) {
 
-        foreach (var item in m_itemDictionary)
+        foreach (var item in _itemDictionary)
         {
-            if (m_itemDictionary.TryGetValue(item.Key, out InventoryItem value) && item.Key.Id == itemId)
+            if (_itemDictionary.TryGetValue(item.Key, out InventoryItem value) && item.Key.Id == itemId)
             {
                 Remove(item.Key);
                 break;

@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     public string EntityName = "La Entidad";
     public string Description = "La entidad es una criatura sin forma que te acecha. ¿Por qué? Espero no saberlo nunca.";
 
-    [SerializeField] private GameObject PlayerObject;
+    [SerializeField] private GameObject _playerObject;
     // public EnemyMovement Movement;
     public NavMeshAgent Agent;
 
@@ -29,28 +29,29 @@ public class Enemy : MonoBehaviour
     public float StoppingDistance = 0.5f;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        transform.LookAt(new Vector3 (PlayerObject.transform.position.x, transform.position.y, PlayerObject.transform.position.z));
+        transform.LookAt(new Vector3 (_playerObject.transform.position.x, transform.position.y, _playerObject.transform.position.z));
     }
 
-    void OnEnable()
+    private void OnEnable()
     {
         SetupAgentFromConfiguration();
     }
 
-    void OnDisable()
+    private void OnDisable()
     {
         Agent.enabled = false;
     }
 
-    public void SetupAgentFromConfiguration() {
+    public void SetupAgentFromConfiguration() 
+    {
         Agent.acceleration = this.Acceleration;
         Agent.angularSpeed = this.AngularSpeed;
         Agent.areaMask = this.AreaMask;

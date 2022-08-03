@@ -1,8 +1,6 @@
 /* SCRIPT TO CONTROL PLAYER'S BEHAVIOUR */
 /*-----------------------------------------------------------------------------------------------------------------------------*/
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,7 +15,6 @@ public class PlayerController : MonoBehaviour
     [Header("Player Stats")]
     private int maxSaltAmount = 100;
     private int currentSaltAmount;
-
     public SaltPouch saltPouch;
 
     // Player's movement speed
@@ -148,12 +145,14 @@ public class PlayerController : MonoBehaviour
             _selection = null;
         }
 
+        Debug.Log("RAY SHOOTED. PIU PIU.");
+
         var ray = playerCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 10f)) {
             var selection = hit.transform;
 
-            // Debug.DrawLine(ray.origin, hit.point, Color.cyan, 10f);
+            Debug.DrawLine(ray.origin, hit.point, Color.cyan, 10f);
 
             
             if (selection.name.Contains("Door")) {

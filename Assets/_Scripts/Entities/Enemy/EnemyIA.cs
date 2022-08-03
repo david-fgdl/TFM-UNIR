@@ -5,17 +5,17 @@ using UnityEngine.AI;
 
 public class EnemyIA : MonoBehaviour
 {
-    private NavMeshAgent NavMeshAgent;
-    [SerializeField] bool Chasing;
+    private NavMeshAgent _navMeshAgent;
+    [SerializeField] private bool _isChasing;
     private void Awake()
     {
-        NavMeshAgent = GetComponent<NavMeshAgent>();
+        _navMeshAgent = GetComponent<NavMeshAgent>();
     }
     private void Update()
     {
-        if (Chasing)
+        if (_isChasing)
         {
-            NavMeshAgent.destination = GameObject.FindGameObjectWithTag("Player").transform.position;
+            _navMeshAgent.destination = GameObject.FindGameObjectWithTag("Player").transform.position;
         }
         else
         {

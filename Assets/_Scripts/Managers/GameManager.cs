@@ -12,28 +12,29 @@ public class GameManager : MonoBehaviour
 
     public static event Action<GameState> OnGameStateChanged;
 
-    [SerializeField] private PlayerInput playerInput;
-    [SerializeField] private GameObject loadingScreen;
+    [SerializeField] private PlayerInput _playerInput;
+    [SerializeField] private GameObject _loadingScreen;
 
-    void Awake()
+    private void Awake()
     {
         if (Instance != null && Instance != this) Destroy(this);
         else Instance = this;
     }
 
-    void Start()
+    private void Start()
     {
         ChangeState(GameState.Menu);  
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         
         // Debug.Log(GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>().currentActionMap);
     }
 
-    public void ChangeState(GameState newState) {
+    public void ChangeState(GameState newState) 
+    {
         State = newState;
 
         switch (newState)
@@ -73,13 +74,13 @@ public class GameManager : MonoBehaviour
         if (State != GameState.Game)
         { // We're on a menu
             Time.timeScale = 0f;
-            playerInput.SwitchCurrentActionMap("UI");
+            _playerInput.SwitchCurrentActionMap("UI");
             Cursor.lockState = CursorLockMode.None;
         }
         else
         { // We're in game
             Time.timeScale = 1f;
-            playerInput.SwitchCurrentActionMap("Player");
+            _playerInput.SwitchCurrentActionMap("Player");
             Cursor.lockState = CursorLockMode.Locked;
         }
     }

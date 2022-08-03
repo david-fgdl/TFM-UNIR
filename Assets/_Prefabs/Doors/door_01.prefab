@@ -145,6 +145,6 @@ MonoBehaviour:
   Type: 1
   IsOpen: 0
   IsInverted: 1
-  closedRotation: 180
-  openedRotation: 273
-  pivot: {fileID: 733390481558183661}
+  ClosedRotation: 180
+  OpenedRotation: 269
+  _pivot: {fileID: 733390481558183661}
