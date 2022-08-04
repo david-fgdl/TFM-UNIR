@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
     /* BASIC METHODS */
 
     // AWAKE EVENT
-    void Awake()
+    private void Awake()
     {
 
         // INPUT REFERENCES CREATION
@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
 
     // START ACTION
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         // SET REFERENCES' VALUES
         playerPreviousPosition = transform.position;  // Set previous position as the current position in the start
@@ -106,7 +106,7 @@ public class PlayerController : MonoBehaviour
 
     // UPDATE ACTION
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
  
         Move();  // Control player's movement
@@ -120,7 +120,7 @@ public class PlayerController : MonoBehaviour
 
     // ONENABLE EVENT
     // Calls when this script gets enabled
-    void OnEnable()
+    private void OnEnable()
     {
         playerInput.enabled = true;
         grabAction.performed += Grab;
@@ -130,7 +130,7 @@ public class PlayerController : MonoBehaviour
 
     // ONDISABLE EVENT
     // Calls when this script gets disabled
-    void OnDisable()
+    private void OnDisable()
     {
         playerInput.enabled = false;
         grabAction.performed -= Grab;
@@ -140,12 +140,13 @@ public class PlayerController : MonoBehaviour
 
 /*-----------------------------------------------------------------------------------------------------------------------------*/
 
-    void CheckObject() {
+    private void CheckObject() {
+
+        //? Este if paraece no tener impacto
         if (_selection != null) {
             _selection = null;
         }
-
-        Debug.Log("RAY SHOOTED. PIU PIU.");
+        
 
         var ray = playerCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit hit;
@@ -168,7 +169,7 @@ public class PlayerController : MonoBehaviour
                 // var selectionRenderer = selection.GetComponent<Renderer>();
                 // if (selectionRenderer != null) {
                 //     selectionRenderer.material = highlightMaterial;
-                // }
+                // }                
 
                 if (selection.TryGetComponent<ItemObject>(out ItemObject item)) {
                     item.OnHandlePickupItem();
@@ -260,8 +261,9 @@ public class PlayerController : MonoBehaviour
     public void Inventory(InputAction.CallbackContext context)
     {
         bool performed = false;
-        if (context.started && !performed) {
-            Debug.Log("CURRENT STATE: "+ GameManager.Instance.State);
+
+        if (context.started && !performed) 
+        {
 
             if (GameManager.Instance.State == GameState.Game)
                 GameManager.Instance.ChangeState(GameState.Inventory);
@@ -272,8 +274,6 @@ public class PlayerController : MonoBehaviour
         }
 
         performed = false;
-        
-
     }
 
     // ACTION THROW SALT

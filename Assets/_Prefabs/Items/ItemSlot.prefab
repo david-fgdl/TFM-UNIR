@@ -503,11 +503,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69c12c905e341074980087edee89124e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mIcon: {fileID: 3678222001780390434}
-  mCombinableIcon: {fileID: 7232209582601130468}
-  mLabel: {fileID: 3909771529514293641}
-  mStackObject: {fileID: 5253525854061064515}
-  mStackLabel: {fileID: 7878099320099244696}
+  _icon: {fileID: 3678222001780390434}
+  _combinableIcon: {fileID: 7232209582601130468}
+  _label: {fileID: 3909771529514293641}
+  _stackObject: {fileID: 5253525854061064515}
+  _stackLabel: {fileID: 7878099320099244696}
 --- !u!50 &8556851183618847309
 Rigidbody2D:
   serializedVersion: 4
