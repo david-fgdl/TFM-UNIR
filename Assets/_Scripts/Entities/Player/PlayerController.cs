@@ -143,20 +143,23 @@ public class PlayerController : MonoBehaviour
     private void CheckObject() {
 
         //? Este if paraece no tener impacto
-        if (_selection != null) {
+        if (_selection != null) 
+        {
             _selection = null;
         }
         
 
         var ray = playerCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 10f)) {
+        if (Physics.Raycast(ray, out hit, 10f)) 
+        {
             var selection = hit.transform;
 
             Debug.DrawLine(ray.origin, hit.point, Color.cyan, 10f);
 
             
-            if (selection.name.Contains("Door")) {
+            if (selection.name.Contains("Door")) 
+            {
                 Door door = selection.GetComponentInParent<Door>();
                 door.TryOpen();
                 _selection = selection;
@@ -171,7 +174,8 @@ public class PlayerController : MonoBehaviour
                 //     selectionRenderer.material = highlightMaterial;
                 // }                
 
-                if (selection.TryGetComponent<ItemObject>(out ItemObject item)) {
+                if (selection.TryGetComponent<ItemObject>(out ItemObject item)) 
+                {
                     item.OnHandlePickupItem();
                 }
 
@@ -236,25 +240,18 @@ public class PlayerController : MonoBehaviour
     // ACTION TO TAKE/GRAB OBJECTS
     public void Grab(InputAction.CallbackContext context)
     {
-        if (context.started) {
-            // CHECK IF AN OBJECT IS GRABABLE(?)
-        // ANIMATION PLAYS
-        if (!animator.GetBool("can_grab"))
+        if (context.started && !animator.GetBool("can_grab")) 
         {
+            // CHECK IF AN OBJECT IS GRABABLE(?)
+            // ANIMATION PLAYS
             animator.SetBool("can_grab", true);
             CheckObject();
+            animator.SetBool("can_grab", false);
 
+
+            // OBJECT GOES TO INVENTORY (OTHER SCRIPT?)
+            // OBJECT GRABBED GETS DESTROYED ON SCENE BUT STORED ON INVENTORY ARRAY
         }
-        else animator.SetBool("can_grab", false);
-
-        // OBJECT GOES TO INVENTORY (OTHER SCRIPT?)
-        // OBJECT GRABBED GETS DESTROYED ON SCENE BUT STORED ON INVENTORY ARRAY
-
-
-        }
-
-
-        
     }
 
     // ACTION OPEN/CLOSE INVENTORY

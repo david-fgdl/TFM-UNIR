@@ -17,12 +17,14 @@ public class ItemSlot : MonoBehaviour
         _icon.sprite = item.Data.Icon;
         _label.text = item.Data.DisplayName;
 
-        if (item.Data.IsCombinable) {
+        if (item.Data.IsCombinable) 
+        {
             _combinableIcon.SetActive(true);
         }
 
 
-        if (item.StackSize <= 1) {
+        if (item.StackSize <= 1) 
+        {
             _stackObject.SetActive(false);
             return;
         }
