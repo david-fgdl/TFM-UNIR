@@ -8,6 +8,8 @@ public class Inventory : MonoBehaviour
     [SerializeField] private GameObject _parentPanel; // El padre de la UI de Inventario
     [SerializeField] private GameObject _combinationToDo;
     private float _timeLeft = 3;
+
+    private bool _crafted = false;
     
 
     private void Start()
@@ -60,29 +62,32 @@ public class Inventory : MonoBehaviour
 
     public void CheckCombinations() 
     {
-
-        // Debug.Log("CHQEUEA");
-
-        if (InventorySystem.Instance.FindById("dinning_room_key")!=null && InventorySystem.Instance.FindById("salt_pinch")!=null) 
+        if (InventorySystem.Instance.FindById("dinning_room_key")!=null 
+            && InventorySystem.Instance.FindById("salt_pinch")!=null) 
         {
-            Debug.Log("Receta buena");
+            // Debug.Log("Receta buena");
             // elminiar ambos ingredientes
             InventorySystem.Instance.RemoveById("dinning_room_key");
             InventorySystem.Instance.RemoveById("salt_pinch");
             
             // añadir el nuevo
             GameObject newItem = Resources.Load<GameObject>("Items/Dinning Room Salted Key");
-
-            if (newItem!=null) 
+            
+            if (!newItem)
             {
-                Vector3 playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
-                Instantiate(newItem, new Vector3(playerPosition.x, playerPosition.y, playerPosition.z + 2), newItem.transform.rotation);
+                _crafted = false;
                 return;
-            } else 
-            {
-                Debug.Log("item null");
             }
 
+            if (!_crafted) 
+            {
+                Debug.Log("Aqui tienes");
+                Vector3 playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
+                Instantiate(newItem, new Vector3(playerPosition.x, playerPosition.y, playerPosition.z + 2), newItem.transform.rotation);
+                
+            }
+
+            _crafted = true;
             return;
         }
 
