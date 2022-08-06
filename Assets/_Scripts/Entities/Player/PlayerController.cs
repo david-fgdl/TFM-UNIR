@@ -155,7 +155,7 @@ public class PlayerController : MonoBehaviour
         {
             var selection = hit.transform;
 
-            Debug.DrawLine(ray.origin, hit.point, Color.cyan, 10f);
+            // Debug.DrawLine(ray.origin, hit.point, Color.cyan, 10f);
 
             
             if (selection.name.Contains("Door")) 
