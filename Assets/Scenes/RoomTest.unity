@@ -2295,15 +2295,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 58d283573f9159748a679f203e9b4657, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 52.17
+      value: 32.41771
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 58d283573f9159748a679f203e9b4657, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.749
+      value: 0.026934087
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 58d283573f9159748a679f203e9b4657, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.026861
+      value: -5.55
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 58d283573f9159748a679f203e9b4657, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2336,6 +2336,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 58d283573f9159748a679f203e9b4657, type: 3}
       propertyPath: m_Name
       value: Cesta_Lavanderia
+      objectReference: {fileID: 0}
+    - target: {fileID: 4577033339808193445, guid: 58d283573f9159748a679f203e9b4657, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -17.989
+      objectReference: {fileID: 0}
+    - target: {fileID: 4577033339808193445, guid: 58d283573f9159748a679f203e9b4657, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.362
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58d283573f9159748a679f203e9b4657, type: 3}
@@ -3841,15 +3849,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a10c11489d8f59144b59c0ecbc3cc28b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 48.48075
+      value: -0.724
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a10c11489d8f59144b59c0ecbc3cc28b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.94
+      value: 2.2448957
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a10c11489d8f59144b59c0ecbc3cc28b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.2298703
+      value: -9.67
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a10c11489d8f59144b59c0ecbc3cc28b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7544,7 +7552,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1656032904}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.36755657, y: 2.0884967, z: 0.135468}
+  m_LocalPosition: {x: 477, y: 2.0884967, z: -335}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1084463140}
@@ -8909,15 +8917,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f33752a5faeaa8e4eba3642cb02767ab, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 56.322083
+      value: 48.58
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f33752a5faeaa8e4eba3642cb02767ab, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.795
+      value: 0.74965185
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f33752a5faeaa8e4eba3642cb02767ab, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.389088
+      value: -13.7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f33752a5faeaa8e4eba3642cb02767ab, type: 3}
       propertyPath: m_LocalRotation.w
@@ -8950,6 +8958,18 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f33752a5faeaa8e4eba3642cb02767ab, type: 3}
       propertyPath: m_Name
       value: Lavadora
+      objectReference: {fileID: 0}
+    - target: {fileID: 4609719510869681499, guid: f33752a5faeaa8e4eba3642cb02767ab, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -26.055635
+      objectReference: {fileID: 0}
+    - target: {fileID: 4609719510869681499, guid: f33752a5faeaa8e4eba3642cb02767ab, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.0009147525
+      objectReference: {fileID: 0}
+    - target: {fileID: 4609719510869681499, guid: f33752a5faeaa8e4eba3642cb02767ab, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.407
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f33752a5faeaa8e4eba3642cb02767ab, type: 3}
