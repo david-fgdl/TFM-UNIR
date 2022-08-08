@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 5461e0d7046d97f49838fcd423757de2, type: 2}
+  m_NavMeshData: {fileID: 0}
 --- !u!1 &30542714
 GameObject:
   m_ObjectHideFlags: 0
@@ -640,6 +640,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 3210736ca618e0d4a982d141b265871b, type: 2}
+    - target: {fileID: 6042620015111481987, guid: 591e297639199ca4d87f85a26cd12c46, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042620015111481987, guid: 591e297639199ca4d87f85a26cd12c46, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6109061597100457411, guid: 591e297639199ca4d87f85a26cd12c46, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
@@ -9681,15 +9689,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4967155464884474562, guid: d2f5aaa5a4b13e547ba9dbcd8abafacc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6
+      value: -1.64
       objectReference: {fileID: 0}
     - target: {fileID: 4967155464884474562, guid: d2f5aaa5a4b13e547ba9dbcd8abafacc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.2
+      value: 7.15
       objectReference: {fileID: 0}
     - target: {fileID: 4967155464884474562, guid: d2f5aaa5a4b13e547ba9dbcd8abafacc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.41
+      value: 14.64
       objectReference: {fileID: 0}
     - target: {fileID: 4967155464884474562, guid: d2f5aaa5a4b13e547ba9dbcd8abafacc, type: 3}
       propertyPath: m_LocalRotation.w
@@ -9797,7 +9805,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4967155466567585291, guid: d2f5aaa5a4b13e547ba9dbcd8abafacc, type: 3}
       propertyPath: ShapeModule.radiusThickness
-      value: 1.0000
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4967155466567585291, guid: d2f5aaa5a4b13e547ba9dbcd8abafacc, type: 3}
       propertyPath: ShapeModule.alignToDirection
