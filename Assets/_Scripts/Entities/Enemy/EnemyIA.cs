@@ -35,14 +35,14 @@ public class EnemyIA : MonoBehaviour
             //Patrulla
         }
 
-        /*if (_canSeePlayer)
+        if (_canSeePlayer)
         {
             Debug.Log("TE VEOOOOO");
         }
         else
         {
             Debug.Log("NO TE VEOOOOO");
-        }*/
+        }
         
     }
 
@@ -73,12 +73,10 @@ public class EnemyIA : MonoBehaviour
                 if (hits.Length == 0) 
                 {
                     _canSeePlayer = true;
-                    Debug.Log("No hay nada entre nosotros");
                 }
                 else
                 {
                     _canSeePlayer = false;
-                    Debug.Log("Hay algo entre nosotros");
                 }
             }else
             {
