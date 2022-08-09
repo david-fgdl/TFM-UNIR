@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+
 public class EnemyIA : MonoBehaviour
 {
     private NavMeshAgent _navMeshAgent;
@@ -14,10 +15,15 @@ public class EnemyIA : MonoBehaviour
     private GameObject _playerRef;
     [SerializeField] private LayerMask _targetMask;
     [SerializeField] private LayerMask _obstructionMask;
+    [SerializeField] private Transform[] _waypoints;
+    private int _waypointIndex;
+    private Vector3 targetPosition;
     private bool _canSeePlayer;
     private void Awake()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
+        _waypointIndex = 0;
+        UpdateDestination();
     }
     private void Start()
     {
@@ -32,18 +38,40 @@ public class EnemyIA : MonoBehaviour
         }
         else
         {
-            //Patrulla
+            Patrolling();
         }
-
-        /*if (_canSeePlayer)
-        {
-            Debug.Log("TE VEOOOOO");
-        }
-        else
-        {
-            Debug.Log("NO TE VEOOOOO");
-        }*/
         
+    }
+
+    private void Patrolling()
+    {
+        if (Vector3.Distance(transform.position, targetPosition)<1)
+        {
+            IterateWayPointIndex();
+            UpdateDestination();
+        }
+    }
+
+    private void IterateWayPointIndex()
+    {
+        _waypointIndex++;
+        if(_waypointIndex == _waypoints.Length)
+        {
+            _waypointIndex = 0;
+            for (int i = 0; i < _waypoints.Length; i++)
+            {
+                Transform temp = _waypoints[i];
+                int rnd = UnityEngine.Random.Range(0, i);
+                _waypoints[i] = _waypoints[rnd];
+                _waypoints[rnd] = temp;
+            }
+        }
+    }
+
+    private void UpdateDestination()
+    {
+        targetPosition = _waypoints[_waypointIndex].position;
+        _navMeshAgent.destination = targetPosition;
     }
 
     private IEnumerator FOVRoutine()
