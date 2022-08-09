@@ -5742,6 +5742,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: -6582946875733334622, guid: 86e1f80ff59d3ea40b9c4350be1f9c6a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: -6281243698120066778, guid: 86e1f80ff59d3ea40b9c4350be1f9c6a, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -10537,7 +10541,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4967155464884474562, guid: d2f5aaa5a4b13e547ba9dbcd8abafacc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 20.85
+      value: 20.856
       objectReference: {fileID: 0}
     - target: {fileID: 4967155464884474562, guid: d2f5aaa5a4b13e547ba9dbcd8abafacc, type: 3}
       propertyPath: m_LocalRotation.w
