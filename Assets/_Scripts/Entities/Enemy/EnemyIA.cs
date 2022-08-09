@@ -35,14 +35,14 @@ public class EnemyIA : MonoBehaviour
             //Patrulla
         }
 
-        if (_canSeePlayer)
+        /*if (_canSeePlayer)
         {
             Debug.Log("TE VEOOOOO");
         }
         else
         {
             Debug.Log("NO TE VEOOOOO");
-        }
+        }*/
         
     }
 
