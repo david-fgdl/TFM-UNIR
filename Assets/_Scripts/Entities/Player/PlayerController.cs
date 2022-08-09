@@ -161,7 +161,7 @@ public class PlayerController : MonoBehaviour
             if (selection.name.Contains("Door")) 
             {
                 Door door = selection.GetComponentInParent<Door>();
-                door.TryOpen();
+                door.TryOpen(gameObject);
                 _selection = selection;
             }
 

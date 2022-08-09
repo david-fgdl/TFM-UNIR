@@ -86,7 +86,7 @@ public class Door : MonoBehaviour {
             IsOpen = false;
     }
 
-    public void TryOpen() 
+    public void TryOpen(GameObject player) // Aqui se añaden los tipos de puerta
     {
         if (Type == Puzzle.Type.None) 
         { // Se puede abrir y cerrar la puerta sin mas
@@ -99,6 +99,9 @@ public class Door : MonoBehaviour {
             {
                 InventorySystem.Instance.Remove(item.Data);
             }
+        } else if (Type == Puzzle.Type.OneWay)
+        {
+            if (player.transform.position.x > _pivot.position.x) ChangeDoorType(Puzzle.Type.None);
         }
     }
 
