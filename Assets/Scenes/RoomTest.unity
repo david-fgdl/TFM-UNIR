@@ -1869,7 +1869,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'SHADOW MANOR
+  m_text: 'NEBULOUS MANOR
 
 '
   m_isRightToLeft: 0
@@ -3258,7 +3258,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1983620513836052090, guid: 161ab552f474b5a41b1de308afae024c, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1983620513836052090, guid: 161ab552f474b5a41b1de308afae024c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4274,7 +4274,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 124963360017386276, guid: 5c5097c3d9da89e4d93c3bdb5528458b, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 124963360017386276, guid: 5c5097c3d9da89e4d93c3bdb5528458b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4319,14 +4319,6 @@ PrefabInstance:
     - target: {fileID: 124963360017386277, guid: 5c5097c3d9da89e4d93c3bdb5528458b, type: 3}
       propertyPath: m_Name
       value: door_02
-      objectReference: {fileID: 0}
-    - target: {fileID: 124963360017386277, guid: 5c5097c3d9da89e4d93c3bdb5528458b, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 124963360206723629, guid: 5c5097c3d9da89e4d93c3bdb5528458b, type: 3}
-      propertyPath: m_Layer
-      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c5097c3d9da89e4d93c3bdb5528458b, type: 3}
@@ -4885,7 +4877,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1983620513836052090, guid: 161ab552f474b5a41b1de308afae024c, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1983620513836052090, guid: 161ab552f474b5a41b1de308afae024c, type: 3}
       propertyPath: m_LocalScale.x
@@ -6227,7 +6219,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1983620513836052090, guid: 161ab552f474b5a41b1de308afae024c, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1983620513836052090, guid: 161ab552f474b5a41b1de308afae024c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10758,7 +10750,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 733390481558183661, guid: da882401bf3929c4f883a4d92681fe7c, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 733390481558183661, guid: da882401bf3929c4f883a4d92681fe7c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11053,7 +11045,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3759375190199113161, guid: 87aa376488d31be41a70d574343d12e7, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3759375190199113161, guid: 87aa376488d31be41a70d574343d12e7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11119,7 +11111,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1983620513836052090, guid: 161ab552f474b5a41b1de308afae024c, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1983620513836052090, guid: 161ab552f474b5a41b1de308afae024c, type: 3}
       propertyPath: m_LocalPosition.x
