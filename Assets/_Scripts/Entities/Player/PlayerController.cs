@@ -1,6 +1,7 @@
 /* SCRIPT TO CONTROL PLAYER'S BEHAVIOUR */
 /*-----------------------------------------------------------------------------------------------------------------------------*/
 
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -64,7 +65,6 @@ public class PlayerController : MonoBehaviour
     private float xRotation;
 
     private string selectableTag = "Selectable";
-    // [SerializeField] private Material highlightMaterial;
     private Transform _selection;
 
     
@@ -112,7 +112,7 @@ public class PlayerController : MonoBehaviour
         Move();  // Control player's movement
         Look();  // Control camera's movement
 
-    }
+    } 
 
 /*-----------------------------------------------------------------------------------------------------------------------------*/
 
@@ -142,7 +142,7 @@ public class PlayerController : MonoBehaviour
 
     private void CheckObject() {
 
-        //? Este if paraece no tener impacto
+        
         if (_selection != null) 
         {
             _selection = null;
@@ -155,8 +155,6 @@ public class PlayerController : MonoBehaviour
         {
             var selection = hit.transform;
 
-            // Debug.DrawLine(ray.origin, hit.point, Color.cyan, 10f);
-
             
             if (selection.name.Contains("Door")) 
             {
@@ -167,13 +165,7 @@ public class PlayerController : MonoBehaviour
 
 
             if (selection.CompareTag(selectableTag))
-            {
-                // // Esto es para cambiar el material y resaltar objetos
-                // var selectionRenderer = selection.GetComponent<Renderer>();
-                // if (selectionRenderer != null) {
-                //     selectionRenderer.material = highlightMaterial;
-                // }                
-
+            {            
                 if (selection.TryGetComponent<ItemObject>(out ItemObject item)) 
                 {
                     item.OnHandlePickupItem();
@@ -183,6 +175,8 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+
 
 /*-----------------------------------------------------------------------------------------------------------------------------*/
 
