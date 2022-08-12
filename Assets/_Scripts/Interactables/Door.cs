@@ -10,8 +10,8 @@ public class Door : MonoBehaviour {
     public string DoorName; // Nombre de la puerta
     public InventoryItemData UnlockObject; // Objeto que desbloquea la puerta
     public Puzzle.Type Type; // Tipo de puzzle
-    private GameObject _EnemyRef;
-    private bool _onlyOnce;
+    private GameObject _EnemyRef; //Referencia del enemigo
+    private bool _onlyOnce; //Switch para evitar muchas ejecuciones
     
 
     #region Open Variables
@@ -35,10 +35,11 @@ public class Door : MonoBehaviour {
     }
     private void Update()
     {
+        //Si la puerta esta abierta y el enemigo pasa por mi lado y no acabo de ejecutar la corrutina o ya termino la corrutina
         if (IsOpen && Vector3.Distance(transform.position, _EnemyRef.transform.position) < 3 && _onlyOnce)
         {
             _onlyOnce = false;
-            StartCoroutine(OpenClose(IsOpen));
+            StartCoroutine(OpenClose(IsOpen)); // Cierra la puerta
         }
     }
     IEnumerator OpenClose(bool isOpen) 
@@ -92,7 +93,7 @@ public class Door : MonoBehaviour {
     public void ChangeDoorState() 
     {
         IsOpen = !IsOpen;
-        _onlyOnce = true;
+        _onlyOnce = true; //Lo ultimo de la corrutina terminó, el enemigo puede volver a cerrar si esta abierta
     }
 
     public void TryOpen(GameObject player) // Aqui se añaden los tipos de puerta

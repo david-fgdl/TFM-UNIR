@@ -6,6 +6,7 @@ using UnityEngine;
 [CustomEditor(typeof(EnemyIA))]
 public class EnemyFOVEditor : Editor
 {
+    //Only use for visual help while developing. Draws the radius and the angle of FOV, also a line if the enemy can see the player
     private void OnSceneGUI()
     {
         EnemyIA Enemy = (EnemyIA)target;

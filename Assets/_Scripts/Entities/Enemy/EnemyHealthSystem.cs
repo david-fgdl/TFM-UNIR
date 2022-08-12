@@ -4,32 +4,27 @@ using UnityEngine;
 
 public class EnemyHealthSystem : MonoBehaviour
 {
-    private int _HP;
-    [SerializeField] private int _MaxHP;
-    // Start is called before the first frame update
+    private int _HP;//Current Health Points
+    [SerializeField] private int _MaxHP;//Max Health Points
     void Start()
     {
         _HP = _MaxHP;
     }
 
-    // Update is called once per frame
-    void Update()
+    //If we want to the enemy to gain health points (int amount)
+    public void GainHP(int am)
     {
-        
-    }
-
-    public void GainHP(int amm)
-    {
-        int newHP = _HP + amm;
+        int newHP = _HP + am;
         if (newHP > _MaxHP)
         {
             newHP = _MaxHP;
         }
         _HP = newHP;
     }
-    public void LoseHP(int amm)
+    //If we want to the enemy to lose health points (int amount)
+    public void LoseHP(int am)
     {
-        int newHP = _HP - amm;
+        int newHP = _HP - am;
         if (newHP <= 0)
         {
             _HP = 0;
@@ -41,6 +36,7 @@ public class EnemyHealthSystem : MonoBehaviour
         }
 
     }
+    //What happens when the enemy dies
     public void Death()
     {
         Debug.Log("Enemy is dead");
