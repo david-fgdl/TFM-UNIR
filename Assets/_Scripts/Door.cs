@@ -10,6 +10,8 @@ public class Door : MonoBehaviour {
     public string DoorName; // Nombre de la puerta
     public InventoryItemData UnlockObject; // Objeto que desbloquea la puerta
     public Puzzle.Type Type; // Tipo de puzzle
+    private GameObject _EnemyRef;
+    private bool _onlyOnce;
     
 
     #region Open Variables
@@ -28,8 +30,17 @@ public class Door : MonoBehaviour {
     private void Start()
     {
         _currentRotation = ClosedRotation;
+        _EnemyRef = GameObject.FindGameObjectWithTag("Enemy");
+        _onlyOnce = true;
     }
-
+    private void Update()
+    {
+        if (IsOpen && Vector3.Distance(transform.position, _EnemyRef.transform.position) < 3 && _onlyOnce)
+        {
+            _onlyOnce = false;
+            StartCoroutine(OpenClose(IsOpen));
+        }
+    }
     IEnumerator OpenClose(bool isOpen) 
     {
 
@@ -80,10 +91,8 @@ public class Door : MonoBehaviour {
 
     public void ChangeDoorState() 
     {
-        if (!IsOpen)
-            IsOpen = true;
-        else 
-            IsOpen = false;
+        IsOpen = !IsOpen;
+        _onlyOnce = true;
     }
 
     public void TryOpen(GameObject player) // Aqui se añaden los tipos de puerta
@@ -129,6 +138,8 @@ public class Door : MonoBehaviour {
         this.Type = newType;
     }
 
+
+
     // ANTIGUO OPEN CLOSE - NO BORRAR POR SI ACASO
     // public void OpenClose(bool isOpen) {
 
@@ -145,10 +156,10 @@ public class Door : MonoBehaviour {
     //             currentRotation+=1f;
     //         }
     //     }
-        
+
     //     pivot.eulerAngles = new Vector3(0, currentRotation, 0);
     // }
-    
+
 }
 
 
