@@ -1,4 +1,4 @@
-/* SCRIPT TO CONTROL NPC'S DIALOG BEHAVIOUR */
+/* SCRIPT PARA CONTROLAR EL COMPORTAMIENTO DEL DIALOGO DE LOS NPCS */
 /*-----------------------------------------------------------------------------------------------------------------------------*/
 
 using System.Collections;
@@ -14,50 +14,60 @@ public class NpcDialogController : MonoBehaviour
 
     /* VARIABLES */
 
-    // EDTIABLE VALUES
-    [SerializeField] private string _npcMessage;
+    // NUMERO DEL DIALOGO ACTUAL
+    private int _currentDialogNumber = 0;
     
-    // REFERENCES
-    [SerializeField] private GameObject _dialogBoxGameobject;  // UI Dialog box GameObject reference
+    // REFERENCIAS
+    [SerializeField] private GameObject _dialogBoxGameobject;  // Referencia al GameObject de diAlogo de la UI
+    [SerializeField] private Utils _utils;  // Referencia al script de utils de la escena
 
 /*-----------------------------------------------------------------------------------------------------------------------------*/
 
-    /* BASIC METHODS */
+    /* METODOS BASICOS */
 
-    // START ACTION
-    // Start action is called
-    // Start is called before the first frame update
+    // ACCION START
+    // Llamada a la acciOn Start
+    // La acciOn Start es llamada antes de actualizar el primer frame
     void Start()
     {
-        _dialogBoxGameobject.SetActive(false);  // Disable Dialog Box
+
+        _dialogBoxGameobject.SetActive(false);  // Desactivar cuadro de diAlogo
     }
 
 /*-----------------------------------------------------------------------------------------------------------------------------*/
 
-    /* TRIGGER METHODS */
+    /* METODOS DEL TRIGGER*/
 
-    // ON TRIGGER ENTER ACTION
+    // ACCION DE ENTRADA EN EL TRIGGER
     private void OnTriggerEnter(Collider other)
     {
 
-        if (other.CompareTag("Player"))  // If the player enters the trigger
+        if (other.CompareTag("Player"))  // Si el jugador entra al Trigger
         {
-            _dialogBoxGameobject.GetComponentInChildren<TextMeshProUGUI>().text = _npcMessage;  // Set NPC message in dialog box
-            _dialogBoxGameobject.SetActive(true);  // Enable Dialog Box
-            GetComponents<AudioSource>()[0].Play();  // Play Dialog Sound
+            _dialogBoxGameobject.GetComponentInChildren<TextMeshProUGUI>().text = _utils.ReadDialogs(_currentDialogNumber);  // Establecer el diAlogo actual del NPC en el cuadro de diAlogo
+            _dialogBoxGameobject.SetActive(true);  // Establecer el cuadro de diAlogo
+            GetComponents<AudioSource>()[0].Play();  // Hacer sonar el sonido de diAlogo abierto
         }
 
     }
 
-    // ON TRIGGER ENTER ACTION
+    // ACCION DE SALIDA DEL TRIGGER
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))  // If the player exits the trigger
+        if (other.CompareTag("Player"))  // Si el jugador sale del Trigger
         {
-            _dialogBoxGameobject.SetActive(false);  // Disable Dialog Box
-            GetComponents<AudioSource>()[1].Play();  // Play Dialog Sound
+            _dialogBoxGameobject.SetActive(false);  // Deshabilitar el cuadro de diAlogo
+            GetComponents<AudioSource>()[1].Play();  // Hacer sonar el sonido de diAlogo cerrado
         }
     }
+
+/*-----------------------------------------------------------------------------------------------------------------------------*/
+
+    /* GETTERS Y SETTERS */
+
+    // NUMERO DEL DIALOGO ACTUAL
+    public int getCurrentDialogNumber(){ return _currentDialogNumber; }
+    public void setCurrentDialogNumber(int newCurrentDialogNumber){ _currentDialogNumber = newCurrentDialogNumber; }
 
 /*-----------------------------------------------------------------------------------------------------------------------------*/
 
