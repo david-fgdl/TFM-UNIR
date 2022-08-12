@@ -21,8 +21,12 @@ public class SelectionManager : MonoBehaviour
             var selectionRenderers = _selection.GetComponentsInChildren<Renderer>();
             if (selectionRenderers != null) 
             {
-                // foreach (var renderer in selectionRenderers)
-                    // renderer.material.shader;
+                foreach (var renderer in selectionRenderers)
+                {
+                    // renderer.enabled = false;
+                    // renderer.enabled = true;
+                }
+                    
             } 
             _selection = null;
         }
