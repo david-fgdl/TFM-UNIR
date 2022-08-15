@@ -725,7 +725,7 @@ PrefabInstance:
     - target: {fileID: -2309447766145386427, guid: 591e297639199ca4d87f85a26cd12c46, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4a09a3d940bd0584c9011d16b5b0bb38, type: 2}
+      objectReference: {fileID: 2100000, guid: 18a6eedd211d4b94ca3a26236c0a8fba, type: 2}
     - target: {fileID: -2162759334960658184, guid: 591e297639199ca4d87f85a26cd12c46, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -9644,8 +9644,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
-  m_Range: 25
+  m_Intensity: 41
+  m_Range: 33.82
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -9702,7 +9702,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1808515623}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.36755657, y: 11.328497, z: 3.37}
+  m_LocalPosition: {x: 0.36755657, y: 7.87, z: 4.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1012119817}
