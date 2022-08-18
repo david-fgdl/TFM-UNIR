@@ -11586,6 +11586,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10669cfc4c4a88043af4e8b377a21ad3, type: 3}
+--- !u!1001 &1090790107420175786
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1090790107747909744, guid: cae29166f05e8ed419e0f397334bb38b, type: 3}
+      propertyPath: m_RootOrder
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 1090790107747909744, guid: cae29166f05e8ed419e0f397334bb38b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 20.685
+      objectReference: {fileID: 0}
+    - target: {fileID: 1090790107747909744, guid: cae29166f05e8ed419e0f397334bb38b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 23.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1090790107747909744, guid: cae29166f05e8ed419e0f397334bb38b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1090790107747909744, guid: cae29166f05e8ed419e0f397334bb38b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1090790107747909744, guid: cae29166f05e8ed419e0f397334bb38b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1090790107747909744, guid: cae29166f05e8ed419e0f397334bb38b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1090790107747909744, guid: cae29166f05e8ed419e0f397334bb38b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1090790107747909744, guid: cae29166f05e8ed419e0f397334bb38b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1090790107747909744, guid: cae29166f05e8ed419e0f397334bb38b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1090790107747909744, guid: cae29166f05e8ed419e0f397334bb38b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1090790107747909757, guid: cae29166f05e8ed419e0f397334bb38b, type: 3}
+      propertyPath: m_Name
+      value: Rainfall
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cae29166f05e8ed419e0f397334bb38b, type: 3}
 --- !u!1 &1900657744653710916 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1663468785882358300, guid: 10669cfc4c4a88043af4e8b377a21ad3, type: 3}
