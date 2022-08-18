@@ -7098,6 +7098,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1289944110 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1090790107747909757, guid: cae29166f05e8ed419e0f397334bb38b, type: 3}
+  m_PrefabInstance: {fileID: 1090790107420175786}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1313454671 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 591e297639199ca4d87f85a26cd12c46, type: 3}
@@ -8287,6 +8292,64 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 3.3416271, y: 8.904213, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1527005081
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1527005082}
+  - component: {fileID: 1527005084}
+  - component: {fileID: 1527005083}
+  m_Layer: 7
+  m_Name: OnHouseEnter Trigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1527005082
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527005081}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.12, y: -1.72, z: 5.26}
+  m_LocalScale: {x: 3, y: 3, z: 0.25}
+  m_Children: []
+  m_Father: {fileID: 1313454671}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1527005083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527005081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff873a7b357eb114491bd5715813b7d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rainObject: {fileID: 1289944110}
+--- !u!65 &1527005084
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527005081}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1538167993
 GameObject:
@@ -11647,7 +11710,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1090790107747909747, guid: cae29166f05e8ed419e0f397334bb38b, type: 3}
       propertyPath: EmissionModule.rateOverTime.minScalar
-      value: 1000
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 1090790107747909757, guid: cae29166f05e8ed419e0f397334bb38b, type: 3}
       propertyPath: m_Name
