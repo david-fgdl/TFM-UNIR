@@ -1,14 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyHealthSystem : MonoBehaviour
 {
     private int _HP;//Current Health Points
     [SerializeField] private int _MaxHP;//Max Health Points
+    private NavMeshAgent _navMeshAgent;
     void Start()
     {
         _HP = _MaxHP;
+        _navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
     //If we want to the enemy to gain health points (int amount)
@@ -39,6 +43,17 @@ public class EnemyHealthSystem : MonoBehaviour
     //What happens when the enemy dies
     public void Death()
     {
-        Debug.Log("Enemy is dead");
+        Debug.Log("Enemy knock out");
+        _navMeshAgent.speed = 0;
+        StartCoroutine(revive());
+    }
+
+    private IEnumerator revive()
+    {
+        float delay = 3f;
+        WaitForSeconds wait = new WaitForSeconds(delay);
+        yield return wait;
+        GainHP(100);
+        _navMeshAgent.speed = 3.5f;
     }
 }

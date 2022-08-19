@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private int maxSaltAmount = 100;
     private int currentSaltAmount;
     public SaltPouch saltPouch;
+    [SerializeField] private int _saltThrowDistance;
 
     // Player's movement speed
     [Header("Player Movement Speed")]
@@ -67,7 +68,9 @@ public class PlayerController : MonoBehaviour
     private string selectableTag = "Selectable";
     private Transform _selection;
 
-    
+    // Referencias del enemigo 
+    private GameObject _enemyRef;
+    private EnemyHealthSystem _enemyHealthRef;
 
 /*-----------------------------------------------------------------------------------------------------------------------------*/
 
@@ -102,6 +105,8 @@ public class PlayerController : MonoBehaviour
         playerPreviousPosition = transform.position;  // Set previous position as the current position in the start
         currentSaltAmount = maxSaltAmount;
         saltPouch.SetMaxSaltAmount(maxSaltAmount);
+        _enemyRef = GameObject.FindGameObjectWithTag("Enemy");
+        _enemyHealthRef = _enemyRef.GetComponent<EnemyHealthSystem>();
     }
 
     // UPDATE ACTION
@@ -276,6 +281,11 @@ public class PlayerController : MonoBehaviour
         if (currentSaltAmount > 0) {
             currentSaltAmount -= saltAmount;
             saltPouch.SetSaltAmount(currentSaltAmount);
+            if (Vector3.Distance(transform.position, _enemyRef.transform.position) < _saltThrowDistance)
+            {
+                _enemyHealthRef.LoseHP(30);
+            }
+            
         }
     }
 
