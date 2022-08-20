@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class SelectionManager : MonoBehaviour
     [SerializeField] private Camera _playerCamera;
     private string _selectableTag = "Selectable";
     [SerializeField] private Shader _highlightShader;
+    [SerializeField] private Shader _normalShader;
+    private Renderer[] _oldRenderers = Array.Empty<Renderer>();
     private Transform _selection;
 
 
@@ -23,8 +26,8 @@ public class SelectionManager : MonoBehaviour
             {
                 foreach (var renderer in selectionRenderers)
                 {
-                    // renderer.enabled = false;
-                    // renderer.enabled = true;
+                    // Quitar el shader
+                    renderer.material.shader = _normalShader;
                 }
                     
             } 
@@ -43,6 +46,7 @@ public class SelectionManager : MonoBehaviour
             {
                 // Esto es para cambiar el material y resaltar objetos
                 var selectionRenderers = selection.GetComponentsInChildren<Renderer>();
+                _oldRenderers = selectionRenderers;
                 if (selectionRenderers != null) {
                     foreach (var renderer in selectionRenderers)
                         renderer.material.shader = _highlightShader;
