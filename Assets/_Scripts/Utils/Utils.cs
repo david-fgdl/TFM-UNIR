@@ -165,7 +165,7 @@ public class Utils : MonoBehaviour
         /* METODOS PARA EL MANEJO DEL AUDIO */
 
         // METODO PARA CREAR UN LOOP DE MUSICA ADECUADO
-        public IEnumerator StartMusicLoop (AudioSource musicClip1, AudioSource musicClip2, float minusTimeBeforeLoop)
+    public IEnumerator StartMusicLoop (AudioSource musicClip1, AudioSource musicClip2, float minusTimeBeforeLoop)
     {
 
         musicClip1.Play();  // Suena el clip original

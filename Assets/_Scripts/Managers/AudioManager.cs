@@ -1,8 +1,11 @@
+using System.Collections;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    [SerializeField] private AudioSource _bgMusic;
     public static AudioManager Instance;
+
 
     public Sound[] Sounds;
 
@@ -14,6 +17,16 @@ public class AudioManager : MonoBehaviour
     }
 
     private void Start() {
+        // INICIAR RUTINA DE MUSICA
+        StartCoroutine(RestoreMusicVolume());
+    }
+
+    private IEnumerator RestoreMusicVolume()
+    {
+
+        yield return new WaitForSeconds(20);
+
+        _bgMusic.Play();
 
     }
 

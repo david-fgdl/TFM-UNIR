@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        ChangeState(GameState.Menu);  
+        ChangeState(GameState.Menu);
     }
 
     // Update is called once per frame
@@ -92,6 +92,9 @@ public class GameManager : MonoBehaviour
     }
 
     private void HandleGame() {
+        // OPCIONES DE OPTIMIZACION
+        Application.targetFrameRate = 60;
+        
     }
 
     private void HandleInventory() {
