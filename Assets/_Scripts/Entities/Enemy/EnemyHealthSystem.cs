@@ -37,6 +37,7 @@ public class EnemyHealthSystem : MonoBehaviour
         else
         {
             _HP = newHP;
+            Hurt();
         }
 
     }
@@ -47,6 +48,12 @@ public class EnemyHealthSystem : MonoBehaviour
         _navMeshAgent.speed = 0;
         StartCoroutine(revive());
     }
+    public void Hurt()
+    {
+        Debug.Log("Enemy got hurt");
+        _navMeshAgent.speed = 1.5f;
+        StartCoroutine(StopHurt());
+    }
 
     private IEnumerator revive()
     {
@@ -56,4 +63,14 @@ public class EnemyHealthSystem : MonoBehaviour
         GainHP(100);
         _navMeshAgent.speed = 3.5f;
     }
+
+    private IEnumerator StopHurt()
+    {
+        float delay = 1f;
+        WaitForSeconds wait = new WaitForSeconds(delay);
+        yield return wait;
+        _navMeshAgent.speed = 3.5f;
+    }
+
+
 }
