@@ -46,8 +46,8 @@ public class IntroScene : MonoBehaviour
                 StartCoroutine(_audioUtils.PlayAudioWhenShowFileContent(GetComponent<AudioSource>(), _introClipSpanish, Application.dataPath + "/StreamingAssets/Dialogs/intro_spanish.txt", 2, 1, 2));
             }
         }
-        if (_isEnglish) yield return StartCoroutine(TextViewUtils.Instance.ShowFileContent(_textOutput.GetComponent<TextMeshProUGUI>(), Application.dataPath + "/StreamingAssets/Dialogs/intro_english.txt", 2, 1, 2));
-        else yield return StartCoroutine(TextViewUtils.Instance.ShowFileContent(_textOutput.GetComponent<TextMeshProUGUI>(), Application.dataPath + "/StreamingAssets/Dialogs/intro_spanish.txt", 2, 1, 2));
+        // if (_isEnglish) yield return StartCoroutine(TextViewUtils.Instance.ShowFileContent(_textOutput.GetComponent<TextMeshProUGUI>(), Application.dataPath + "/StreamingAssets/Dialogs/intro_english.txt", 2, 1, 2));
+        // else yield return StartCoroutine(TextViewUtils.Instance.ShowFileContent(_textOutput.GetComponent<TextMeshProUGUI>(), Application.dataPath + "/StreamingAssets/Dialogs/intro_spanish.txt", 2, 1, 2));
 
 
         yield return new WaitForSeconds(1.0f);

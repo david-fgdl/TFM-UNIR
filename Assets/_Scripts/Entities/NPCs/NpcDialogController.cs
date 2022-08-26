@@ -14,12 +14,14 @@ public class NpcDialogController : MonoBehaviour
 
     /* VARIABLES */
 
+    private FileUtils _fileUtils = new FileUtils();
+
     // NUMERO DEL DIALOGO ACTUAL
     private int _currentDialogNumber = 0;
     
     // REFERENCIAS
     [SerializeField] private GameObject _dialogBoxGameobject;  // Referencia al GameObject de diAlogo de la UI
-    [SerializeField] private Utils _utils;  // Referencia al script de utils de la escena
+    // [SerializeField] private Utils _utils;  // Referencia al script de utils de la escena
 
 /*-----------------------------------------------------------------------------------------------------------------------------*/
 
@@ -44,7 +46,7 @@ public class NpcDialogController : MonoBehaviour
 
         if (other.CompareTag("Player"))  // Si el jugador entra al Trigger
         {
-            _dialogBoxGameobject.GetComponentInChildren<TextMeshProUGUI>().text = _utils.ReadDialogs(_currentDialogNumber);  // Establecer el diAlogo actual del NPC en el cuadro de diAlogo
+            _dialogBoxGameobject.GetComponentInChildren<TextMeshProUGUI>().text = _fileUtils.ReadDialogs(_currentDialogNumber);  // Establecer el diAlogo actual del NPC en el cuadro de diAlogo
             _dialogBoxGameobject.SetActive(true);  // Establecer el cuadro de diAlogo
             GetComponents<AudioSource>()[0].Play();  // Hacer sonar el sonido de diAlogo abierto
         }
