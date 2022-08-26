@@ -2383,7 +2383,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogBoxGameobject: {fileID: 1465769989}
-  _utils: {fileID: 245757819}
 --- !u!82 &201151718
 AudioSource:
   m_ObjectHideFlags: 0
@@ -12826,7 +12825,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogBoxGameobject: {fileID: 1465769989}
-  _utils: {fileID: 245757819}
 --- !u!65 &1192466402
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16854,7 +16852,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogBoxGameobject: {fileID: 1465769989}
-  _utils: {fileID: 245757819}
 --- !u!65 &1569948352
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18804,7 +18801,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogBoxGameobject: {fileID: 1465769989}
-  _utils: {fileID: 245757819}
 --- !u!65 &1804482015
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22799,12 +22795,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1411772695}
     - target: {fileID: 1663468785882358368, guid: 10669cfc4c4a88043af4e8b377a21ad3, type: 3}
+      propertyPath: _damageRange
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1663468785882358368, guid: 10669cfc4c4a88043af4e8b377a21ad3, type: 3}
+      propertyPath: _damageByDamage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1663468785882358368, guid: 10669cfc4c4a88043af4e8b377a21ad3, type: 3}
       propertyPath: highlightShader
       value: 
       objectReference: {fileID: -6465566751694194690, guid: f8edba217a0c1e04386228ecf88098e6, type: 3}
     - target: {fileID: 1663468785882358368, guid: 10669cfc4c4a88043af4e8b377a21ad3, type: 3}
       propertyPath: _saltThrowDistance
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1663468785882358368, guid: 10669cfc4c4a88043af4e8b377a21ad3, type: 3}
+      propertyPath: _damageByThrownSalt
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1663468785882358368, guid: 10669cfc4c4a88043af4e8b377a21ad3, type: 3}
+      propertyPath: _amountSaltLostByDamage
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1663468785882358370, guid: 10669cfc4c4a88043af4e8b377a21ad3, type: 3}
       propertyPath: m_UIInputModule

@@ -4,6 +4,7 @@
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private int currentSaltAmount;
     public SaltPouch saltPouch;
     [SerializeField] private int _saltThrowDistance;
+    [SerializeField] private int _amountSaltLostByDamage;
 
     // Player's movement speed
     [Header("Player Movement Speed")]
@@ -67,12 +69,16 @@ public class PlayerController : MonoBehaviour
 
     private string selectableTag = "Selectable";
     private Transform _selection;
+    private bool _canDamageCoroutine = true;
 
     // Referencias del enemigo 
     private GameObject _enemyRef;
     private EnemyHealthSystem _enemyHealthRef;
+    [SerializeField] private int _damageRange;//Distance the enemy can damage the player
+    [SerializeField] private int _damageByThrownSalt;//Damage the enemy takes by the thrown salt
+    [SerializeField] private int _damageByDamage;//Damage the enemy takes by dealing damage
 
-/*-----------------------------------------------------------------------------------------------------------------------------*/
+    /*-----------------------------------------------------------------------------------------------------------------------------*/
 
     /* BASIC METHODS */
 
@@ -107,6 +113,7 @@ public class PlayerController : MonoBehaviour
         saltPouch.SetMaxSaltAmount(maxSaltAmount);
         _enemyRef = GameObject.FindGameObjectWithTag("Enemy");
         _enemyHealthRef = _enemyRef.GetComponent<EnemyHealthSystem>();
+
     }
 
     // UPDATE ACTION
@@ -116,6 +123,21 @@ public class PlayerController : MonoBehaviour
  
         Move();  // Control player's movement
         Look();  // Control camera's movement
+        
+        if(Vector3.Distance(transform.position, _enemyRef.transform.position) < _damageRange && _canDamageCoroutine)
+        {
+            _canDamageCoroutine = false;
+            StartCoroutine(getDamageRoutine());
+        }
+        else
+        {
+            if(!(Vector3.Distance(transform.position, _enemyRef.transform.position) < _damageRange))
+            {
+                StopCoroutine(getDamageRoutine());
+                _canDamageCoroutine = true;
+            }
+            
+        }
 
     } 
 
@@ -283,13 +305,39 @@ public class PlayerController : MonoBehaviour
             saltPouch.SetSaltAmount(currentSaltAmount);
             if (Vector3.Distance(transform.position, _enemyRef.transform.position) < _saltThrowDistance)
             {
-                _enemyHealthRef.LoseHP(30);
+                _enemyHealthRef.LoseHP(_damageByThrownSalt);
             }
             
         }
     }
 
-/*-----------------------------------------------------------------------------------------------------------------------------*/
+    private IEnumerator getDamageRoutine()
+    {
+        float delay = 1f;
+        WaitForSeconds wait = new WaitForSeconds(delay);
+        while (true)
+        {
+            getDamage();
+            yield return wait;
+           
+        }
+    }
+
+    private void getDamage()
+    {
+        if (currentSaltAmount > 0)
+        {
+            currentSaltAmount -= _amountSaltLostByDamage;
+            saltPouch.SetSaltAmount(currentSaltAmount);
+            _enemyHealthRef.LoseHP(_damageByDamage);
+        }
+        else
+        {
+            Debug.Log("Has muerto");
+        }
+    }
+
+    /*-----------------------------------------------------------------------------------------------------------------------------*/
 
 }
 
