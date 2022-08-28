@@ -1,3 +1,4 @@
+/* SCRIPT DE UTILIDADES PARA LA VISUALIZACION DE TEXTO */
 
 using System.Collections;
 // using System.IO;
@@ -10,14 +11,26 @@ using UnityEngine.Scripting;
 
 public class TextViewUtils : MonoBehaviour
 {
-    private FileUtils _fileUtils = new FileUtils();
 
-    public TextViewUtils Instance;
+    /* VARIABLES */
 
+    private FileUtils _fileUtils;  // Referencia a FileUtils
+
+    //public TextViewUtils Instance;  // Instancia
+
+    /* METODOS BASICOS */
+
+    // METODO AWAKE
     private void Awake()
     {
-        if (Instance != null && Instance != this) Destroy(this);
-        else Instance = this;
+
+        // ASIGANACION DE INSTANCIA
+        /*if (Instance != null && Instance != this) Destroy(this);
+        else Instance = this;*/
+
+        // RECOGIDA DE REFERENCIAS
+        _fileUtils = GetComponent<FileUtils>();
+
     }
 
 

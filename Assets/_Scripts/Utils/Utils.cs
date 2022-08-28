@@ -1,5 +1,4 @@
-/* SCRIPT DE UTILITES */
-/*--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/* SCRIPT DE UTILIDADES BASICAS */
 
 using System.Collections;
 using System.IO;
@@ -10,8 +9,6 @@ using UnityEngine;
 public class Utils : MonoBehaviour
 {
 
-/*--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-
     /* METODOS PARA EL MANEJO DE ARRAYS */
 
     // METODO PARA SABER SI UN ENTERO ESTA CONTENIDO EN UN VECTOR DE ENTEROS
@@ -20,8 +17,6 @@ public class Utils : MonoBehaviour
         for (int i = 0; i <= previousIndex; i++) if (vector[i] == value) return true;  // Si el entero estA en el vector se devuelve true
         return false;  // Si no estA se devuelve false
     }
-
-/*--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     /* METODOS PARA DEPURAR DE FORMA CONTROLADA */
 
@@ -39,8 +34,6 @@ public class Utils : MonoBehaviour
 
     }
 
-/*--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-
     /* METODOS DE DEBUG */
 
     // METODO PARA OBTENER UN DEBUG CON MAS INFORMACION (CLASE, METODO, ETC...)
@@ -50,8 +43,7 @@ public class Utils : MonoBehaviour
         Debug.Log($"{time} - Class [{className}], on method {methodName}: {msg}");
     }
 
-/*--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
 
 }
 
-/*--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/

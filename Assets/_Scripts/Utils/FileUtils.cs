@@ -1,3 +1,5 @@
+/* SCRIPT DE UTILIDADES DE FCIHEROS */
+
 using System.Collections;
 using System.IO;
 using System;

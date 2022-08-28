@@ -1,3 +1,5 @@
+/* SCRIPT UTILIZADO PARA LA GENERACION DE ICONOS */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +7,9 @@ using UnityEditor;
 
 public class IconGenerator : MonoBehaviour
 {
+
+    /* VARIABLES */
+
     [SerializeField] private string _pathFolder;
     [SerializeField] private string _prefix;
     private Camera _cam;
@@ -12,17 +17,24 @@ public class IconGenerator : MonoBehaviour
     public List<GameObject> SceneObjects;
     public List<InventoryItemData> DataObjects;
 
+    /* METODOS BASICOS */
+
+    // METODO AWAKE
     private void Awake()
     {
         if (_cam == null) _cam = GetComponent<Camera>();
     }
 
+    /* METODOS DEL GENERADOR DE ICONOS */
+
+    // METODO ??
     [ContextMenu("ScreenShot")]
     private void ProcessScreenshots() 
     {
         StartCoroutine(Screenshot());
     }
 
+    // METODO ??
     private IEnumerator Screenshot() 
     {
         for (int i = 0; i < SceneObjects.Count; i++)
@@ -54,6 +66,7 @@ public class IconGenerator : MonoBehaviour
         }
     }
 
+    // METODO ??
     void TakeScreenshot(string fullPath) 
     {
 
@@ -86,4 +99,5 @@ public class IconGenerator : MonoBehaviour
             AssetDatabase.Refresh();
         #endif
     }
+    
 }

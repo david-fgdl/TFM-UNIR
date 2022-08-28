@@ -1,3 +1,5 @@
+/* SCRIPT DE UTILIDADES DE AUDIO */
+
 using System.Collections;
 // using System.IO;
 using System;
@@ -6,7 +8,19 @@ using UnityEngine;
 
 public class AudioUtils : MonoBehaviour
 {
-    private FileUtils _fileUtils = new FileUtils();
+
+    /* VARIABLES */
+
+    private FileUtils _fileUtils;  // Referencia a FileUtils
+
+    /* METODOS BASICOS */
+
+    // METODO AWAKE
+    private void Awake()
+    {
+        // RECOGIDA DE REFERENCIAS
+        _fileUtils = GetComponent<FileUtils>();
+    }
 
     /* METODOS PARA EL MANEJO DEL AUDIO */
 
