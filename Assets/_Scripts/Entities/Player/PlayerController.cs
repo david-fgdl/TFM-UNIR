@@ -70,6 +70,7 @@ public class PlayerController : MonoBehaviour
     private string selectableTag = "Selectable";
     private Transform _selection;
     private bool _canDamageCoroutine = true;
+    Coroutine routine;
 
     // Referencias del enemigo 
     private GameObject _enemyRef;
@@ -124,16 +125,18 @@ public class PlayerController : MonoBehaviour
         Move();  // Control player's movement
         Look();  // Control camera's movement
         
-        if(Vector3.Distance(transform.position, _enemyRef.transform.position) < _damageRange && _canDamageCoroutine)
+
+        if (Vector3.Distance(transform.position, _enemyRef.transform.position) < _damageRange && _canDamageCoroutine)
         {
             _canDamageCoroutine = false;
-            StartCoroutine(getDamageRoutine());
+            routine = StartCoroutine(getDamageRoutine());
+            
         }
         else
         {
             if(!(Vector3.Distance(transform.position, _enemyRef.transform.position) < _damageRange))
             {
-                StopCoroutine(getDamageRoutine());
+                StopCoroutine(routine);
                 _canDamageCoroutine = true;
             }
             
