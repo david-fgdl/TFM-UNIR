@@ -331,10 +331,7 @@ public class PlayerController : MonoBehaviour
             _enemyHealthRef.LoseHP(_damageByDamage);  // Si el enemigo nos daña, tambiEn resulta dañado por el contacto con la sal.
 
         }
-        else
-        {
-            Debug.Log("Has muerto");
-        }
+        else Debug.Log("Has muerto");
     }
 
     /*-----------------------------------------------------------------------------------------------------------------------------*/
