@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
 
     /* VARIABLES */
 
-    // EDITABLE PLAYER VALUES
+    // STATS DEL JUGADOR
     [Header("Player Stats")]
     private int maxSaltAmount = 100;
     private int currentSaltAmount;
@@ -21,122 +21,124 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int _saltThrowDistance;
     [SerializeField] private int _amountSaltLostByDamage;
 
-    // Player's movement speed
+    // VELOCIDAD DE MOVIMIENTO DEL JUGADOR
     [Header("Player Movement Speed")]
-    [SerializeField] [Range(1, 20)] private float speed = 2.5f;
+    [SerializeField] [Range(1, 20)] private float _speed = 2.5f;
 
-    // Cursor mouse sensitivity
+    // SENSIBILIDAD DEL CURSOR
     [Header("Mouse sensitivity")]
     [SerializeField] [Range(1, 100)] private float mouseSensivity = 50;
 
-    // REFERENCES
+    // REFERENCIAS
 
-    // Reference to player's camera
     [SerializeField] private Camera playerCamera;
 
-    // Reference to character controller
     private CharacterController characterController;
-
-    // Reference to player's animator
     private Animator animator;
 
-    // Reference to player's previous position
     private Vector3 playerPreviousPosition;
 
     #region Player Input
-    // Reference to player's input system
-    private PlayerInput playerInput;
 
-    // Reference to player's input system actions
-    private InputAction moveAction;
-    private InputAction lookAction;
-    private InputAction grabAction;
-    private InputAction inventoryAction;
-    private InputAction throwAction;
+        private PlayerInput playerInput;
+
+        private InputAction moveAction;
+        private InputAction lookAction;
+        private InputAction grabAction;
+        private InputAction inventoryAction;
+        private InputAction throwAction;
+
     #endregion
 
     #region Audio
-    [Header("Audio Clips")]
-    [SerializeField] private AudioClip breathingSound;
-    [SerializeField] private AudioClip walkingSound;
-    [SerializeField] private AudioClip standartMusic;
+
+        [Header("Audio Clips")]
+
+        [SerializeField] private AudioClip breathingSound;
+        [SerializeField] private AudioClip walkingSound;
+        [SerializeField] private AudioClip standartMusic;
+
     #endregion
 
-    // AUXILIAR VARIABLES
-
-    // Variable to keep track of player's camera rotation in the x axis
-    private float xRotation;
-
-    private string selectableTag = "Selectable";
-    private Transform _selection;
-    private bool _canDamageCoroutine = true;
-    Coroutine routine;
-
-    // Referencias del enemigo 
+    // ENEMIGO
+    
     private GameObject _enemyRef;
     private EnemyHealthSystem _enemyHealthRef;
     [SerializeField] private int _damageRange;//Distance the enemy can damage the player
     [SerializeField] private int _damageByThrownSalt;//Damage the enemy takes by the thrown salt
     [SerializeField] private int _damageByDamage;//Damage the enemy takes by dealing damage
 
-    /*-----------------------------------------------------------------------------------------------------------------------------*/
+    // VARIABLES AUXILIARES
 
-    /* BASIC METHODS */
+    private float xRotation;  // Variable para conocer la posiciOn de la cAmara en el eje x
 
-    // AWAKE EVENT
+    private string _selectableTag = "Selectable";
+    private Transform _selection;
+    private bool _canDamageCoroutine = true;
+    Coroutine _routine;
+
+    /* METODOS BASICOS */
+
+    // METODO AWAKE
     private void Awake()
     {
 
-        // INPUT REFERENCES CREATION
+        // ESTABLECER LAS REFERENCIAS
+
         playerInput = GetComponent<PlayerInput>();
+
         moveAction = playerInput.actions["Move"];
         lookAction = playerInput.actions["Look"];
         grabAction = playerInput.actions["Grab"];
         inventoryAction = playerInput.actions["P_Inventory"];
         throwAction = playerInput.actions["Fire"];
 
-        // Get Animator
         animator = GetComponent<Animator>();
 
-        // Character controller reference creation
         characterController = GetComponent<CharacterController>();
         if (characterController==null) Debug.Log("CHARACTER CONTROLLER ES NULL");
 
     }
 
-    // START ACTION
-    // Start is called before the first frame update
+    // METODO START
+    // Start es un mEtodo llamado antes del primer frame
     private void Start()
     {
-        // SET REFERENCES' VALUES
-        playerPreviousPosition = transform.position;  // Set previous position as the current position in the start
+
+        playerPreviousPosition = transform.position;  // La posiciOn de comienzo se guarda como la posiciOn anterior
+
+        // FIJAR VALORES DE SAL
         currentSaltAmount = maxSaltAmount;
         saltPouch.SetMaxSaltAmount(maxSaltAmount);
+
+        // FIJAR REFERENCIAS DEL ENEMIGO
         _enemyRef = GameObject.FindGameObjectWithTag("Enemy");
         _enemyHealthRef = _enemyRef.GetComponent<EnemyHealthSystem>();
 
     }
 
-    // UPDATE ACTION
-    // Update is called once per frame
+    // METODO UPDATE
+    // Update es llamado una vez por frame
     private void Update()
     {
  
-        Move();  // Control player's movement
-        Look();  // Control camera's movement
+        // MOVIMIENTO BASICO
+        Move();
+        Look();
         
 
+        // GESTION DE LA INTERACCION CON EL ENEMIGO
         if (Vector3.Distance(transform.position, _enemyRef.transform.position) < _damageRange && _canDamageCoroutine)
         {
             _canDamageCoroutine = false;
-            routine = StartCoroutine(getDamageRoutine());
+            _routine = StartCoroutine(getDamageRoutine());
             
         }
         else
         {
             if(!(Vector3.Distance(transform.position, _enemyRef.transform.position) < _damageRange))
             {
-                StopCoroutine(routine);
+                StopCoroutine(_routine);
                 _canDamageCoroutine = true;
             }
             
@@ -144,12 +146,10 @@ public class PlayerController : MonoBehaviour
 
     } 
 
-/*-----------------------------------------------------------------------------------------------------------------------------*/
+    /* EVENTOS DE ACTIVACION Y DESACTIVACION DEL SCRIPT */
 
-    /* ENABLE AND DISABLE SCRIPTS METHODS */
-
-    // ONENABLE EVENT
-    // Calls when this script gets enabled
+    // METODO DE ACTIVACION
+    // Es llamado cuando se activa el script
     private void OnEnable()
     {
         playerInput.enabled = true;
@@ -158,8 +158,8 @@ public class PlayerController : MonoBehaviour
         throwAction.performed += ThrowSalt;
     }
 
-    // ONDISABLE EVENT
-    // Calls when this script gets disabled
+    // METODO DE DESACTIVACION
+    // Es llamado cuando se desactiva el script
     private void OnDisable()
     {
         playerInput.enabled = false;
@@ -168,8 +168,48 @@ public class PlayerController : MonoBehaviour
         throwAction.performed -= ThrowSalt;
     }
 
-/*-----------------------------------------------------------------------------------------------------------------------------*/
+    /* METODOS DE MOVIMIENTO*/
 
+    // METODO PARA CONTROLAR EL DESPLAZAMIENTO DEL JUGADOR
+    private void Move()
+    {
+
+        Vector3 moveVector = transform.right * moveAction.ReadValue<Vector2>().x + transform.forward * moveAction.ReadValue<Vector2>().y;
+        characterController.Move(moveVector * Time.deltaTime * _speed);
+
+        // GESTOR DE ANIMACIONES
+        if (Vector3.Distance(playerPreviousPosition, gameObject.transform.position) <= 0.05f)  animator.SetBool("is_walking", false);
+        else  animator.SetBool("is_walking", true);
+
+        // GUARDAR LA POSICION ACTUAL COMO LA POSICION ANTERIOR
+        playerPreviousPosition = gameObject.transform.position;
+
+
+    }
+
+    // METODO PARA CONTROLAR EL MOVIMIENTO DE LA CAMARA
+    private void Look()
+    {
+
+        // OBTENER VALORES DELTA DEL RATON
+        float mouseX = lookAction.ReadValue<Vector2>().x * mouseSensivity * Time.deltaTime;
+        float mouseY = lookAction.ReadValue<Vector2>().y * mouseSensivity * Time.deltaTime;
+
+        // ESTABLECER Y DELIMITAR LA ROTACION EN EL EJE X
+        xRotation -= mouseY;
+        xRotation = Mathf.Clamp(xRotation, -90, 90);
+
+        // ESTABLECER LA ROTACION EN EL EJE Y
+        playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
+
+        // ROTAR EN EL EJE X
+        this.transform.Rotate(Vector3.up * mouseX);
+
+    }
+
+    /* METODOS DE INTERACCION CON OBJETOS */
+
+    // METODO DE SELECCION DE OBJETOS
     private void CheckObject() {
 
         
@@ -178,13 +218,14 @@ public class PlayerController : MonoBehaviour
             _selection = null;
         }
         
+        // SELECCION DEL OBJETO MEDIANTE RAYCAST
 
         var ray = playerCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit hit;
+
         if (Physics.Raycast(ray, out hit, 10f)) 
         {
             var selection = hit.transform;
-
             
             if (selection.name.Contains("Door")) 
             {
@@ -193,8 +234,7 @@ public class PlayerController : MonoBehaviour
                 _selection = selection;
             }
 
-
-            if (selection.CompareTag(selectableTag))
+            if (selection.CompareTag(_selectableTag))
             {            
                 if (selection.TryGetComponent<ItemObject>(out ItemObject item)) 
                 {
@@ -206,79 +246,23 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
-
-/*-----------------------------------------------------------------------------------------------------------------------------*/
-
-    /* MOVEMENT METHODS */
-
-    // ACTION TO CONTROL PLAYER'S MOVEMENT
-    private void Move()
-    {
-
-        // Movement vector creation
-        Vector3 moveVector = transform.right * moveAction.ReadValue<Vector2>().x + transform.forward * moveAction.ReadValue<Vector2>().y;
-
-        // Character controller movement controlled by the speed value
-        characterController.Move(moveVector * Time.deltaTime * speed);
-
-        //---------------------------------------------------------------------------------//
-        // Walking animation controller
-
-        // If player's current position is not different from previous position establish that the player is not walking
-        if (Vector3.Distance(playerPreviousPosition, gameObject.transform.position) <= 0.05f) {
-            animator.SetBool("is_walking", false);
-        } else {
-            // If it is different establish that the player is walking 
-            animator.SetBool("is_walking", true);
-        }
-            
-        //---------------------------------------------------------------------------------//
-
-        // Set the current position as the previous one for the next iteration
-        playerPreviousPosition = gameObject.transform.position;
-
-
-    }
-
-    // ACTION TO CONTROL CAMERA'S MOVEMENT
-    private void Look()
-    {
-
-        // Get mouse delta values
-        float mouseX = lookAction.ReadValue<Vector2>().x * mouseSensivity * Time.deltaTime;
-        float mouseY = lookAction.ReadValue<Vector2>().y * mouseSensivity * Time.deltaTime;
-
-        // Establish x rotation between -90 and 90 degrees
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90, 90);
-
-        // Rotate camera in the y axis
-        playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
-
-        // Rotate whole player in the x axis
-        this.transform.Rotate(Vector3.up * mouseX);
-
-    }
-
-    // ACTION TO TAKE/GRAB OBJECTS
+    // METODO PARA AGARRAR OBJETOS
     public void Grab(InputAction.CallbackContext context)
     {
         if (context.started && !animator.GetBool("can_grab")) 
         {
-            // CHECK IF AN OBJECT IS GRABABLE(?)
-            // ANIMATION PLAYS
+
+            // CHEQUEO Y GESTION DE ANIMACIONES
             animator.SetBool("can_grab", true);
             CheckObject();
             animator.SetBool("can_grab", false);
 
-
-            // OBJECT GOES TO INVENTORY (OTHER SCRIPT?)
-            // OBJECT GRABBED GETS DESTROYED ON SCENE BUT STORED ON INVENTORY ARRAY
+            // EL OBJETO VA AL INVENTARIO (OTRO SCRIPT)
+            // EL OBJETO SE DESTRUYE PERO ES ALMACENADO EN EL ARRAY DEL INVENTARIO
         }
     }
 
-    // ACTION OPEN/CLOSE INVENTORY
+    // METODO DE APERTURA / CIERRE DEL INVENTARIO
     public void Inventory(InputAction.CallbackContext context)
     {
         bool performed = false;
@@ -286,6 +270,7 @@ public class PlayerController : MonoBehaviour
         if (context.started && !performed) 
         {
 
+            // GESTOR DE ESTADOS DEL JUEGO
             if (GameManager.Instance.State == GameState.Game)
                 GameManager.Instance.ChangeState(GameState.Inventory);
             else if (GameManager.Instance.State == GameState.Inventory)
@@ -297,23 +282,31 @@ public class PlayerController : MonoBehaviour
         performed = false;
     }
 
-    // ACTION THROW SALT
+    /* METODOS DE INTERACCION CON EL ENEMIGO */
+
+    // METODO PARA DISPARAR SAL AL ENEMIGO
     public void ThrowSalt(InputAction.CallbackContext context)
     {
         Debug.Log("Salt throw!");
         var saltAmount = 10;
 
         if (currentSaltAmount > 0) {
+
+            // FIJAR CANTIDAD DE SAL
             currentSaltAmount -= saltAmount;
             saltPouch.SetSaltAmount(currentSaltAmount);
+
+            // CONTROLAR DISPARO
             if (Vector3.Distance(transform.position, _enemyRef.transform.position) < _saltThrowDistance)
             {
                 _enemyHealthRef.LoseHP(_damageByThrownSalt);
             }
             
         }
+
     }
 
+    // RUTINA PARA CONTROLAR EL TIEMPO DE ESPERA TRAS RECIBIR DAÑO
     private IEnumerator getDamageRoutine()
     {
         float delay = 1f;
@@ -326,13 +319,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // METODO PARA GESTIONAR LA PERDIDA DE VIDA (SAL)
     private void getDamage()
     {
         if (currentSaltAmount > 0)
         {
+
             currentSaltAmount -= _amountSaltLostByDamage;
             saltPouch.SetSaltAmount(currentSaltAmount);
-            _enemyHealthRef.LoseHP(_damageByDamage);
+
+            _enemyHealthRef.LoseHP(_damageByDamage);  // Si el enemigo nos daña, tambiEn resulta dañado por el contacto con la sal.
+
         }
         else
         {
