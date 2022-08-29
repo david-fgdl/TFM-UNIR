@@ -6,7 +6,7 @@ using System;
 using TMPro;
 using UnityEngine;
 
-public class FileUtils : MonoBehaviour
+public class FileUtils
 {
     /* METODOS PARA EL MANEJO FICHEROS */
 
