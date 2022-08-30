@@ -1,3 +1,5 @@
+/* SCRIPT QUE OFRECE UNA AYUDA VISUAL DESDE EL EDITOR A LA HORA DE REALIZAR EL ENEMIGO*/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -6,7 +8,10 @@ using UnityEngine;
 [CustomEditor(typeof(EnemyIA))]
 public class EnemyFOVEditor : Editor
 {
-    //Only use for visual help while developing. Draws the radius and the angle of FOV, also a line if the enemy can see the player
+
+    /* METODOS DE DIBUJADO */
+
+    // METODO QUE SOLO SE USA COMO AYUDA VISUAL DURANTE EL DESARROLLO. DIBUJA EL RADIO Y EL ANGULO DEL FOV, ASI COMO UNA LINEA SI EL ENEMIGO PUEDE VER AL JUGADOR
     private void OnSceneGUI()
     {
         EnemyIA Enemy = (EnemyIA)target;
@@ -26,6 +31,7 @@ public class EnemyFOVEditor : Editor
         }
     }
 
+    // METODO AUXILIAR PARA DIBUJAR LA DIRECCION DESDE EL ANGULO
     private Vector3 directionFromAngle(float eulerY, float angleInDegrees)
     {
         angleInDegrees += eulerY;

@@ -1,3 +1,5 @@
+/* SCRIPT PARA CONTROLAR EL SISTEMA DE SALUDO DEL ENEMIGO */
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,16 +8,29 @@ using UnityEngine.AI;
 
 public class EnemyHealthSystem : MonoBehaviour
 {
-    private int _HP;//Current Health Points
-    [SerializeField] private int _MaxHP;//Max Health Points
+
+    /* VARIABLES */
+
+    // VALORES DE SALUDO
+    private int _HP;  // Puntos de salud actual
+    [SerializeField] private int _MaxHP;  // Puntos de salud mAxima
+
+    // REFERENCIAS
     private NavMeshAgent _navMeshAgent;
+
+    /* METODOS BASICOS */
+    
+    // METODO START
+    // Start es llamado una vez antes del primer frame
     void Start()
     {
         _HP = _MaxHP;
         _navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
-    //If we want to the enemy to gain health points (int amount)
+    /* METODOS PARA REGULAR LA SALUD DEL ENEMIGO */
+
+    // METODO PARA INCREMENTAR LA SALUD DEL ENEMIGO EN UN VALOR "am"
     public void GainHP(int am)
     {
         int newHP = _HP + am;
@@ -25,7 +40,8 @@ public class EnemyHealthSystem : MonoBehaviour
         }
         _HP = newHP;
     }
-    //If we want to the enemy to lose health points (int amount)
+
+    // METODO PARA REDUCIR LA SALUD DEL ENEMIGO EN UN VALOR "am"
     public void LoseHP(int am)
     {
         int newHP = _HP - am;
@@ -41,13 +57,16 @@ public class EnemyHealthSystem : MonoBehaviour
         }
 
     }
-    //What happens when the enemy dies
+
+    // METODO PARA BLOQUEAR AL ENEMIGO SI ESTE ES NOQUEADO
     public void Death()
     {
         Debug.Log("Enemy knock out");
         _navMeshAgent.speed = 0;
         StartCoroutine(revive());
     }
+
+    // METODO PARA REDUCIR LA VELOCIDAD DEL ENEMIGO SI ESTE ES DAÑADO
     public void Hurt()
     {
         Debug.Log("Enemy got hurt");
@@ -55,6 +74,7 @@ public class EnemyHealthSystem : MonoBehaviour
         StartCoroutine(StopHurt());
     }
 
+    // RUTINA PARA GESTIONAR EL TIEMPO DE RECUPERACION DEL ENEMIGO TRAS SER NOQUEADO
     private IEnumerator revive()
     {
         float delay = 3f;
@@ -64,6 +84,7 @@ public class EnemyHealthSystem : MonoBehaviour
         _navMeshAgent.speed = 3.5f;
     }
 
+    // RUTINA PARA GESTIONAR EL TIEMPO DE RECUPERACION DEL ENEMIGO TRAS SER DAÑADO
     private IEnumerator StopHurt()
     {
         float delay = 1f;
