@@ -1,3 +1,5 @@
+/* SCRIPT PARA CONTROLAR EL COMPORTAMIENTO DE LOS OBJETOS */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,22 +7,32 @@ using UnityEngine;
 [System.Serializable]
 public class InventoryItem
 {
-    public InventoryItemData Data { get; private set; } // Inventory items data
-    public int StackSize { get; private set; } // Inventory size
 
+    /* VARIABLES */
+
+    // ARRAYS PARA ALMACENAR INFORMACION DE LOS OBJETOS
+    public InventoryItemData Data { get; private set; }
+    public int StackSize { get; private set; }
+
+    /* METODOS DE LOS OBJETOS */
+
+    // METODO PARA ASIGNAR LA INFORMACION DEL OBJETO
     public InventoryItem(InventoryItemData source) 
     {
         Data = source;
         AddToStack();
     }
 
-    public void AddToStack() // Actualize stack size
+    // METODO PARA INDICAR EL INCREMENTO DE OBJETOS
+    public void AddToStack()
     {
         StackSize++;
     }
 
+    // METODO PARA INDICAR EL DECREMENTO DE OBJETOS
     public void RemoveFromStack() 
     {
         StackSize--;
     }
+
 }

@@ -1,16 +1,22 @@
+/* SCRIPT PARA CONTROLAR EL COMPORTAMIENTO DE LAS RANURAS DE OBJETOS */
+
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
 public class ItemSlot : MonoBehaviour
 {
+
+    // ELEMENTOS
     [SerializeField] private Image _icon;
     [SerializeField] private GameObject _combinableIcon;
     [SerializeField] private TMP_Text _label;
     [SerializeField] private GameObject _stackObject;
     [SerializeField] private TMP_Text _stackLabel;
 
+    /* METODOS DE LA RANURA DE OBEJTOS*/
 
+    // METODO PARA ESTABLECER EL ESTADO DE LA RANURA DE OBJETOS
     public void Set(InventoryItem item) 
     {
 
@@ -22,7 +28,6 @@ public class ItemSlot : MonoBehaviour
             _combinableIcon.SetActive(true);
         }
 
-
         if (item.StackSize <= 1) 
         {
             _stackObject.SetActive(false);
@@ -30,5 +35,7 @@ public class ItemSlot : MonoBehaviour
         }
 
         _stackLabel.text = item.StackSize.ToString();
+
     }
+
 }

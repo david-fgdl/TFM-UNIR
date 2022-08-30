@@ -1,5 +1,4 @@
-/* SCRIPT TO CONTROL PLAYER'S BEHAVIOUR */
-/*-----------------------------------------------------------------------------------------------------------------------------*/
+/* SCRIPT PARA CONTROLAR EL COMPORTAMIENTO DEL JUGADOR */
 
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,8 +6,6 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
-
-/*-----------------------------------------------------------------------------------------------------------------------------*/
 
     /* VARIABLES */
 
