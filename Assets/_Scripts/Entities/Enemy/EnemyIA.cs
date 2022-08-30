@@ -1,38 +1,66 @@
+/* SCRIPT PARA CONTROLAR LA IA DEL ENEMIGO */
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-
 public class EnemyIA : MonoBehaviour
 {
-    private NavMeshAgent _navMeshAgent; //Reference of the enemy
-    [SerializeField] private bool _isChasing; //If enemy is chasing player
-    [SerializeField] private float _radius; //Radius of FOV
+
+    /* VARIABLES */
+
+    // PARAMETROS
+    [SerializeField] private float _radius; //  Radio del FOV
     [Range(0,360)]
-    [SerializeField] private float _angle; //Angle of FOV
-    private GameObject _playerRef; //Reference to the player
-    [SerializeField] private LayerMask _targetMask; //Layer of the player
-    [SerializeField] private LayerMask _obstructionMask; //Layer of environment
-    [SerializeField] private Transform[] _waypoints; //Point of patrol
-    private int _waypointIndex; //In which point is or is going the enemy
-    private Vector3 targetPosition; // Position the enemy suppose to go
-    private bool _canSeePlayer; //If Enemy can see player
+    [SerializeField] private float _angle; //  Angulo del FOV
+
+    // REFERENCIAS
+    private NavMeshAgent _navMeshAgent; //  Enemigo
+    private GameObject _playerRef; //  Jugador
+    [SerializeField] private LayerMask _targetMask; //  Capa del jugador
+    [SerializeField] private LayerMask _obstructionMask; //  Capa del entorno
+    [SerializeField] private Transform[] _waypoints; //  Puntos de patrulla
+
+    // FLAGS
+    [SerializeField] private bool _isChasing; //  El enemigo persigue al jugador
+    private bool _canSeePlayer; //  El enemigo puede ver al jugador
+    
+    // VARIABLES AUXILIARES
+    private int _waypointIndex; //  Punto al que va el enemigo
+    private Vector3 targetPosition; // Posicion a la que el enemigo debe ir
+
+    /* METODOS BASICOS */
+
+    // METODO AWAKE
     private void Awake()
     {
+
+        // INICIALIZACION DE VALORES
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _waypointIndex = 0;
+
         UpdateDestination();
+
     }
+
+    // METODO START
+    // Start es llamado una vez antes de cada frame
     private void Start()
     {
+
+        // OBTENCION DE REFERENCIAS
         _playerRef = GameObject.FindGameObjectWithTag("Player");
+
         StartCoroutine(FOVRoutine());
     }
+
+    // METODO UPDATE
+    // Update es llamado una vez por frame
     private void Update()
     {
-        //Is chasing the player or not
+        //  DETERMINAR LA POSICION DEL ENEMIGO EN FUNCION DE SU ESTADO
         if (_isChasing)
         {
             _navMeshAgent.destination = _playerRef.transform.position;
@@ -44,6 +72,9 @@ public class EnemyIA : MonoBehaviour
         
     }
 
+    /* METODOS DE LA IA DEL ENEMIGO */
+
+    // METODO DE PATRULLA
     private void Patrolling()
     {
         if (Vector3.Distance(transform.position, targetPosition)<1)
@@ -53,14 +84,16 @@ public class EnemyIA : MonoBehaviour
         }
     }
 
+    // METODO AUXILIAR DE PATRULLA: ITERAR INDICES
     private void IterateWayPointIndex()
     {
-        //If the enemy went to all points reset else just go next
+        // SI EL ENEMIGO YA HA RECORRIDO TODOS LOS PUNTOS RESETEAR. SI NO, AVANZAR HASTA EL SIGUIENTE
         _waypointIndex++;
         if(_waypointIndex == _waypoints.Length)
         {
             _waypointIndex = 0;
-            //Shuffle the vector
+            
+            // REMEZCLAR EL VECTOR
             for (int i = 0; i < _waypoints.Length; i++)
             {
                 Transform temp = _waypoints[i];
@@ -71,73 +104,92 @@ public class EnemyIA : MonoBehaviour
         }
     }
 
+    // METODO AUXILIAR DE PATRULLA: ACTUALIZAR DESTINO
     private void UpdateDestination()
     {
-        //When we need a new destination go to next one
+        // ACTUALIZAR DESTINO CON LOS WAYPOINTS
         targetPosition = _waypoints[_waypointIndex].position;
         _navMeshAgent.destination = targetPosition;
     }
 
+    // RUTINA PARA CONTROLAR EL RITMO DE CHEQUEO DEL FOV DEL ENEMIGO
     private IEnumerator FOVRoutine()
     {
-        //Every 0.2 seconds, the enemy check his FOV
+        // CADA 0,2 SEGUNDOS EL ENEMIGO CHEQUEA SU FOV
         float delay = 0.2f;
         WaitForSeconds wait = new WaitForSeconds(delay);
+
         while (true)
         {
             yield return wait;
             FieldOfViewCheck();
         }
+
     }
 
+    // METODO PARA CHEQUEAR EL FOV DEL ENEMIGO
     private void FieldOfViewCheck()
     {
-        Collider[] rangeChecks = Physics.OverlapSphere(transform.position, _radius, _targetMask);//Checks if the player is in the enemy radius
-        if (rangeChecks.Length != 0)
+        Collider[] rangeChecks = Physics.OverlapSphere(transform.position, _radius, _targetMask);
+          
+        if (rangeChecks.Length != 0)  // Chequear si el jugador estA en el radio del enemigo
         {
-            Transform target = rangeChecks[0].transform; //The player is in the enemy radius
+            Transform target = rangeChecks[0].transform; // El jugador estA en el radio del enemigo
             Vector3 directionToTarget = (target.position - transform.position).normalized;
-            if (Vector3.Angle(transform.forward, directionToTarget) < _angle / 2)//Checks if the player is in the enemy angle
+
+            if (Vector3.Angle(transform.forward, directionToTarget) < _angle / 2)  // Chequear si el jugador estA en el Angulo del enemigo
             {
+
                 float distanceToTarget = Vector3.Distance(transform.position, target.position);
+
                 //RaycastHit hit;
                 //!Physics.Raycast(transform.position, directionToTarget, out hit, distanceToTarget, _obstructionMask)
-                RaycastHit[] hits = Physics.RaycastAll(transform.position, directionToTarget, distanceToTarget, _obstructionMask);//Checks if there is something that block the view of the enemy
-                if (hits.Length == 0) 
+
+                RaycastHit[] hits = Physics.RaycastAll(transform.position, directionToTarget, distanceToTarget, _obstructionMask);
+                
+                if (hits.Length == 0) // Chequear si algo bloquea la vista del enemigo
                 {
-                    _canSeePlayer = true; //All true
+                    _canSeePlayer = true; // Nada bloquea la vista del enemigo
                 }
                 else
                 {
-                    _canSeePlayer = false; //There is something blocking the view of the enemy
+                    _canSeePlayer = false; // Algo bloquea la vista del enemigo
                 }
             }else
             {
-                _canSeePlayer = false; //The player is not in the angle
+                _canSeePlayer = false; // El jugador ya no estA en el Angulo
             }
         }else if (_canSeePlayer)
         {
-            _canSeePlayer = false; //The player is not in the radius or was but not anymore
+            _canSeePlayer = false; // El jugador ya no estA en el radio
         }
     }
 
 
-    //Gets for references in other scripts
+    /* GETTERS */
+
+    // RADIO
     public float getRadius()
     {
         return _radius;
     }
+
+    // ANGULO
     public float getAngle()
     {
         return _angle;
     }
+
+    // FLAG DE VISION DEL JUGADOR
     public bool getCanSeePlayer()
     {
         return _canSeePlayer;
     }
 
+    // REFERENCIA DEL JUGADOR
     public GameObject getplayerRef()
     {
         return _playerRef;
     }
+
 }

@@ -10,8 +10,6 @@ using UnityEngine.UI;
 public class NpcDialogController : MonoBehaviour
 {
 
-/*-----------------------------------------------------------------------------------------------------------------------------*/
-
     /* VARIABLES */
 
     private FileUtils _fileUtils = new FileUtils();
@@ -23,22 +21,17 @@ public class NpcDialogController : MonoBehaviour
     [SerializeField] private GameObject _dialogBoxGameobject;  // Referencia al GameObject de diAlogo de la UI
     // [SerializeField] private Utils _utils;  // Referencia al script de utils de la escena
 
-/*-----------------------------------------------------------------------------------------------------------------------------*/
-
     /* METODOS BASICOS */
 
-    // ACCION START
-    // Llamada a la acciOn Start
-    // La acciOn Start es llamada antes de actualizar el primer frame
+    // METODO START
+    // El mEtodo Start es llamada antes de actualizar el primer frame
     void Start()
     {
 
         _dialogBoxGameobject.SetActive(false);  // Desactivar cuadro de diAlogo
     }
 
-/*-----------------------------------------------------------------------------------------------------------------------------*/
-
-    /* METODOS DEL TRIGGER*/
+    /* METODOS DE TRIGGER*/
 
     // ACCION DE ENTRADA EN EL TRIGGER
     private void OnTriggerEnter(Collider other)
@@ -63,16 +56,11 @@ public class NpcDialogController : MonoBehaviour
         }
     }
 
-/*-----------------------------------------------------------------------------------------------------------------------------*/
-
     /* GETTERS Y SETTERS */
 
     // NUMERO DEL DIALOGO ACTUAL
     public int getCurrentDialogNumber(){ return _currentDialogNumber; }
     public void setCurrentDialogNumber(int newCurrentDialogNumber){ _currentDialogNumber = newCurrentDialogNumber; }
 
-/*-----------------------------------------------------------------------------------------------------------------------------*/
-
 }
 
-/*-----------------------------------------------------------------------------------------------------------------------------*/
