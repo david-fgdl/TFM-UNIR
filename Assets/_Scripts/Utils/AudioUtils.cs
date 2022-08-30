@@ -11,15 +11,13 @@ public class AudioUtils : MonoBehaviour
 
     /* VARIABLES */
 
-    private FileUtils _fileUtils;  // Referencia a FileUtils
+    private FileUtils _fileUtils = new FileUtils();  // Referencia a FileUtils
 
     /* METODOS BASICOS */
 
     // METODO AWAKE
     private void Awake()
     {
-        // RECOGIDA DE REFERENCIAS
-        _fileUtils = GetComponent<FileUtils>();
     }
 
     /* METODOS PARA EL MANEJO DEL AUDIO */

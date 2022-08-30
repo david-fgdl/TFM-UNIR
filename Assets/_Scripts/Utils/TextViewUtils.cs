@@ -14,7 +14,7 @@ public class TextViewUtils : MonoBehaviour
 
     /* VARIABLES */
 
-    private FileUtils _fileUtils;  // Referencia a FileUtils
+    private FileUtils _fileUtils = new FileUtils();  // Referencia a FileUtils
 
     //public TextViewUtils Instance;  // Instancia
 
@@ -27,9 +27,6 @@ public class TextViewUtils : MonoBehaviour
         // ASIGANACION DE INSTANCIA
         /*if (Instance != null && Instance != this) Destroy(this);
         else Instance = this;*/
-
-        // RECOGIDA DE REFERENCIAS
-        _fileUtils = GetComponent<FileUtils>();
 
     }
 

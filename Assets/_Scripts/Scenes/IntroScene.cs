@@ -15,7 +15,7 @@ public class IntroScene : MonoBehaviour
     [SerializeField] private GameObject _utilsGameObject;
 
     private AudioUtils _audioUtils;
-    private FileUtils _fileUtils;
+    private FileUtils _fileUtils = new FileUtils();
     private TextViewUtils _textViewUtils;
 
     [SerializeField] private GameObject _textOutput;
@@ -42,7 +42,6 @@ public class IntroScene : MonoBehaviour
         _utilsGameObject = GameObject.Find("KeepOnLoadGameObject");
 
         _audioUtils = _utilsGameObject.GetComponent<AudioUtils>();
-        _fileUtils = _utilsGameObject.GetComponent<FileUtils>();
         _textViewUtils = _utilsGameObject.GetComponent<TextViewUtils>();
 
     }

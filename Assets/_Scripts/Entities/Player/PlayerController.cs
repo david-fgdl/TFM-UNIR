@@ -1,7 +1,6 @@
 /* SCRIPT TO CONTROL PLAYER'S BEHAVIOUR */
 /*-----------------------------------------------------------------------------------------------------------------------------*/
 
-using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
@@ -125,26 +124,28 @@ public class PlayerController : MonoBehaviour
         // MOVIMIENTO BASICO
         Move();
         Look();
-        
 
+        if (_routine == null) return;
+        CheckEnemyDistance(transform.position, _enemyRef.transform.position);
+    } 
+
+    // METODO DE COMPROBACION DE DISTANCIA CON EL ENEMIGO
+    // Si está más cerca del damageRange, puede dañar al jugaddor.
+    private void CheckEnemyDistance(Vector3 playerPosition, Vector3 enemyPosition)
+    {
         // GESTION DE LA INTERACCION CON EL ENEMIGO
         if (Vector3.Distance(transform.position, _enemyRef.transform.position) < _damageRange && _canDamageCoroutine)
         {
             _canDamageCoroutine = false;
-            _routine = StartCoroutine(getDamageRoutine());
+            _routine = StartCoroutine(GetDamageRoutine());
             
         }
         else
-        {
-            if(!(Vector3.Distance(transform.position, _enemyRef.transform.position) < _damageRange))
-            {
-                StopCoroutine(_routine);
-                _canDamageCoroutine = true;
-            }
-            
+        { 
+            StopCoroutine(_routine);
+            _canDamageCoroutine = true; 
         }
-
-    } 
+    }
 
     /* EVENTOS DE ACTIVACION Y DESACTIVACION DEL SCRIPT */
 
@@ -307,20 +308,20 @@ public class PlayerController : MonoBehaviour
     }
 
     // RUTINA PARA CONTROLAR EL TIEMPO DE ESPERA TRAS RECIBIR DAÑO
-    private IEnumerator getDamageRoutine()
+    private IEnumerator GetDamageRoutine()
     {
         float delay = 1f;
         WaitForSeconds wait = new WaitForSeconds(delay);
         while (true)
         {
-            getDamage();
+            GetDamage();
             yield return wait;
            
         }
     }
 
     // METODO PARA GESTIONAR LA PERDIDA DE VIDA (SAL)
-    private void getDamage()
+    private void GetDamage()
     {
         if (currentSaltAmount > 0)
         {

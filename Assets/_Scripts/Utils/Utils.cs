@@ -6,7 +6,7 @@ using System;
 using TMPro;
 using UnityEngine;
 
-public class Utils : MonoBehaviour
+public class Utils
 {
 
     /* METODOS PARA EL MANEJO DE ARRAYS */
@@ -42,8 +42,6 @@ public class Utils : MonoBehaviour
         string time = DateTime.Now.ToString("h:mm:ss tt");
         Debug.Log($"{time} - Class [{className}], on method {methodName}: {msg}");
     }
-
-
 
 }
 
