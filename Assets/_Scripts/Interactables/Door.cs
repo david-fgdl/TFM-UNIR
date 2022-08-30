@@ -10,7 +10,7 @@ public class Door : MonoBehaviour {
     public string DoorName; // Nombre de la puerta
     public InventoryItemData UnlockObject; // Objeto que desbloquea la puerta
     public Puzzle.Type Type; // Tipo de puzzle
-    private GameObject _EnemyRef; //Referencia del enemigo
+    private GameObject _enemyRef; //Referencia del enemigo
     private bool _onlyOnce; //Switch para evitar muchas ejecuciones
     
 
@@ -19,31 +19,40 @@ public class Door : MonoBehaviour {
     public bool IsInverted = false; // Marca dónde están ubicadas las bisagras
     public float ClosedRotation; // Rotacion de la puerta cerrada
     public float OpenedRotation; // Rotacion de la puerta abierta
-    [SerializeField] private Transform _pivot; // Posición de la bisagra
-    
-    private float _currentRotation; // Rotación actual de la puerta
-    
-
     #endregion
 
+
+    [SerializeField] private Transform _pivot; // Posición de la bisagra
+    private float _currentRotation; // Rotación actual de la puerta
+
+    // VARIABLES DE SONIDO
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _doorUnlockedSound; // Sonido de Sound Effect from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=95884">Pixabay</a>
+    [SerializeField] private AudioClip _doorOpeningSound; // Sonido modificado de Sound Effect from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=43633">Pixabay</a>
+    [SerializeField] private AudioClip _doorClosingSound; // Sonido modificado de Sound Effect from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=43633">Pixabay</a>
 
     private void Start()
     {
         _currentRotation = ClosedRotation;
-        _EnemyRef = GameObject.FindGameObjectWithTag("Enemy");
+        _enemyRef = GameObject.FindGameObjectWithTag("Enemy");
         _onlyOnce = true;
     }
+
     private void Update()
     {
         //Si la puerta esta abierta y el enemigo pasa por mi lado y no acabo de ejecutar la corrutina o ya termino la corrutina
-        if (IsOpen && Vector3.Distance(transform.position, _EnemyRef.transform.position) < 3 && _onlyOnce)
+        if (IsOpen && Vector3.Distance(transform.position, _enemyRef.transform.position) < 3 && _onlyOnce)
         {
             _onlyOnce = false;
             StartCoroutine(OpenClose(IsOpen)); // Cierra la puerta
         }
     }
+
     IEnumerator OpenClose(bool isOpen) 
     {
+
+        if (!IsOpen) _audioSource.PlayOneShot(_doorOpeningSound);
+        else _audioSource.PlayOneShot(_doorClosingSound);
 
         if (!IsInverted) 
         { // Comprobamos si está invertida
@@ -93,11 +102,18 @@ public class Door : MonoBehaviour {
     public void ChangeDoorState() 
     {
         IsOpen = !IsOpen;
+
         _onlyOnce = true; //Lo ultimo de la corrutina terminó, el enemigo puede volver a cerrar si esta abierta
     }
 
     public void TryOpen(GameObject player) // Aqui se añaden los tipos de puerta
     {
+        if (Type != Puzzle.Type.None) _audioSource.PlayOneShot(_doorUnlockedSound);
+
+        Debug.Log($"Abriendo puerta tipo {Type}");
+
+
+        //? Estos ifs se puede cambiar por un switch case
         if (Type == Puzzle.Type.None) 
         { // Se puede abrir y cerrar la puerta sin mas
             StartCoroutine(OpenClose(IsOpen));
