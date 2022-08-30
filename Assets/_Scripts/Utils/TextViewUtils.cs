@@ -91,7 +91,7 @@ public class TextViewUtils : MonoBehaviour
         foreach (string line in text)
         {
 
-            GameObject.Find("SceneController").GetComponent<AudioSource>().Play();
+            GameObject.Find("SceneController").GetComponent<AudioSource>().Play();  // Linea puesta aquI temporalmente
 
             StartCoroutine(ShowTextOnScreen(textOutput, line, fadeInTime, onScreenDuration, fadeOutTime));
 
