@@ -11,8 +11,8 @@ public class PlayerController : MonoBehaviour
 
     // STATS DEL JUGADOR
     [Header("Player Stats")]
-    private int maxSaltAmount = 100;
-    private int currentSaltAmount;
+    private int _maxSaltAmount = 100;
+    private int _currentSaltAmount;
     public SaltPouch saltPouch;
     [SerializeField] private int _saltThrowDistance;
     [SerializeField] private int _amountSaltLostByDamage;
@@ -23,26 +23,26 @@ public class PlayerController : MonoBehaviour
 
     // SENSIBILIDAD DEL CURSOR
     [Header("Mouse sensitivity")]
-    [SerializeField] [Range(1, 100)] private float mouseSensivity = 50;
+    [SerializeField] [Range(1, 100)] private float _mouseSensivity = 50;
 
     // REFERENCIAS
 
-    [SerializeField] private Camera playerCamera;
+    [SerializeField] private Camera _playerCamera;
 
-    private CharacterController characterController;
-    private Animator animator;
+    private CharacterController _characterController;
+    private Animator _animator;
 
-    private Vector3 playerPreviousPosition;
+    private Vector3 _playerPreviousPosition;
 
     #region Player Input
 
-        private PlayerInput playerInput;
+        private PlayerInput _playerInput;
 
-        private InputAction moveAction;
-        private InputAction lookAction;
-        private InputAction grabAction;
-        private InputAction inventoryAction;
-        private InputAction throwAction;
+        private InputAction _moveAction;
+        private InputAction _lookAction;
+        private InputAction _grabAction;
+        private InputAction _inventoryAction;
+        private InputAction _throwAction;
 
     #endregion
 
@@ -50,9 +50,9 @@ public class PlayerController : MonoBehaviour
 
         [Header("Audio Clips")]
 
-        [SerializeField] private AudioClip breathingSound;
-        [SerializeField] private AudioClip walkingSound;
-        [SerializeField] private AudioClip standartMusic;
+        [SerializeField] private AudioClip _breathingSound;
+        [SerializeField] private AudioClip _walkingSound;
+        [SerializeField] private AudioClip _standardMusic;
 
     #endregion
 
@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
 
     // VARIABLES AUXILIARES
 
-    private float xRotation;  // Variable para conocer la posiciOn de la cAmara en el eje x
+    private float _xRotation;  // Variable para conocer la posiciOn de la cAmara en el eje x
 
     private string _selectableTag = "Selectable";
     private Transform _selection;
@@ -81,18 +81,18 @@ public class PlayerController : MonoBehaviour
 
         // ESTABLECER LAS REFERENCIAS
 
-        playerInput = GetComponent<PlayerInput>();
+        _playerInput = GetComponent<PlayerInput>();
 
-        moveAction = playerInput.actions["Move"];
-        lookAction = playerInput.actions["Look"];
-        grabAction = playerInput.actions["Grab"];
-        inventoryAction = playerInput.actions["P_Inventory"];
-        throwAction = playerInput.actions["Fire"];
+        _moveAction = _playerInput.actions["Move"];
+        _lookAction = _playerInput.actions["Look"];
+        _grabAction = _playerInput.actions["Grab"];
+        _inventoryAction = _playerInput.actions["P_Inventory"];
+        _throwAction = _playerInput.actions["Fire"];
 
-        animator = GetComponent<Animator>();
+        _animator = GetComponent<Animator>();
 
-        characterController = GetComponent<CharacterController>();
-        if (characterController==null) Debug.Log("CHARACTER CONTROLLER ES NULL");
+        _characterController = GetComponent<CharacterController>();
+        if (_characterController==null) Debug.Log("CHARACTER CONTROLLER ES NULL");
 
     }
 
@@ -101,11 +101,11 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
 
-        playerPreviousPosition = transform.position;  // La posiciOn de comienzo se guarda como la posiciOn anterior
+        _playerPreviousPosition = transform.position;  // La posiciOn de comienzo se guarda como la posiciOn anterior
 
         // FIJAR VALORES DE SAL
-        currentSaltAmount = maxSaltAmount;
-        saltPouch.SetMaxSaltAmount(maxSaltAmount);
+        _currentSaltAmount = _maxSaltAmount;
+        saltPouch.SetMaxSaltAmount(_maxSaltAmount);
 
         // FIJAR REFERENCIAS DEL ENEMIGO
         _enemyRef = GameObject.FindGameObjectWithTag("Enemy");
@@ -150,20 +150,20 @@ public class PlayerController : MonoBehaviour
     // Es llamado cuando se activa el script
     private void OnEnable()
     {
-        playerInput.enabled = true;
-        grabAction.performed += Grab;
-        inventoryAction.performed += Inventory;
-        throwAction.performed += ThrowSalt;
+        _playerInput.enabled = true;
+        _grabAction.performed += Grab;
+        _inventoryAction.performed += Inventory;
+        _throwAction.performed += ThrowSalt;
     }
 
     // METODO DE DESACTIVACION
     // Es llamado cuando se desactiva el script
     private void OnDisable()
     {
-        playerInput.enabled = false;
-        grabAction.performed -= Grab;
-        inventoryAction.performed -= Inventory;
-        throwAction.performed -= ThrowSalt;
+        _playerInput.enabled = false;
+        _grabAction.performed -= Grab;
+        _inventoryAction.performed -= Inventory;
+        _throwAction.performed -= ThrowSalt;
     }
 
     /* METODOS DE MOVIMIENTO*/
@@ -172,15 +172,15 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
 
-        Vector3 moveVector = transform.right * moveAction.ReadValue<Vector2>().x + transform.forward * moveAction.ReadValue<Vector2>().y;
-        characterController.Move(moveVector * Time.deltaTime * _speed);
+        Vector3 moveVector = transform.right * _moveAction.ReadValue<Vector2>().x + transform.forward * _moveAction.ReadValue<Vector2>().y;
+        _characterController.Move(moveVector * Time.deltaTime * _speed);
 
         // GESTOR DE ANIMACIONES
-        if (Vector3.Distance(playerPreviousPosition, gameObject.transform.position) <= 0.05f)  animator.SetBool("is_walking", false);
-        else  animator.SetBool("is_walking", true);
+        if (Vector3.Distance(_playerPreviousPosition, gameObject.transform.position) <= 0.05f)  _animator.SetBool("is_walking", false);
+        else  _animator.SetBool("is_walking", true);
 
         // GUARDAR LA POSICION ACTUAL COMO LA POSICION ANTERIOR
-        playerPreviousPosition = gameObject.transform.position;
+        _playerPreviousPosition = gameObject.transform.position;
 
 
     }
@@ -190,15 +190,15 @@ public class PlayerController : MonoBehaviour
     {
 
         // OBTENER VALORES DELTA DEL RATON
-        float mouseX = lookAction.ReadValue<Vector2>().x * mouseSensivity * Time.deltaTime;
-        float mouseY = lookAction.ReadValue<Vector2>().y * mouseSensivity * Time.deltaTime;
+        float mouseX = _lookAction.ReadValue<Vector2>().x * _mouseSensivity * Time.deltaTime;
+        float mouseY = _lookAction.ReadValue<Vector2>().y * _mouseSensivity * Time.deltaTime;
 
         // ESTABLECER Y DELIMITAR LA ROTACION EN EL EJE X
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90, 90);
+        _xRotation -= mouseY;
+        _xRotation = Mathf.Clamp(_xRotation, -90, 90);
 
         // ESTABLECER LA ROTACION EN EL EJE Y
-        playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
+        _playerCamera.transform.localRotation = Quaternion.Euler(_xRotation, 0, 0);
 
         // ROTAR EN EL EJE X
         this.transform.Rotate(Vector3.up * mouseX);
@@ -218,7 +218,7 @@ public class PlayerController : MonoBehaviour
         
         // SELECCION DEL OBJETO MEDIANTE RAYCAST
 
-        var ray = playerCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+        var ray = _playerCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, 10f)) 
@@ -247,13 +247,13 @@ public class PlayerController : MonoBehaviour
     // METODO PARA AGARRAR OBJETOS
     public void Grab(InputAction.CallbackContext context)
     {
-        if (context.started && !animator.GetBool("can_grab")) 
+        if (context.started && !_animator.GetBool("can_grab")) 
         {
 
             // CHEQUEO Y GESTION DE ANIMACIONES
-            animator.SetBool("can_grab", true);
+            _animator.SetBool("can_grab", true);
             CheckObject();
-            animator.SetBool("can_grab", false);
+            _animator.SetBool("can_grab", false);
 
             // EL OBJETO VA AL INVENTARIO (OTRO SCRIPT)
             // EL OBJETO SE DESTRUYE PERO ES ALMACENADO EN EL ARRAY DEL INVENTARIO
@@ -288,11 +288,11 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Salt throw!");
         var saltAmount = 10;
 
-        if (currentSaltAmount > 0) {
+        if (_currentSaltAmount > 0) {
 
             // FIJAR CANTIDAD DE SAL
-            currentSaltAmount -= saltAmount;
-            saltPouch.SetSaltAmount(currentSaltAmount);
+            _currentSaltAmount -= saltAmount;
+            saltPouch.SetSaltAmount(_currentSaltAmount);
 
             // CONTROLAR DISPARO
             if (Vector3.Distance(transform.position, _enemyRef.transform.position) < _saltThrowDistance)
@@ -320,11 +320,11 @@ public class PlayerController : MonoBehaviour
     // METODO PARA GESTIONAR LA PERDIDA DE VIDA (SAL)
     private void GetDamage()
     {
-        if (currentSaltAmount > 0)
+        if (_currentSaltAmount > 0)
         {
 
-            currentSaltAmount -= _amountSaltLostByDamage;
-            saltPouch.SetSaltAmount(currentSaltAmount);
+            _currentSaltAmount -= _amountSaltLostByDamage;
+            saltPouch.SetSaltAmount(_currentSaltAmount);
 
             _enemyHealthRef.LoseHP(_damageByDamage);  // Si el enemigo nos daña, tambiEn resulta dañado por el contacto con la sal.
 
