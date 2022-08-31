@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
     private string _selectableTag = "Selectable";
     private Transform _selection;
     private bool _canDamageCoroutine = true;
-    Coroutine _routine;
+    private Coroutine _routine;
 
     /* METODOS BASICOS */
 
