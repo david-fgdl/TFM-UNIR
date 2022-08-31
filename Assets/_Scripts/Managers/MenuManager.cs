@@ -1,9 +1,15 @@
+/* SCRIPT PARA GESTIONAR LOS CAMBIOS ENTRE MENUS */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {
+
+    /* VARIABLES */
+
+    // REFERENCIAS
     [SerializeField] private GameObject _menuPanel, 
                                         _settingsPanel, 
                                         _gameOverPanel, 
@@ -11,9 +17,18 @@ public class MenuManager : MonoBehaviour
                                         _inventoryPanel, 
                                         _gameUIPanel,
                                         _loadingPanel;
+
+    /* METODOS BASICOS */
+
+    // METODO AWAKE
     private void Awake()
     {
         GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
+    }
+
+    void OnDestroy()
+    {
+        GameManager.OnGameStateChanged -= GameManagerOnGameStateChanged;    
     }
 
     private void GameManagerOnGameStateChanged(GameState state) 
@@ -32,8 +47,5 @@ public class MenuManager : MonoBehaviour
         _gameUIPanel.SetActive(state == GameState.Game);
     }
 
-    void OnDestroy()
-    {
-        GameManager.OnGameStateChanged -= GameManagerOnGameStateChanged;    
-    }
+    
 }
