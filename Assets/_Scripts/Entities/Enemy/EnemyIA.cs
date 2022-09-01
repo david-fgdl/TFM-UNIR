@@ -29,7 +29,7 @@ public class EnemyIA : MonoBehaviour
     
     // VARIABLES AUXILIARES
     private int _waypointIndex; //  Punto al que va el enemigo
-    private Vector3 targetPosition; // Posicion a la que el enemigo debe ir
+    private Vector3 _targetPosition; // Posicion a la que el enemigo debe ir
 
     /* METODOS BASICOS */
 
@@ -77,7 +77,7 @@ public class EnemyIA : MonoBehaviour
     // METODO DE PATRULLA
     private void Patrolling()
     {
-        if (Vector3.Distance(transform.position, targetPosition)<1)
+        if (Vector3.Distance(transform.position, _targetPosition)<1)
         {
             IterateWayPointIndex();
             UpdateDestination();
@@ -108,8 +108,8 @@ public class EnemyIA : MonoBehaviour
     private void UpdateDestination()
     {
         // ACTUALIZAR DESTINO CON LOS WAYPOINTS
-        targetPosition = _waypoints[_waypointIndex].position;
-        _navMeshAgent.destination = targetPosition;
+        _targetPosition = _waypoints[_waypointIndex].position;
+        _navMeshAgent.destination = _targetPosition;
     }
 
     // RUTINA PARA CONTROLAR EL RITMO DE CHEQUEO DEL FOV DEL ENEMIGO
@@ -169,25 +169,25 @@ public class EnemyIA : MonoBehaviour
     /* GETTERS */
 
     // RADIO
-    public float getRadius()
+    public float GetRadius()
     {
         return _radius;
     }
 
     // ANGULO
-    public float getAngle()
+    public float GetAngle()
     {
         return _angle;
     }
 
     // FLAG DE VISION DEL JUGADOR
-    public bool getCanSeePlayer()
+    public bool GetCanSeePlayer()
     {
         return _canSeePlayer;
     }
 
     // REFERENCIA DEL JUGADOR
-    public GameObject getplayerRef()
+    public GameObject GetplayerRef()
     {
         return _playerRef;
     }

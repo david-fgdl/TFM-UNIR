@@ -63,7 +63,7 @@ public class EnemyHealthSystem : MonoBehaviour
     {
         Debug.Log("Enemy knock out");
         _navMeshAgent.speed = 0;
-        StartCoroutine(revive());
+        StartCoroutine(Revive());
     }
 
     // METODO PARA REDUCIR LA VELOCIDAD DEL ENEMIGO SI ESTE ES DAÑADO
