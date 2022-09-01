@@ -60,6 +60,7 @@ public class EnemyIA : MonoBehaviour
     // Update es llamado una vez por frame
     private void Update()
     {
+        _isChasing = _canSeePlayer;
         //  DETERMINAR LA POSICION DEL ENEMIGO EN FUNCION DE SU ESTADO
         if (_isChasing)
         {
