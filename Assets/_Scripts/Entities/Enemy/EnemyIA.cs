@@ -117,11 +117,10 @@ public class EnemyIA : MonoBehaviour
     {
         // CADA 0,2 SEGUNDOS EL ENEMIGO CHEQUEA SU FOV
         float delay = 0.2f;
-        WaitForSeconds wait = new WaitForSeconds(delay);
 
         while (true)
         {
-            yield return wait;
+            yield return new WaitForSeconds(delay);
             FOVCheck();
         }
 

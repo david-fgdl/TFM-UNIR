@@ -16,18 +16,18 @@ public class EnemyFOVEditor : Editor
     {
         EnemyIA Enemy = (EnemyIA)target;
         Handles.color = Color.white;
-        Handles.DrawWireArc(Enemy.transform.position, Vector3.up, Vector3.forward, 360, Enemy.getRadius());
-        Vector3 viewAngle1 = DirectionFromAngle(Enemy.transform.eulerAngles.y, -Enemy.getAngle() / 2);
-        Vector3 viewAngle2 = DirectionFromAngle(Enemy.transform.eulerAngles.y, Enemy.getAngle() / 2);
+        Handles.DrawWireArc(Enemy.transform.position, Vector3.up, Vector3.forward, 360, Enemy.GetRadius());
+        Vector3 viewAngle1 = DirectionFromAngle(Enemy.transform.eulerAngles.y, -Enemy.GetAngle() / 2);
+        Vector3 viewAngle2 = DirectionFromAngle(Enemy.transform.eulerAngles.y, Enemy.GetAngle() / 2);
 
         Handles.color = Color.yellow;
-        Handles.DrawLine(Enemy.transform.position, Enemy.transform.position + viewAngle1 * Enemy.getRadius());
-        Handles.DrawLine(Enemy.transform.position, Enemy.transform.position + viewAngle2 * Enemy.getRadius());
+        Handles.DrawLine(Enemy.transform.position, Enemy.transform.position + viewAngle1 * Enemy.GetRadius());
+        Handles.DrawLine(Enemy.transform.position, Enemy.transform.position + viewAngle2 * Enemy.GetRadius());
 
-        if (Enemy.getCanSeePlayer())
+        if (Enemy.GetCanSeePlayer())
         {
             Handles.color = Color.green;
-            Handles.DrawLine(Enemy.transform.position, Enemy.getplayerRef().transform.position);
+            Handles.DrawLine(Enemy.transform.position, Enemy.GetPlayerRef().transform.position);
         }
     }
 

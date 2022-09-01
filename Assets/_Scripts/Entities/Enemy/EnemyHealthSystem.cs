@@ -33,7 +33,7 @@ public class EnemyHealthSystem : MonoBehaviour
     // METODO PARA INCREMENTAR LA SALUD DEL ENEMIGO EN UN VALOR "am"
     public void GainHP(int amount)
     {
-        int newHP = _HP + am;
+        int newHP = _HP + amount;
         if (newHP > _maxHP)
         {
             newHP = _maxHP;
@@ -44,7 +44,7 @@ public class EnemyHealthSystem : MonoBehaviour
     // METODO PARA REDUCIR LA SALUD DEL ENEMIGO EN UN VALOR "am"
     public void LoseHP(int amount)
     {
-        int newHP = _HP - am;
+        int newHP = _HP - amount;
         if (newHP <= 0)
         {
             _HP = 0;
@@ -78,8 +78,7 @@ public class EnemyHealthSystem : MonoBehaviour
     private IEnumerator Revive()
     {
         float delay = 3f;
-        WaitForSeconds wait = new WaitForSeconds(delay);
-        yield return wait;
+        yield return new WaitForSeconds(delay);;
         GainHP(100);
         _navMeshAgent.speed = 3.5f;
     }
@@ -88,8 +87,7 @@ public class EnemyHealthSystem : MonoBehaviour
     private IEnumerator StopHurt()
     {
         float delay = 1f;
-        WaitForSeconds wait = new WaitForSeconds(delay);
-        yield return wait;
+        yield return new WaitForSeconds(delay);
         _navMeshAgent.speed = 3.5f;
     }
 
