@@ -75,7 +75,7 @@ public class EnemyHealthSystem : MonoBehaviour
     }
 
     // RUTINA PARA GESTIONAR EL TIEMPO DE RECUPERACION DEL ENEMIGO TRAS SER NOQUEADO
-    private IEnumerator revive()
+    private IEnumerator Revive()
     {
         float delay = 3f;
         WaitForSeconds wait = new WaitForSeconds(delay);
