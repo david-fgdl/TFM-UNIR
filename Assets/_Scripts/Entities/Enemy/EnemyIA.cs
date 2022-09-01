@@ -79,13 +79,13 @@ public class EnemyIA : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, _targetPosition)<1)
         {
-            IterateWayPointIndex();
+            IterateWaypointIndex();
             UpdateDestination();
         }
     }
 
     // METODO AUXILIAR DE PATRULLA: ITERAR INDICES
-    private void IterateWayPointIndex()
+    private void IterateWaypointIndex()
     {
         // SI EL ENEMIGO YA HA RECORRIDO TODOS LOS PUNTOS RESETEAR. SI NO, AVANZAR HASTA EL SIGUIENTE
         _waypointIndex++;
@@ -122,13 +122,13 @@ public class EnemyIA : MonoBehaviour
         while (true)
         {
             yield return wait;
-            FieldOfViewCheck();
+            FOVCheck();
         }
 
     }
 
     // METODO PARA CHEQUEAR EL FOV DEL ENEMIGO
-    private void FieldOfViewCheck()
+    private void FOVCheck()
     {
         Collider[] rangeChecks = Physics.OverlapSphere(transform.position, _radius, _targetMask);
           
@@ -187,7 +187,7 @@ public class EnemyIA : MonoBehaviour
     }
 
     // REFERENCIA DEL JUGADOR
-    public GameObject GetplayerRef()
+    public GameObject GetPlayerRef()
     {
         return _playerRef;
     }
