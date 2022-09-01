@@ -48,7 +48,7 @@ public class Door : MonoBehaviour {
         }
     }
 
-    IEnumerator OpenClose(bool isOpen) 
+    private IEnumerator OpenClose(bool isOpen) 
     {
 
         if (!IsOpen) _audioSource.PlayOneShot(_doorOpeningSound);

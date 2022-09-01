@@ -25,7 +25,7 @@ public class NPCDialogController : MonoBehaviour
 
     // METODO START
     // El mEtodo Start es llamada antes de actualizar el primer frame
-    void Start()
+    private void Start()
     {
 
         _dialogBoxGameobject.SetActive(false);  // Desactivar cuadro de diAlogo
