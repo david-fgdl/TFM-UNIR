@@ -20,7 +20,7 @@ public class NPCController : MonoBehaviour
 
     // UPDATE ACTION
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
 
         // NPC is constantly looking at the player (in the y axis only) - REFERENCE: https://www.youtube.com/watch?v=dp3lZUDij6Y
