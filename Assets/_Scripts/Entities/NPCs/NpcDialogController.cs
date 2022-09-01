@@ -59,8 +59,8 @@ public class NPCDialogController : MonoBehaviour
     /* GETTERS Y SETTERS */
 
     // NUMERO DEL DIALOGO ACTUAL
-    public int getCurrentDialogNumber(){ return _currentDialogNumber; }
-    public void setCurrentDialogNumber(int newCurrentDialogNumber){ _currentDialogNumber = newCurrentDialogNumber; }
+    public int GetCurrentDialogNumber(){ return _currentDialogNumber; }
+    public void SetCurrentDialogNumber(int newCurrentDialogNumber){ _currentDialogNumber = newCurrentDialogNumber; }
 
 }
 
