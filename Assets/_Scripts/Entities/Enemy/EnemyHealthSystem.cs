@@ -22,7 +22,7 @@ public class EnemyHealthSystem : MonoBehaviour
     
     // METODO START
     // Start es llamado una vez antes del primer frame
-    void Start()
+    private void Start()
     {
         _HP = _maxHP;
         _navMeshAgent = GetComponent<NavMeshAgent>();
