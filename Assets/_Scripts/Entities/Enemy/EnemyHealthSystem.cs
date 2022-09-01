@@ -11,9 +11,9 @@ public class EnemyHealthSystem : MonoBehaviour
 
     /* VARIABLES */
 
-    // VALORES DE SALUDO
+    // VALORES DE SALUD
     private int _HP;  // Puntos de salud actual
-    [SerializeField] private int _MaxHP;  // Puntos de salud mAxima
+    [SerializeField] private int _maxHP;  // Puntos de salud maxima
 
     // REFERENCIAS
     private NavMeshAgent _navMeshAgent;
@@ -24,25 +24,25 @@ public class EnemyHealthSystem : MonoBehaviour
     // Start es llamado una vez antes del primer frame
     void Start()
     {
-        _HP = _MaxHP;
+        _HP = _maxHP;
         _navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
     /* METODOS PARA REGULAR LA SALUD DEL ENEMIGO */
 
     // METODO PARA INCREMENTAR LA SALUD DEL ENEMIGO EN UN VALOR "am"
-    public void GainHP(int am)
+    public void GainHP(int amount)
     {
         int newHP = _HP + am;
-        if (newHP > _MaxHP)
+        if (newHP > _maxHP)
         {
-            newHP = _MaxHP;
+            newHP = _maxHP;
         }
         _HP = newHP;
     }
 
     // METODO PARA REDUCIR LA SALUD DEL ENEMIGO EN UN VALOR "am"
-    public void LoseHP(int am)
+    public void LoseHP(int amount)
     {
         int newHP = _HP - am;
         if (newHP <= 0)
