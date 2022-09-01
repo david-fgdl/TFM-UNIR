@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-public class DragObject : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IInitializePotentialDragHandler, IDropHandler
+public class DragObject : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IInitializePotentialDragHandler, IDropHandler //! SIN USO DE MOMENTO
 {
     public static bool MouseButtonReleased;
     private Vector2 _mousePosition;
