@@ -5590,7 +5590,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef0ffd5494c7cbb4192972a6c77ba1ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isChasing: 0
   _radius: 10
   _angle: 83
   _targetMask:
@@ -5608,6 +5607,7 @@ MonoBehaviour:
   - {fileID: 2096615547}
   - {fileID: 779096341}
   - {fileID: 1211581505}
+  _isChasing: 0
 --- !u!195 &390789397
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5642,7 +5642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0f922d5ee6cefe42bf2b46d00f39039, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _MaxHP: 100
+  _maxHP: 0
 --- !u!1001 &400285954
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22754,6 +22754,10 @@ PrefabInstance:
       propertyPath: _damageRange
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 1663468785882358368, guid: 10669cfc4c4a88043af4e8b377a21ad3, type: 3}
+      propertyPath: _playerCamera
+      value: 
+      objectReference: {fileID: 868718354}
     - target: {fileID: 1663468785882358368, guid: 10669cfc4c4a88043af4e8b377a21ad3, type: 3}
       propertyPath: _damageByDamage
       value: 5
