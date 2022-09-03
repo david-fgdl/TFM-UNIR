@@ -26,7 +26,7 @@ public class MenuManager : MonoBehaviour
         GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
     }
 
-    void OnDestroy()
+    private void OnDestroy()
     {
         GameManager.OnGameStateChanged -= GameManagerOnGameStateChanged;    
     }
