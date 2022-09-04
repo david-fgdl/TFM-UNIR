@@ -1,3 +1,6 @@
+
+/* SCRIPT PARA CONTROLAR EL COMPORTAMIENTO DEL ENEMIGO */
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,21 +9,30 @@ using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
+
+    /* VARIABLES */
+
+    // INSTANCIAS
     public static GameManager Instance;
+    public GameState State;  // Estado del juego
 
-    public GameState State;
-
+    // EVENTOS
     public static event Action<GameState> OnGameStateChanged;
 
+    // REFERENCIAS
     [SerializeField] private PlayerInput _playerInput;
     [SerializeField] private GameObject _loadingScreen;
 
+    /* METODOS BASICOS*/
+
+    // METODO AWAKE
     private void Awake()
     {
         if (Instance != null && Instance != this) Destroy(this);
         else Instance = this;
     }
 
+    // METODO START
     private void Start()
     {
         ChangeState(GameState.Menu);
@@ -33,6 +45,9 @@ public class GameManager : MonoBehaviour
         // Debug.Log(GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>().currentActionMap);
     }
 
+    /* METODOS PROPIPOS DEL GAME MANAGER */
+
+    // METODO PARA CAMBIAR EL ESTADO DEL JUEGO
     public void ChangeState(GameState newState) 
     {
         State = newState;
@@ -69,21 +84,28 @@ public class GameManager : MonoBehaviour
         OnGameStateChanged?.Invoke(newState); //El ? chequea si es null
     }
 
+    // METODO PARA GESTIONAR LAS PAUSAS DEL JUEGO
     private void PauseOrResume()
     {
+
+        // ESTAMOS EN UN MENU
         if (State != GameState.Game)
-        { // We're on a menu
+        {
             Time.timeScale = 0f;
             _playerInput.SwitchCurrentActionMap("UI");
             Cursor.lockState = CursorLockMode.None;
         }
+
+        // ESTAMOS EN EL JUEGO
         else
-        { // We're in game
+        {
             Time.timeScale = 1f;
             _playerInput.SwitchCurrentActionMap("Player");
             Cursor.lockState = CursorLockMode.Locked;
         }
     }
+
+    /* MANEJADORAS */
 
     private void HandleMenu() {
         // Menu principal
@@ -120,6 +142,7 @@ public class GameManager : MonoBehaviour
 
 }
 
+/* LISTA DE ESTADOS DEL JUEGO */
 public enum GameState { // Podemos añadir estados dependiendo de los hitos conseguidos en la historia
     Menu,
     Game,
