@@ -2382,7 +2382,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 074012179069b0d43919956507dc0450, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dialogBoxGameobject: {fileID: 1465769989}
 --- !u!82 &201151718
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2620,7 +2619,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be323a250575ebe4b9532a1941e49148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 1900657744653710916}
 --- !u!65 &205950150
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5642,7 +5640,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0f922d5ee6cefe42bf2b46d00f39039, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHP: 0
+  _maxHP: 100
 --- !u!1001 &400285954
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9654,7 +9652,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be323a250575ebe4b9532a1941e49148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 1900657744653710916}
 --- !u!65 &978084913
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12780,7 +12777,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 074012179069b0d43919956507dc0450, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dialogBoxGameobject: {fileID: 1465769989}
 --- !u!65 &1192466402
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14963,7 +14959,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be323a250575ebe4b9532a1941e49148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 1900657744653710916}
 --- !u!1 &1444664070 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6582946875733334622, guid: 86e1f80ff59d3ea40b9c4350be1f9c6a, type: 3}
@@ -15922,7 +15917,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be323a250575ebe4b9532a1941e49148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 1900657744653710916}
 --- !u!65 &1492880933
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16807,7 +16801,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 074012179069b0d43919956507dc0450, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dialogBoxGameobject: {fileID: 1465769989}
 --- !u!65 &1569948352
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18756,7 +18749,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 074012179069b0d43919956507dc0450, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dialogBoxGameobject: {fileID: 1465769989}
 --- !u!65 &1804482015
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22772,7 +22764,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1663468785882358368, guid: 10669cfc4c4a88043af4e8b377a21ad3, type: 3}
       propertyPath: _damageByThrownSalt
-      value: 30
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 1663468785882358368, guid: 10669cfc4c4a88043af4e8b377a21ad3, type: 3}
       propertyPath: _amountSaltLostByDamage
@@ -22878,11 +22870,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1090790107747909744, guid: cae29166f05e8ed419e0f397334bb38b, type: 3}
   m_PrefabInstance: {fileID: 1090790107420175786}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1900657744653710916 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1663468785882358300, guid: 10669cfc4c4a88043af4e8b377a21ad3, type: 3}
-  m_PrefabInstance: {fileID: 969868392416285784}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1900657744653710917 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1663468785882358301, guid: 10669cfc4c4a88043af4e8b377a21ad3, type: 3}
@@ -22893,7 +22880,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1663468785882358370, guid: 10669cfc4c4a88043af4e8b377a21ad3, type: 3}
   m_PrefabInstance: {fileID: 969868392416285784}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1900657744653710916}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}

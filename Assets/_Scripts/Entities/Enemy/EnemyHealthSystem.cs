@@ -14,7 +14,8 @@ public class EnemyHealthSystem : MonoBehaviour
     // VALORES DE SALUD
     private int _HP;  // Puntos de salud actual
     [SerializeField] private int _maxHP;  // Puntos de salud maxima
-
+    private bool siendoHerido = false;
+    private bool reviviendo = false;
     // REFERENCIAS
     private NavMeshAgent _navMeshAgent;
 
@@ -48,12 +49,20 @@ public class EnemyHealthSystem : MonoBehaviour
         if (newHP <= 0)
         {
             _HP = 0;
-            Death();
+            if (!reviviendo)
+            {
+                Death();
+            }
+            
         }
         else
         {
-            _HP = newHP;
-            Hurt();
+            if (!siendoHerido && !reviviendo)
+            {
+                _HP = newHP;
+                Hurt();
+            }
+            
         }
 
     }
@@ -61,16 +70,20 @@ public class EnemyHealthSystem : MonoBehaviour
     // METODO PARA BLOQUEAR AL ENEMIGO SI ESTE ES NOQUEADO
     public void Death()
     {
+        reviviendo = true;
         Debug.Log("Enemy knock out");
         _navMeshAgent.speed = 0;
+        StopAllCoroutines();
         StartCoroutine(Revive());
     }
 
     // METODO PARA REDUCIR LA VELOCIDAD DEL ENEMIGO SI ESTE ES DAÑADO
     public void Hurt()
     {
+        siendoHerido = true;
         Debug.Log("Enemy got hurt");
         _navMeshAgent.speed = 1.5f;
+        StopAllCoroutines();
         StartCoroutine(StopHurt());
     }
 
@@ -81,6 +94,7 @@ public class EnemyHealthSystem : MonoBehaviour
         yield return new WaitForSeconds(delay);;
         GainHP(100);
         _navMeshAgent.speed = 3.5f;
+        reviviendo = false;
     }
 
     // RUTINA PARA GESTIONAR EL TIEMPO DE RECUPERACION DEL ENEMIGO TRAS SER DAÑADO
@@ -89,6 +103,7 @@ public class EnemyHealthSystem : MonoBehaviour
         float delay = 1f;
         yield return new WaitForSeconds(delay);
         _navMeshAgent.speed = 3.5f;
+        siendoHerido = false;
     }
 
 

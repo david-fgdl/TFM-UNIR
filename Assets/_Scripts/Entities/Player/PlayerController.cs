@@ -3,6 +3,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -122,8 +123,8 @@ public class PlayerController : MonoBehaviour
         Move();
         Look();
 
-        if (_routine == null) return;
         CheckEnemyDistance(transform.position, _enemyRef.transform.position);
+        
     } 
 
     // METODO DE COMPROBACION DE DISTANCIA CON EL ENEMIGO
@@ -131,16 +132,22 @@ public class PlayerController : MonoBehaviour
     private void CheckEnemyDistance(Vector3 playerPosition, Vector3 enemyPosition)
     {
         // GESTION DE LA INTERACCION CON EL ENEMIGO
-        if (Vector3.Distance(transform.position, _enemyRef.transform.position) < _damageRange && _canDamageCoroutine)
+        if (Vector3.Distance(playerPosition, enemyPosition) < _damageRange && _canDamageCoroutine)
         {
             _canDamageCoroutine = false;
             _routine = StartCoroutine(GetDamageRoutine());
+            Debug.Log("Debo comenzar a recibir daño");
             
         }
         else
-        { 
-            StopCoroutine(_routine);
-            _canDamageCoroutine = true; 
+        {
+            if (_routine == null) return;
+            if(!(Vector3.Distance(playerPosition, enemyPosition) < _damageRange))
+            {
+                StopCoroutine(_routine);
+                _canDamageCoroutine = true;
+            }
+            
         }
     }
 
