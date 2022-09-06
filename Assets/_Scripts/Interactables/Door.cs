@@ -130,7 +130,6 @@ public class Door : MonoBehaviour {
     {
 
         if (Type != Puzzle.Type.None) _audioSource.PlayOneShot(_doorUnlockedSound);
-        Debug.Log($"Abriendo puerta tipo {Type}");
 
 
         if (Type == Puzzle.Type.None)  // Se puede abrir y cerrar la puerta sin mas
@@ -139,13 +138,18 @@ public class Door : MonoBehaviour {
         } else if (Type == Puzzle.Type.Object) // Se necesita un objeto en el inventario para abrir
         {
             InventoryItem item;
-            if (CheckIfPlayerHasObject(out item)) 
-            {
-                InventorySystem.Instance.Remove(item.Data);
-            }
+            if (CheckIfPlayerHasObject(out item)) InventorySystem.Instance.Remove(item.Data);
+            else PlayerDialog.Instance.ShowDialog($"La puerta está bloqueada, pero parece tener una cerradura...");
+
+
         } else if (Type == Puzzle.Type.OneWay)  // Por definir
         {
-            if (player.transform.position.x > _pivot.position.x) ChangeDoorType(Puzzle.Type.None);
+            if (player.transform.position.x > _pivot.position.x) 
+            {
+                ChangeDoorType(Puzzle.Type.None);
+                PlayerDialog.Instance.ShowDialog($"Puerta desbloqueada");
+            }
+            else PlayerDialog.Instance.ShowDialog($"La puerta está cerrada por este lado");
         }
     }
 
@@ -161,6 +165,7 @@ public class Door : MonoBehaviour {
             {
                 hasKey = true; 
                 item = invItem;
+                PlayerDialog.Instance.ShowDialog($"Puerta abierta con {item.Data.DisplayName}");
                 ChangeDoorType(Puzzle.Type.None);
                 break;
             }

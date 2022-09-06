@@ -101,8 +101,6 @@ public class Inventory : MonoBehaviour
             && InventorySystem.Instance.FindById("salt_pinch")!=null) 
         {
 
-            // Debug.Log("Receta buena");
-
             // SE ELIMINAN AMBOS INGREDIENTES
             InventorySystem.Instance.RemoveById("dinning_room_key");
             InventorySystem.Instance.RemoveById("salt_pinch");
@@ -123,7 +121,7 @@ public class Inventory : MonoBehaviour
                 Debug.Log("Aqui tienes");
                 Vector3 playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
                 Instantiate(newItem, new Vector3(playerPosition.x, playerPosition.y, playerPosition.z + 2), newItem.transform.rotation);
-                
+                PlayerDialog.Instance.ShowDialog($"¡Objeto creado! \n {newItem.GetComponent<ItemObject>().ReferenceItem.DisplayName}");
             }
 
             _crafted = true;
