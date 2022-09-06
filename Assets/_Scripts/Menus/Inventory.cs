@@ -121,7 +121,9 @@ public class Inventory : MonoBehaviour
                 Debug.Log("Aqui tienes");
                 Vector3 playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
                 Instantiate(newItem, new Vector3(playerPosition.x, playerPosition.y, playerPosition.z + 2), newItem.transform.rotation);
-                PlayerDialog.Instance.ShowDialog($"¡Objeto creado! \n {newItem.GetComponent<ItemObject>().ReferenceItem.DisplayName}");
+
+                PlayerDialog.Instance.ShowDialog($"Item created! \n {newItem.GetComponent<ItemObject>().ReferenceItem.DisplayName}");  // Mensaje de Feedback
+
             }
 
             _crafted = true;

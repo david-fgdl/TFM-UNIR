@@ -139,7 +139,7 @@ public class Door : MonoBehaviour {
         {
             InventoryItem item;
             if (CheckIfPlayerHasObject(out item)) InventorySystem.Instance.Remove(item.Data);
-            else PlayerDialog.Instance.ShowDialog($"La puerta está bloqueada, pero parece tener una cerradura...");
+            else PlayerDialog.Instance.ShowDialog($"Door is locked, but it seems it can be opened...");  // Mensaje de Feedback
 
 
         } else if (Type == Puzzle.Type.OneWay)  // Por definir
@@ -147,9 +147,9 @@ public class Door : MonoBehaviour {
             if (player.transform.position.x > _pivot.position.x) 
             {
                 ChangeDoorType(Puzzle.Type.None);
-                PlayerDialog.Instance.ShowDialog($"Puerta desbloqueada");
+                PlayerDialog.Instance.ShowDialog($"Door unlocked!");  // Mensaje de Feedback
             }
-            else PlayerDialog.Instance.ShowDialog($"La puerta está cerrada por este lado");
+            else PlayerDialog.Instance.ShowDialog($"Door is closed on this side");  // Mensaje de Feedback
         }
     }
 
@@ -165,7 +165,7 @@ public class Door : MonoBehaviour {
             {
                 hasKey = true; 
                 item = invItem;
-                PlayerDialog.Instance.ShowDialog($"Puerta abierta con {item.Data.DisplayName}");
+                PlayerDialog.Instance.ShowDialog($"Door opened with {item.Data.DisplayName}");  // Mensaje de Feedback
                 ChangeDoorType(Puzzle.Type.None);
                 break;
             }
