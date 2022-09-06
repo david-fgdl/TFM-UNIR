@@ -293,7 +293,7 @@ public class PlayerController : MonoBehaviour
     public void ThrowSalt(InputAction.CallbackContext context)
     {
         Debug.Log("Salt throw!");
-        var saltAmount = 10;
+        var saltAmount = 2;
 
         if (_currentSaltAmount > 0) {
 
