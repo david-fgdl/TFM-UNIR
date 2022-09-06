@@ -1,17 +1,24 @@
+/* SCRIPT QUE REGULA EL COMPORTAMIENTO DE LAS PUERTAS */
+
 using System.Collections;
 using UnityEngine;
 
-// CLASE Door
-// Clase para definir los aspectos de las puertas, 
-// que son necesarias para pasar de zona a zona.
 public class Door : MonoBehaviour {
 
+    /* VARIABLES */
+
+    // PARAMETROS DE LA PUERTA
     public string Id; // Id de la puerta
     public string DoorName; // Nombre de la puerta
+
+    // REFERENCIAS
     public InventoryItemData UnlockObject; // Objeto que desbloquea la puerta
     public Puzzle.Type Type; // Tipo de puzzle
-    private GameObject _enemyRef; //Referencia del enemigo
-    private bool _onlyOnce; //Switch para evitar muchas ejecuciones
+    private GameObject _enemyRef; // Referencia del enemigo
+
+    // FLAGS
+
+    private bool _onlyOnce; // Switch para evitar muchas ejecuciones
     
 
     #region Open Variables
@@ -21,7 +28,7 @@ public class Door : MonoBehaviour {
     public float OpenedRotation; // Rotacion de la puerta abierta
     #endregion
 
-
+    // VALORES DE TRANSFORMACION
     [SerializeField] private Transform _pivot; // Posición de la bisagra
     private float _currentRotation; // Rotación actual de la puerta
 
@@ -31,6 +38,10 @@ public class Door : MonoBehaviour {
     [SerializeField] private AudioClip _doorOpeningSound; // Sonido modificado de Sound Effect from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=43633">Pixabay</a>
     [SerializeField] private AudioClip _doorClosingSound; // Sonido modificado de Sound Effect from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=43633">Pixabay</a>
 
+    /* METODOS BASICOS */
+
+    // METODO START
+    // Start es llamado antes del primer frame
     private void Start()
     {
         _currentRotation = ClosedRotation;
@@ -38,28 +49,35 @@ public class Door : MonoBehaviour {
         _onlyOnce = true;
     }
 
+    // METODO UPDATE
+    // Update es llamado una vez por frame
     private void Update()
     {
-        //Si la puerta esta abierta y el enemigo pasa por mi lado y no acabo de ejecutar la corrutina o ya termino la corrutina
+        // Llamada a la rutina para que el enemigo cierre la puerta
         if (IsOpen && Vector3.Distance(transform.position, _enemyRef.transform.position) < 3 && _onlyOnce)
         {
             _onlyOnce = false;
-            StartCoroutine(OpenClose(IsOpen)); // Cierra la puerta
+            StartCoroutine(OpenClose(IsOpen)); // Cierre de la puerta
         }
     }
 
+    /* METODOS DE LA PUERTA */
+
+    // METODO DE APERTURA / CIERRE DE LA PUERTA
     private IEnumerator OpenClose(bool isOpen) 
     {
 
+        // GESTION DE SONIDOS DE LA PUERTA
         if (!IsOpen) _audioSource.PlayOneShot(_doorOpeningSound);
         else _audioSource.PlayOneShot(_doorClosingSound);
 
+        // AJUSTES DE TRANSFORMACION
         if (!IsInverted) 
-        { // Comprobamos si está invertida
-            if (!IsOpen) // Comprobamos si esta cerrada
+        { // Se comprueba si la puerta estA invertida
+            if (!IsOpen) // Se comprueba si la puerta estA cerrada
             {
                 for (float i = _currentRotation; i >= OpenedRotation; i--)
-                { // open not inverted ex.: door_00
+                {
                     _currentRotation = i;
                     _pivot.eulerAngles = new Vector3(0, _currentRotation, 0);
                     yield return new WaitForSeconds(0.01f);
@@ -68,7 +86,7 @@ public class Door : MonoBehaviour {
             else
             {
                 for (float i = _currentRotation; i < ClosedRotation; i++)
-                { // close not inverted ex.: door_00
+                {
                     _currentRotation = i;
                     _pivot.eulerAngles = new Vector3(0, _currentRotation, 0);
                     yield return new WaitForSeconds(0.01f);
@@ -79,7 +97,7 @@ public class Door : MonoBehaviour {
             if (!IsOpen)
             {
                 for (float i = _currentRotation; i <= OpenedRotation; i++)
-                { // open not inverted ex.: door_01
+                {
                     _currentRotation = i;
                     _pivot.eulerAngles = new Vector3(0, _currentRotation, 0);
                     yield return new WaitForSeconds(0.01f);
@@ -88,7 +106,7 @@ public class Door : MonoBehaviour {
             else
             {
                 for (float i = _currentRotation; i > ClosedRotation; i--)
-                { // close not inverted ex.: door_01
+                {
                     _currentRotation = i;
                     _pivot.eulerAngles = new Vector3(0, _currentRotation, 0);
                     yield return new WaitForSeconds(0.01f);
@@ -99,44 +117,45 @@ public class Door : MonoBehaviour {
         ChangeDoorState(); // Cambiamos el estado de la puerta
     }
 
+    // METODO PARA CAMBIAR EL ESTADO DE LA PUERTA
     public void ChangeDoorState() 
     {
         IsOpen = !IsOpen;
 
-        _onlyOnce = true; //Lo ultimo de la corrutina terminó, el enemigo puede volver a cerrar si esta abierta
+        _onlyOnce = true; // La corrutina terminó, el enemigo puede volver a cerrar la puerta si estA abierta
     }
 
-    public void TryOpen(GameObject player) // Aqui se añaden los tipos de puerta
+    // METODO PARA INTENTAR ABRIR LA PUERTA (En funciOn del tipo de puzle)
+    public void TryOpen(GameObject player)
     {
-        if (Type != Puzzle.Type.None) _audioSource.PlayOneShot(_doorUnlockedSound);
 
+        if (Type != Puzzle.Type.None) _audioSource.PlayOneShot(_doorUnlockedSound);
         Debug.Log($"Abriendo puerta tipo {Type}");
 
 
-        //? Estos ifs se puede cambiar por un switch case
-        if (Type == Puzzle.Type.None) 
-        { // Se puede abrir y cerrar la puerta sin mas
-            StartCoroutine(OpenClose(IsOpen));
-        } else if (Type == Puzzle.Type.Object) 
+        if (Type == Puzzle.Type.None)  // Se puede abrir y cerrar la puerta sin mas
         {
-            // Se necesita un objeto en el inventario para abrir
+            StartCoroutine(OpenClose(IsOpen));
+        } else if (Type == Puzzle.Type.Object) // Se necesita un objeto en el inventario para abrir
+        {
             InventoryItem item;
             if (CheckIfPlayerHasObject(out item)) 
             {
                 InventorySystem.Instance.Remove(item.Data);
             }
-        } else if (Type == Puzzle.Type.OneWay)
+        } else if (Type == Puzzle.Type.OneWay)  // Por definir
         {
             if (player.transform.position.x > _pivot.position.x) ChangeDoorType(Puzzle.Type.None);
         }
     }
 
+    // METODO PARA COMPROBAR SI EL JUGADOR POSEE UN OBJETO PARA PASAR POR LA PUERTA
     private bool CheckIfPlayerHasObject(out InventoryItem item) 
     {
         bool hasKey = false;
         item = null;
 
-        foreach (InventoryItem invItem in InventorySystem.Instance.Inventory) // Comprobamos los objetos en  nuestro inventario
+        foreach (InventoryItem invItem in InventorySystem.Instance.Inventory) // Se comprueban los objetos del inventario
         {
             if (this.Id == "door_01" && invItem.Data.Id == UnlockObject.Id)
             {
@@ -150,12 +169,11 @@ public class Door : MonoBehaviour {
         return hasKey;
     }
 
+    // METODO PARA CAMBIAR EL TIPO DE PUERTA EN FUNCION DEL TIPO DE PUZLE
     private void ChangeDoorType(Puzzle.Type newType) 
     {
         this.Type = newType;
     }
-
-
 
     // ANTIGUO OPEN CLOSE - NO BORRAR POR SI ACASO
     // public void OpenClose(bool isOpen) {

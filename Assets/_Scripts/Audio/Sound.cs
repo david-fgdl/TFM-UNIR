@@ -1,9 +1,15 @@
+/* SCRIPT PARA TENER UN MAYOR CONTROL SOBRE EL AUDIO DEL JUEGO */
+
 using UnityEngine;
 using System;
 
 [Serializable]
-public class Sound : MonoBehaviour
+public class Sound : MonoBehaviour  // ! Sin uso de momento. Previsto por la escalabilidad
 {
+
+    /* VARIABLES */
+
+    // VALORES DEL SONIDO
     public string SoundName;
     public AudioClip Clip;
 
