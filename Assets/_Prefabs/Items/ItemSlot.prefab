@@ -538,9 +538,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 8761608556577501130}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cf204ce6bc16ea4693f6e84fcec9933, type: 3}
+  m_Script: {fileID: 11500000, guid: 69c12c905e341074980087edee89124e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _icon: {fileID: 3678222001780390434}
+  _combinableIcon: {fileID: 7232209582601130468}
+  _label: {fileID: 3909771529514293641}
+  _stackObject: {fileID: 5253525854061064515}
+  _stackLabel: {fileID: 7878099320099244696}
 --- !u!61 &4306465398683445218
 BoxCollider2D:
   m_ObjectHideFlags: 0
