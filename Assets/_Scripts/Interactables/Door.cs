@@ -129,6 +129,13 @@ public class Door : MonoBehaviour {
     public void TryOpen(GameObject player)
     {
 
+        if (Id.Equals("door_blocked")) 
+        {
+            PlayerDialog.Instance.ShowDialog($"Door blocked!"); 
+            return;
+        }
+         
+
         if (Type != Puzzle.Type.None) _audioSource.PlayOneShot(_doorUnlockedSound);
 
 
