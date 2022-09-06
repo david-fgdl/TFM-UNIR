@@ -10,11 +10,11 @@ public class PlayerController : MonoBehaviour
 
     /* VARIABLES */
 
-    // STATS DEL JUGADOR
+    // STATS DE SAL DEL JUGADOR
     [Header("Player Stats")]
-    private int _maxSaltAmount = 100;
-    private int _currentSaltAmount;
-    public SaltPouch saltPouch;
+    [SerializeField]private int _maxSaltAmount = 100;
+    [SerializeField] private int _currentSaltAmount;
+    [SerializeField] private int _saltLostInThrow = 2;
     [SerializeField] private int _saltThrowDistance;
     [SerializeField] private int _amountSaltLostByDamage;
 
@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] [Range(1, 100)] private float _mouseSensivity = 50;
 
     // REFERENCIAS
+    public SaltPouch saltPouch;
 
     [SerializeField] private Camera _playerCamera;
 
@@ -61,9 +62,9 @@ public class PlayerController : MonoBehaviour
     
     private GameObject _enemyRef;
     private EnemyHealthSystem _enemyHealthRef;
-    [SerializeField] private int _damageRange;//Distance the enemy can damage the player
-    [SerializeField] private int _damageByThrownSalt;//Damage the enemy takes by the thrown salt
-    [SerializeField] private int _damageByDamage;//Damage the enemy takes by dealing damage
+    [SerializeField] private int _damageRange; // Distancia a la que el enemigo puede dañar al jugador
+    [SerializeField] private int _damageByThrownSalt; // Daño que recibe el enemigo por la sal
+    [SerializeField] private int _damageByDamage;  // Daño que recibe el enemigo por tocar al jugador
 
     // VARIABLES AUXILIARES
 
@@ -293,12 +294,11 @@ public class PlayerController : MonoBehaviour
     public void ThrowSalt(InputAction.CallbackContext context)
     {
         Debug.Log("Salt throw!");
-        var saltAmount = 2;
 
         if (_currentSaltAmount > 0) {
 
             // FIJAR CANTIDAD DE SAL
-            _currentSaltAmount -= saltAmount;
+            _currentSaltAmount -= _saltLostInThrow;
             saltPouch.SetSaltAmount(_currentSaltAmount);
 
             // CONTROLAR DISPARO
