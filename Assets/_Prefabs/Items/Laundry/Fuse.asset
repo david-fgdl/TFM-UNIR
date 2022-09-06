@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fa1e94988f40f144ad8d098827fa548, type: 3}
   m_Name: Fuse
   m_EditorClassIdentifier: 
-  Id: 
-  DisplayName: 
+  Id: fuse
+  DisplayName: Fuse
   Icon: {fileID: 0}
   Prefab: {fileID: 0}
   IsCombinable: 0
