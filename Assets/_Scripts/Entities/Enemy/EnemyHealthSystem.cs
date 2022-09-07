@@ -95,6 +95,7 @@ public class EnemyHealthSystem : MonoBehaviour
         GainHP(100);
         _navMeshAgent.speed = 3.5f;
         reviviendo = false;
+        Debug.Log("REVIVI");
     }
 
     // RUTINA PARA GESTIONAR EL TIEMPO DE RECUPERACION DEL ENEMIGO TRAS SER DAÑADO

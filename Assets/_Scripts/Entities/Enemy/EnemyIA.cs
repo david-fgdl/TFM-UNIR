@@ -65,9 +65,11 @@ public class EnemyIA : MonoBehaviour
         if (_isChasing)
         {
             _navMeshAgent.destination = _playerRef.transform.position;
+            Debug.Log("ESTOY PERSIGUIENDO");
         }
         else
         {
+            Debug.Log("Estoy patrullando");
             Patrolling();
         }
         
@@ -81,8 +83,8 @@ public class EnemyIA : MonoBehaviour
         if (Vector3.Distance(transform.position, _targetPosition)<1)
         {
             IterateWaypointIndex();
-            UpdateDestination();
         }
+        UpdateDestination();
     }
 
     // METODO AUXILIAR DE PATRULLA: ITERAR INDICES
