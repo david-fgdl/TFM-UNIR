@@ -27,14 +27,14 @@ public class IconGenerator : MonoBehaviour
 
     /* METODOS DEL GENERADOR DE ICONOS */
 
-    // METODO ??
+    // METODO PARA SACAR LAS FOTOS DE LOS OBJETOS DESDE EL EDITOR
     [ContextMenu("ScreenShot")]
     private void ProcessScreenshots() 
     {
         StartCoroutine(Screenshot());
     }
 
-    // METODO ??
+    // METODO DE LA RUTINA DE SACAR FOTOS Y GUARDARLAS EN EL PROYECTO
     private IEnumerator Screenshot() 
     {
         for (int i = 0; i < SceneObjects.Count; i++)
@@ -66,7 +66,7 @@ public class IconGenerator : MonoBehaviour
         }
     }
 
-    // METODO ??
+    // METODO PARA SACAR LA FOTO Y GUARDARLA EN EL PROYECTO
     void TakeScreenshot(string fullPath) 
     {
 
