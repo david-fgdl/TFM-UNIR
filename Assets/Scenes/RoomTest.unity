@@ -27830,6 +27830,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4624729969089570010, guid: c015e728eeda35f449f2fea3bf81cc6f, type: 3}
+      propertyPath: Id
+      value: door_blocked
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c015e728eeda35f449f2fea3bf81cc6f, type: 3}
 --- !u!1001 &4967155466263910631
