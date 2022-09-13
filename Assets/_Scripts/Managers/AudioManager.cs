@@ -45,6 +45,7 @@ public class AudioManager : MonoBehaviour
         _bgMusic.Play();
 
     }
+    
 
 
 }

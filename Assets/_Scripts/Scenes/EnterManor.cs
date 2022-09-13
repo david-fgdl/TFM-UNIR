@@ -24,10 +24,14 @@ public class EnterManor : MonoBehaviour
         Debug.Log($"Has chocado con {other.tag}");
         if (other.CompareTag("Player"))
         {
-            _playerInsideManor = !_playerInsideManor;
 
-            _rainObject.SetActive(!_playerInsideManor);
+            // _playerInsideManor = !_playerInsideManor;
+            // _rainObject.SetActive(!_playerInsideManor);
+
+            _rainObject.SetActive(_playerInsideManor);
         }
     }
+
+    
 
 }
