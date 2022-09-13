@@ -1,0 +1,5 @@
+0:NADIE-Dialog Example
+1:HIJO-Welcome
+2:HIJA-Save us...
+3:PADRE-Have you seen my daughter?
+4:MADRE-I am glad you have come
